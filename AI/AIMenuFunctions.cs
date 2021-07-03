@@ -10,6 +10,52 @@ namespace AIModifier.AI
     {
         private static string selectedAI;
 
+        public static void LoadAdditionalSettings()
+        {
+            MenuPage gunSettingsPage = AIMenuManager.aiMenu.GetPage("GunSettingsPage");
+            gunSettingsPage.GetElement("AccuracyElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].accuracy);
+            gunSettingsPage.GetElement("GunRangeElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].gunRange);
+            gunSettingsPage.GetElement("GunCooldownElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].gunCooldown);
+            gunSettingsPage.GetElement("ReloadTimeElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].reloadTime);
+            gunSettingsPage.GetElement("BurstSizeElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].burstSize);
+            gunSettingsPage.GetElement("ClipSizeElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].clipSize);
+
+            MenuPage throwSettingsPage = AIMenuManager.aiMenu.GetPage("ThrowSettingsPage");
+            throwSettingsPage.GetElement("EnableThrowAttackElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].enableThrowAttack);
+            throwSettingsPage.GetElement("ThrowCooldownElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].throwCooldown);
+            throwSettingsPage.GetElement("ThrowMaxRangeElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].throwMaxRange);
+            throwSettingsPage.GetElement("ThrowMinRangeElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].throwMinRange);
+            throwSettingsPage.GetElement("ThrowVelocityElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].throwVelocity);
+
+            MenuPage movementSettingsPage = AIMenuManager.aiMenu.GetPage("MovementSettingsPage");
+            movementSettingsPage.GetElement("AgroSpeedElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].agroSpeed);
+            movementSettingsPage.GetElement("RoamSpeedElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].roamSpeed);
+            movementSettingsPage.GetElement("DefaultToRoamingElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].roamByDefault);
+
+            MenuPage pathingSettingsPage = AIMenuManager.aiMenu.GetPage("PathingSettingPage");
+            pathingSettingsPage.GetElement("RoamWandersElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].roamWanders);
+            pathingSettingsPage.GetElement("BreakAgroHomeDistanceElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].breakAgroHomeDistance);
+            pathingSettingsPage.GetElement("BreakAgroTargetDistanceElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].breakAgroTargetDistance);
+            pathingSettingsPage.GetElement("InvestigateRangeElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].investigateRange);
+            pathingSettingsPage.GetElement("InvestigationCooldownElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].investigationCooldown);
+            pathingSettingsPage.GetElement("RestingRangeElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].restingRange);
+
+            MenuPage crabletSettingsPage = AIMenuManager.aiMenu.GetPage("CrabletSettingsPage");
+            crabletSettingsPage.GetElement("BaseColorElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].baseColor);
+            crabletSettingsPage.GetElement("AgroColorElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].agroColor);
+            crabletSettingsPage.GetElement("JumpAttackEnabledElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].jumpAttackEnabled);
+            crabletSettingsPage.GetElement("JumpChargeElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].jumpCharge);
+            crabletSettingsPage.GetElement("JumpCooldownElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].jumpCooldown);
+
+            MenuPage otherSettingsPage = AIMenuManager.aiMenu.GetPage("OtherSettingsPage");
+            otherSettingsPage.GetElement("EmissionColorElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].emissionColor);
+            otherSettingsPage.GetElement("AITickFrequencyElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].aiTickFrequency);
+            otherSettingsPage.GetElement("HearingSensitivityElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].hearingSensitivity);
+            otherSettingsPage.GetElement("VisionFOVElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].visionFOV);
+            otherSettingsPage.GetElement("PitchMultiplierElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].pitchMultiplier);
+            otherSettingsPage.GetElement("HitScaleFactorElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].hitScaleFactor);
+        }
+
         #region Configure AI Page
         public static void OnSelectedAIChanged(string selectedAI)
         {

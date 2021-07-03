@@ -16,7 +16,7 @@ namespace AIModifier
             Utilities.Utilities.CreateHooks();
             Utilities.Utilities.RegisterClasses();
             Utilities.Utilities.LoadAssetBundles();
-            Utilities.Utilities.InitialiseXMLData();
+            Utilities.Utilities.InitialiseAIDataXML();
             Utilities.Utilities.SetupCollisionLayers();
         }
 
@@ -36,7 +36,7 @@ namespace AIModifier
 
             if(Input.GetKeyDown(KeyCode.C))
             {
-                AIMenuManager.CloseAIMenu();
+                Utilities.Utilities.GenerateDefaultAIData();
             }
 
             if (Input.GetKeyDown(KeyCode.M))

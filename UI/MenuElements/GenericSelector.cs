@@ -40,7 +40,13 @@ namespace AIModifier.UI
 
         public override void SetValue(object value)
         {
-            this.pointer = (int)value;
+            for(int i = 0; i < elements.Count; ++i)
+            {
+                if(elements[i].Equals((T)value))
+                {
+                    this.pointer = i;
+                }
+            }
             itemDisplay.SetValue(elements[pointer]);
         }
 
