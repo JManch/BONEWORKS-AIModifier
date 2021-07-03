@@ -16,38 +16,43 @@ namespace AIModifier.UI
         public Hand hand { get; private set; }
 
         private bool pointingAtUI;
-        private bool pointerActive;
-        private GameObject pointerTip;
         private RaycastHit pointerHit;
-        private GameObject laserDirection;
-        
+
+        private GameObject laser;
+        private GameObject pointerTip;
+        private GameObject pointerCenter;
+        private GameObject pointerOrigin;
+
         void Awake()
         {
             hand = transform.parent.parent.GetComponent<Hand>();
-            InstantiatePointerTip();
-            laserDirection = new GameObject("LaserDirection");
+            laser = new GameObject("Laser");
         }
 
         void Start()
         {
-            transform.localPosition = Vector3.zero;
+            
             transform.rotation = transform.parent.rotation;
-            pointerTip.gameObject.SetActive(false);
-
-            laserDirection.transform.SetParent(transform);
-            laserDirection.transform.rotation = transform.rotation;
-            laserDirection.transform.localPosition = Vector3.zero;
+            
+            laser.transform.SetParent(transform);
+            laser.transform.rotation = transform.rotation;
+            laser.transform.localPosition = Vector3.zero;
             if (hand.gameObject.name == "Hand (left)")
             {
-                laserDirection.transform.localEulerAngles = new Vector3(350, 320, 0);
+                transform.localPosition = new Vector3(-0.1f, 0.05f, 0.1f);
+                laser.transform.localEulerAngles = new Vector3(350, 320, 0);
             }
             else
             {
-                laserDirection.transform.localEulerAngles = new Vector3(350, 40, 0);
+                transform.localPosition = new Vector3(0.1f, 0.05f, 0.1f);
+                laser.transform.localEulerAngles = new Vector3(350, 40, 0);
             }
+
+            InstantiatePointer();
+            laser.gameObject.SetActive(false);
         }
 
-        void FixedUpdate()
+        protected virtual void FixedUpdate()
         {
             // Need some kind of limitation here to prevent the raycast always running. Only run when within x units of the UI?
             pointingAtUI = PerformHandRaycast();
@@ -56,6 +61,7 @@ namespace AIModifier.UI
             {
                 ActivatePointer();
                 pointerTip.transform.position = pointerHit.point;
+                pointerCenter.transform.localPosition = pointerTip.transform.localPosition * 0.65f;
             }
             else  if (pointingAtUI) // If we are pointing at UI but we are not the active pointer
             {
@@ -75,38 +81,62 @@ namespace AIModifier.UI
 
         private void ActivatePointer()
         {
-            if(!pointerActive)
+            if(!laser.gameObject.active)
             {
-                pointerTip.gameObject.SetActive(true);
-                pointerActive = true;
+                laser.gameObject.SetActive(true);
             }
         }
 
         private void DeactivatePointer()
         {
-            if(pointerActive)
+            if(laser.gameObject.active)
             {
-                pointerTip.gameObject.SetActive(false);
-                pointerActive = false;
+                laser.gameObject.SetActive(false);
             }
         }
 
         private bool PerformHandRaycast()
         {
-            return Physics.Raycast(laserDirection.transform.position, laserDirection.transform.forward, out pointerHit, 100f, 1 << 5, QueryTriggerInteraction.Collide);
+            return Physics.Raycast(laser.transform.position, laser.transform.forward, out pointerHit, 100f, 1 << 31, QueryTriggerInteraction.Collide);
         }
 
-        private void InstantiatePointerTip()
+        private void InstantiatePointer()
         {
+            Material transparentMaterial = new Material(Shader.Find("Standard"));
+            transparentMaterial.SetOverrideTag("RenderType", "Transparent");
+            transparentMaterial.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
+            transparentMaterial.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+            transparentMaterial.SetInt("_ZWrite", 0);
+            transparentMaterial.DisableKeyword("_ALPHATEST_ON");
+            transparentMaterial.EnableKeyword("_ALPHABLEND_ON");
+            transparentMaterial.DisableKeyword("_ALPHAPREMULTIPLY_ON");
+            transparentMaterial.renderQueue = (int)UnityEngine.Rendering.RenderQueue.Transparent;
+            transparentMaterial.color = new Color(0, 0.5f, 0, 0.8f);
+
             pointerTip = GameObject.CreatePrimitive(PrimitiveType.Sphere);
             pointerTip.name = "PointerTip";
-            pointerTip.transform.SetParent(transform);
-            pointerTip.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
-            pointerTip.GetComponent<Renderer>().material.color = Color.green;
+            pointerTip.transform.SetParent(laser.transform);
+            pointerTip.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
+            pointerTip.GetComponent<MeshRenderer>().enabled = false;
             Rigidbody rigidbody = pointerTip.AddComponent<Rigidbody>();
             rigidbody.isKinematic = true;
             rigidbody.useGravity = false;
             pointerTip.layer = 30;
+
+            pointerCenter = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            pointerCenter.name = "PointerCenter";
+            pointerCenter.transform.SetParent(laser.transform);
+            pointerCenter.transform.localScale = new Vector3(0.03f, 0.03f, 0.03f);
+            pointerCenter.GetComponent<SphereCollider>().enabled = false;
+            pointerCenter.GetComponent<Renderer>().material = transparentMaterial;
+
+            pointerOrigin = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            pointerOrigin.name = "PointerOrigin";
+            pointerOrigin.transform.SetParent(laser.transform);
+            pointerOrigin.transform.localScale = new Vector3(0.03f, 0.03f, 0.03f);
+            pointerOrigin.transform.localPosition = Vector3.zero;
+            pointerOrigin.GetComponent<SphereCollider>().enabled = false;
+            pointerOrigin.GetComponent<Renderer>().material = transparentMaterial;
         }
 
         /*

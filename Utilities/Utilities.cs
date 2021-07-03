@@ -137,14 +137,16 @@ namespace AIModifier.Utilities
             }
             */
 
+            // Setup layer 30 so it only collides with layer 31
             for (int j = 0; j < 32; j++)
             {
-                if(j == 5)
+                if(j == 31)
                 {
                     Physics.IgnoreLayerCollision(30, j, false);
                 }
                 else
                 {
+                    Physics.IgnoreLayerCollision(31, j, true);
                     Physics.IgnoreLayerCollision(30, j, true);
                 }
                 

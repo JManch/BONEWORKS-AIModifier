@@ -41,11 +41,14 @@ namespace AIModifier
 
             if (Input.GetKeyDown(KeyCode.M))
             {
-                AISelectorManager.EnableAISelector();
+                //AISelectorManager.EnableAISelector();
+
+
+                Camera mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+                mainCamera.cullingMask ^= 1 << 30;
+                mainCamera.cullingMask ^= 1 << 31;
 
                 /*
-                GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().cullingMask ^= 1 << 30;
-
                 if (Utilities.Utilities.aiMenuPrefab == null)
                 {
                     MelonLogger.Msg("aiMenuPrefab is null");
