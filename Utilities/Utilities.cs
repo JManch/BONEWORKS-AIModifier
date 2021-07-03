@@ -141,15 +141,6 @@ namespace AIModifier.Utilities
 
         public static void SetupCollisionLayers()
         {
-            /*
-            for(int i = 0; i < 32; i++)
-            {
-                for(int j = 0; j < 32; j++)
-                {
-                    MelonLogger.Msg("Ignore collision value between " + LayerMask.LayerToName(i) + " number " + i + " and " + LayerMask.LayerToName(j) + " number " + j + " is " + Physics.GetIgnoreLayerCollision(i, j));
-                }
-            }
-            */
 
             // Setup layer 30 so it only collides with layer 31
             for (int j = 0; j < 32; j++)
