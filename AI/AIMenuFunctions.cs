@@ -12,6 +12,12 @@ namespace AIModifier.AI
 
         public static void LoadAdditionalSettings()
         {
+            MenuPage healthSettingsPage = AIMenuManager.aiMenu.GetPage("HealthSettingsPage");
+            healthSettingsPage.GetElement("LeftLegHealthElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].leftLegHealth);
+            healthSettingsPage.GetElement("RightLegHealthElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].rightLegHealth);
+            healthSettingsPage.GetElement("LeftArmHealthElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].leftArmHealth);
+            healthSettingsPage.GetElement("RightArmHealthElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].rightArmHealth);
+
             MenuPage gunSettingsPage = AIMenuManager.aiMenu.GetPage("GunSettingsPage");
             gunSettingsPage.GetElement("AccuracyElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].accuracy);
             gunSettingsPage.GetElement("GunRangeElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].gunRange);
@@ -28,17 +34,16 @@ namespace AIModifier.AI
             throwSettingsPage.GetElement("ThrowVelocityElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].throwVelocity);
 
             MenuPage movementSettingsPage = AIMenuManager.aiMenu.GetPage("MovementSettingsPage");
-            movementSettingsPage.GetElement("AgroSpeedElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].agroSpeed);
+            movementSettingsPage.GetElement("AgroSpeedElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].agroedSpeed);
+            movementSettingsPage.GetElement("EngagedSpeedElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].engagedSpeed);
             movementSettingsPage.GetElement("RoamSpeedElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].roamSpeed);
-            movementSettingsPage.GetElement("DefaultToRoamingElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].roamByDefault);
+            movementSettingsPage.GetElement("RoamRangeElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].roamRange);
+            movementSettingsPage.GetElement("RoamWandersElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].roamWanders);
 
-            MenuPage pathingSettingsPage = AIMenuManager.aiMenu.GetPage("PathingSettingPage");
-            pathingSettingsPage.GetElement("RoamWandersElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].roamWanders);
-            pathingSettingsPage.GetElement("BreakAgroHomeDistanceElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].breakAgroHomeDistance);
-            pathingSettingsPage.GetElement("BreakAgroTargetDistanceElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].breakAgroTargetDistance);
-            pathingSettingsPage.GetElement("InvestigateRangeElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].investigateRange);
-            pathingSettingsPage.GetElement("InvestigationCooldownElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].investigationCooldown);
-            pathingSettingsPage.GetElement("RestingRangeElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].restingRange);
+            MenuPage behaviourSettingsPage = AIMenuManager.aiMenu.GetPage("BehaviourSettingsPage");
+            behaviourSettingsPage.GetElement("DefaultMentalStateElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].defaultMentalState);
+            behaviourSettingsPage.GetElement("DefaultEngagedModeElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].defaultEngagedMode);
+            behaviourSettingsPage.GetElement("MirrorSkillElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].mirrorSkill);
 
             MenuPage crabletSettingsPage = AIMenuManager.aiMenu.GetPage("CrabletSettingsPage");
             crabletSettingsPage.GetElement("BaseColorElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].baseColor);
@@ -46,14 +51,28 @@ namespace AIModifier.AI
             crabletSettingsPage.GetElement("JumpAttackEnabledElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].jumpAttackEnabled);
             crabletSettingsPage.GetElement("JumpChargeElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].jumpCharge);
             crabletSettingsPage.GetElement("JumpCooldownElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].jumpCooldown);
+            crabletSettingsPage.GetElement("JumpForceElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].jumpForce);
+
+            MenuPage combatSettingsPage = AIMenuManager.aiMenu.GetPage("CombatSettingsPage");
+            combatSettingsPage.GetElement("AgroOnNPCTypeElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].agroOnNPCType);
+            combatSettingsPage.GetElement("CombatProficiencyElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].combatProficiency);
+            combatSettingsPage.GetElement("MeleeRangeElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].meleeRange);
+
+            MenuPage visualSettingsPage = AIMenuManager.aiMenu.GetPage("VisualSettingsPage");
+            visualSettingsPage.GetElement("EmissionColorElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].emissionColor);
+            visualSettingsPage.GetElement("FaceExpressionCooldownElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].faceExpressionCooldownTime);
+
+            MenuPage omniWheelSettingsPage = AIMenuManager.aiMenu.GetPage("OmniWheelSettingsPage");
+            omniWheelSettingsPage.GetElement("ChargeAttackSpeedElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].chargeAttackSpeed);
+            omniWheelSettingsPage.GetElement("ChargeCooldownElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].chargeCooldown);
+            omniWheelSettingsPage.GetElement("ChargePrepSpeedElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].chargePrepSpeed);
+            omniWheelSettingsPage.GetElement("ChargeWindupDistanceElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].chargeWindupDistance);
+            omniWheelSettingsPage.GetElement("DefaultEngagedModeElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].defaultOmniEngagedMode);
 
             MenuPage otherSettingsPage = AIMenuManager.aiMenu.GetPage("OtherSettingsPage");
-            otherSettingsPage.GetElement("EmissionColorElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].emissionColor);
-            otherSettingsPage.GetElement("AITickFrequencyElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].aiTickFrequency);
             otherSettingsPage.GetElement("HearingSensitivityElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].hearingSensitivity);
-            otherSettingsPage.GetElement("VisionFOVElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].visionFOV);
+            otherSettingsPage.GetElement("VisionRadiusElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].visionRadius);
             otherSettingsPage.GetElement("PitchMultiplierElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].pitchMultiplier);
-            otherSettingsPage.GetElement("HitScaleFactorElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].hitScaleFactor);
         }
 
         #region Configure AI Page
@@ -83,20 +102,6 @@ namespace AIModifier.AI
 
         #region Health Settings Page
 
-        public static void UpdateHipHealth(string hipHealth)
-        {
-            if (float.TryParse(hipHealth, NumberStyles.Float, CultureInfo.InvariantCulture.NumberFormat, out float result))
-            {
-                AIDataManager.aiDataDictionary[selectedAI].hipHealth = result;
-            }
-        }
-        public static void UpdateSpineHealth(string spineHealth)
-        {
-            if (float.TryParse(spineHealth, NumberStyles.Float, CultureInfo.InvariantCulture.NumberFormat, out float result))
-            {
-                AIDataManager.aiDataDictionary[selectedAI].spineHealth = result;
-            }
-        }
         public static void UpdateLeftLegHealth(string leftLegHealth)
         {
             if (float.TryParse(leftLegHealth, NumberStyles.Float, CultureInfo.InvariantCulture.NumberFormat, out float result))
@@ -317,10 +322,7 @@ namespace AIModifier.AI
         }
         public static void UpdateCombatProficiency(string combatProficiency)
         {
-            if (float.TryParse(combatProficiency, NumberStyles.Float, CultureInfo.InvariantCulture.NumberFormat, out float result))
-            {
-                AIDataManager.aiDataDictionary[selectedAI].combatProficiency = result;
-            }
+            AIDataManager.aiDataDictionary[selectedAI].combatProficiency = combatProficiency;
         }
         public static void UpdateMeleeRange(string meleeRange)
         {

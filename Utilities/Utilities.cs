@@ -213,34 +213,43 @@ namespace AIModifier.Utilities
 
             aiData.name = SimpleHelpers.GetCleanObjectName(aiBrain.gameObject.name);
             aiData.health = behaviourPowerLegs.health.cur_hp;
+            aiData.leftLegHealth = behaviourPowerLegs.health.cur_leg_lf;
+            aiData.rightLegHealth = behaviourPowerLegs.health.cur_leg_rt;
+            aiData.leftArmHealth = behaviourPowerLegs.health.cur_arm_lf;
+            aiData.rightArmHealth = behaviourPowerLegs.health.cur_arm_rt;
+
             aiData.accuracy = behaviourPowerLegs.accuracy;
             aiData.gunRange = behaviourPowerLegs.gunRange;
             aiData.gunCooldown = behaviourPowerLegs.gunCooldown;
             aiData.reloadTime = behaviourPowerLegs.reloadTime;
             aiData.burstSize = behaviourPowerLegs.burstSize;
             aiData.clipSize = behaviourPowerLegs.clipSize;
+
             aiData.enableThrowAttack = behaviourPowerLegs.enableThrowAttack;
             aiData.throwCooldown = behaviourPowerLegs.throwCooldown;
             aiData.throwMaxRange = behaviourPowerLegs.throwMaxRange;
             aiData.throwMinRange = behaviourPowerLegs.throwMinRange;
             aiData.throwVelocity = behaviourPowerLegs.throwVelocity;
-            aiData.agroSpeed = behaviourPowerLegs.agroedSpeed;
+
+            aiData.agroedSpeed = behaviourPowerLegs.agroedSpeed;
             aiData.roamSpeed = behaviourPowerLegs.roamSpeed;
-            aiData.roamByDefault = false;
+            aiData.engagedSpeed = behaviourPowerLegs.engagedSpeed;
+            aiData.roamRange = behaviourPowerLegs.roamRange.x;
             aiData.roamWanders = behaviourPowerLegs.roamWanders;
-            aiData.breakAgroHomeDistance = behaviourPowerLegs.breakAgroHomeDistance;
-            aiData.breakAgroTargetDistance = behaviourPowerLegs.breakAgroTargetDistance;
-            aiData.investigateRange = behaviourPowerLegs.investigateRange;
-            aiData.investigationCooldown = behaviourPowerLegs._investigationCooldown;
-            aiData.restingRange = behaviourPowerLegs.restingRange;
-            aiData.baseColor = "Default";
-            aiData.agroColor = "Default";
-            aiData.emissionColor = "Default";
-            aiData.aiTickFrequency = behaviourPowerLegs.aiTickFreq;
+
+            aiData.defaultMentalState = behaviourPowerLegs.mentalState.ToString();
+            aiData.defaultEngagedMode = behaviourPowerLegs.mentalState.ToString();
+            aiData.mirrorSkill = behaviourPowerLegs.mirrorSkill;
+
+            aiData.agroOnNPCType = behaviourPowerLegs.agroOnNpcType.ToString();
+            aiData.combatProficiency = behaviourPowerLegs.combatProficiency.ToString();
+            aiData.meleeRange = behaviourPowerLegs.meleeRange;
+            aiData.emissionColor = behaviourPowerLegs.emissColor.ToString();
+            aiData.faceExpressionCooldownTime = behaviourPowerLegs.faceAnim._cooldownTime;
+
             aiData.hearingSensitivity = behaviourPowerLegs.sensors.hearingSensitivity;
-            aiData.visionFOV = behaviourPowerLegs.sensors.visionFov;
+            aiData.visionRadius = behaviourPowerLegs.sensors._visionSphere.radius;
             aiData.pitchMultiplier = behaviourPowerLegs.sfx.pitchMultiplier;
-            aiData.hitScaleFactor = behaviourPowerLegs.visualDamage.hitScaleFactor;
 
             return aiData;
         }
@@ -250,63 +259,53 @@ namespace AIModifier.Utilities
             BehaviourCrablet behaviourCrablet = aiBrain.transform.GetChild(0).GetChild(0).GetComponent<BehaviourCrablet>();
 
             AIData aiData = new AIData();
+            aiData.name = SimpleHelpers.GetCleanObjectName(aiBrain.gameObject.name);
             aiData.health = behaviourCrablet.health.cur_hp;
+            aiData.leftLegHealth = behaviourCrablet.health.cur_leg_lf;
+            aiData.rightLegHealth = behaviourCrablet.health.cur_leg_rt;
+            aiData.leftArmHealth = behaviourCrablet.health.cur_arm_lf;
+            aiData.rightArmHealth = behaviourCrablet.health.cur_arm_rt;
+
             aiData.accuracy = behaviourCrablet.accuracy;
             aiData.gunRange = behaviourCrablet.gunRange;
             aiData.gunCooldown = behaviourCrablet.gunCooldown;
             aiData.reloadTime = behaviourCrablet.reloadTime;
             aiData.burstSize = behaviourCrablet.burstSize;
             aiData.clipSize = behaviourCrablet.clipSize;
+
             aiData.enableThrowAttack = behaviourCrablet.enableThrowAttack;
             aiData.throwCooldown = behaviourCrablet.throwCooldown;
             aiData.throwMaxRange = behaviourCrablet.throwMaxRange;
             aiData.throwMinRange = behaviourCrablet.throwMinRange;
             aiData.throwVelocity = behaviourCrablet.throwVelocity;
-            aiData.agroSpeed = behaviourCrablet.agroedSpeed;
+
+            aiData.agroedSpeed = behaviourCrablet.agroedSpeed;
             aiData.roamSpeed = behaviourCrablet.roamSpeed;
-            aiData.roamByDefault = false;
+            //aiData.engagedSpeed = behaviourCrablet.engagedSpeed;
+            aiData.roamRange = behaviourCrablet.roamRange.x;
             aiData.roamWanders = behaviourCrablet.roamWanders;
-            aiData.breakAgroHomeDistance = behaviourCrablet.breakAgroHomeDistance;
-            aiData.breakAgroTargetDistance = behaviourCrablet.breakAgroTargetDistance;
-            aiData.investigateRange = behaviourCrablet.investigateRange;
-            aiData.investigationCooldown = behaviourCrablet._investigationCooldown;
-            aiData.restingRange = behaviourCrablet.restingRange;
-            aiData.baseColor = "Default";
-            aiData.agroColor = "Default";
+
+            aiData.defaultMentalState = behaviourCrablet.mentalState.ToString();
+            aiData.defaultEngagedMode = behaviourCrablet.mentalState.ToString();
+            //aiData.mirrorSkill = behaviourCrablet.mirrorSkill;
+
+            aiData.baseColor = behaviourCrablet.baseColor.ToString();
+            aiData.agroColor = behaviourCrablet.agroColor.ToString();
             aiData.jumpAttackEnabled = behaviourCrablet.enableJumpAttack;
             aiData.jumpCharge = behaviourCrablet.jumpCharge;
             aiData.jumpCooldown = behaviourCrablet.jumpCooldown;
-            aiData.emissionColor = "Default";
-            aiData.aiTickFrequency = behaviourCrablet.aiTickFreq;
+            aiData.jumpForce = behaviourCrablet.linkJumpForce;
 
-            if (aiBrain.behaviour.sensors != null)
-            {
-                aiData.hearingSensitivity = behaviourCrablet.sensors.hearingSensitivity;
-                aiData.visionFOV = behaviourCrablet.sensors.visionFov;
-            }
-            else
-            {
-                MelonLogger.Msg("sensors is null for " + aiBrain.gameObject.name);
-            }
+            aiData.agroOnNPCType = behaviourCrablet.agroOnNpcType.ToString();
+            //aiData.combatProficiency = behaviourCrablet.combatProficiency.ToString();
+            //aiData.meleeRange = behaviourCrablet.meleeRange;
+            aiData.emissionColor = behaviourCrablet.emissColor.ToString();
+            //aiData.faceExpressionCooldownTime = behaviourCrablet.faceAnim._cooldownTime;
 
+            aiData.hearingSensitivity = behaviourCrablet.sensors.hearingSensitivity;
+            aiData.visionRadius = behaviourCrablet.sensors._visionSphere.radius;
+            aiData.pitchMultiplier = behaviourCrablet.sfx.pitchMultiplier;
 
-            if (aiBrain.behaviour.sfx != null)
-            {
-                aiData.pitchMultiplier = behaviourCrablet.sfx.pitchMultiplier;
-            }
-            else
-            {
-                MelonLogger.Msg("sfx is null for " + aiBrain.gameObject.name);
-            }
-
-            if (aiBrain.behaviour.visualDamage != null)
-            {
-                aiData.hitScaleFactor = behaviourCrablet.visualDamage.hitScaleFactor;
-            }
-            else
-            {
-                MelonLogger.Msg("visual damage is null for " + aiBrain.gameObject.name);
-            }
             return aiData;
         }
 
@@ -315,60 +314,59 @@ namespace AIModifier.Utilities
             BehaviourOmniwheel behaviourOmniwheel = aiBrain.transform.GetChild(0).GetChild(0).GetComponent<BehaviourOmniwheel>();
 
             AIData aiData = new AIData();
+            aiData.name = SimpleHelpers.GetCleanObjectName(aiBrain.gameObject.name);
             aiData.health = behaviourOmniwheel.health.cur_hp;
+            aiData.leftLegHealth = behaviourOmniwheel.health.cur_leg_lf;
+            aiData.rightLegHealth = behaviourOmniwheel.health.cur_leg_rt;
+            aiData.leftArmHealth = behaviourOmniwheel.health.cur_arm_lf;
+            aiData.rightArmHealth = behaviourOmniwheel.health.cur_arm_rt;
+
             aiData.accuracy = behaviourOmniwheel.accuracy;
             aiData.gunRange = behaviourOmniwheel.gunRange;
             aiData.gunCooldown = behaviourOmniwheel.gunCooldown;
             aiData.reloadTime = behaviourOmniwheel.reloadTime;
             aiData.burstSize = behaviourOmniwheel.burstSize;
             aiData.clipSize = behaviourOmniwheel.clipSize;
+
             aiData.enableThrowAttack = behaviourOmniwheel.enableThrowAttack;
             aiData.throwCooldown = behaviourOmniwheel.throwCooldown;
             aiData.throwMaxRange = behaviourOmniwheel.throwMaxRange;
             aiData.throwMinRange = behaviourOmniwheel.throwMinRange;
             aiData.throwVelocity = behaviourOmniwheel.throwVelocity;
-            aiData.agroSpeed = behaviourOmniwheel.agroedSpeed;
+
+            aiData.agroedSpeed = behaviourOmniwheel.agroedSpeed;
             aiData.roamSpeed = behaviourOmniwheel.roamSpeed;
-            aiData.roamByDefault = false;
+            //aiData.engagedSpeed = behaviourOmniwheel.engagedSpeed;
+            aiData.roamRange = behaviourOmniwheel.roamRange.x;
             aiData.roamWanders = behaviourOmniwheel.roamWanders;
-            aiData.breakAgroHomeDistance = behaviourOmniwheel.breakAgroHomeDistance;
-            aiData.breakAgroTargetDistance = behaviourOmniwheel.breakAgroTargetDistance;
-            aiData.investigateRange = behaviourOmniwheel.investigateRange;
-            aiData.investigationCooldown = behaviourOmniwheel._investigationCooldown;
-            aiData.restingRange = behaviourOmniwheel.restingRange;
-            aiData.baseColor = "Default";
-            aiData.agroColor = "Default";
-            aiData.emissionColor = "Default";
-            aiData.aiTickFrequency = behaviourOmniwheel.aiTickFreq;
 
-            if (aiBrain.behaviour.sensors != null)
-            {
-                aiData.hearingSensitivity = behaviourOmniwheel.sensors.hearingSensitivity;
-                aiData.visionFOV = behaviourOmniwheel.sensors.visionFov;
-            }
-            else
-            {
-                MelonLogger.Msg("sensors is null for " + aiBrain.gameObject.name);
-            }
+            aiData.defaultMentalState = behaviourOmniwheel.mentalState.ToString();
+            aiData.defaultEngagedMode = behaviourOmniwheel.mentalState.ToString();
+            //aiData.mirrorSkill = behaviourOmniwheel.mirrorSkill;
 
+            //aiData.baseColor = behaviourOmniwheel.baseColor.ToString();
+            //aiData.agroColor = behaviourOmniwheel.agroColor.ToString();
+            //aiData.jumpAttackEnabled = behaviourOmniwheel.enableJumpAttack;
+            //aiData.jumpCharge = behaviourOmniwheel.jumpCharge;
+            //aiData.jumpCooldown = behaviourOmniwheel.jumpCooldown;
+            //aiData.jumpForce = behaviourOmniwheel.linkJumpForce;
 
-            if (aiBrain.behaviour.sfx != null)
-            {
-                aiData.pitchMultiplier = behaviourOmniwheel.sfx.pitchMultiplier;
-            }
-            else
-            {
-                MelonLogger.Msg("sfx is null for " + aiBrain.gameObject.name);
-            }
+            aiData.agroOnNPCType = behaviourOmniwheel.agroOnNpcType.ToString();
+            //aiData.combatProficiency = behaviourOmniwheel.combatProficiency.ToString();
+            aiData.meleeRange = behaviourOmniwheel.meleeRange;
+            aiData.emissionColor = behaviourOmniwheel.emissColor.ToString();
+            //aiData.faceExpressionCooldownTime = behaviourOmniwheel.faceAnim._cooldownTime;
 
-            if (aiBrain.behaviour.visualDamage != null)
-            {
-                aiData.hitScaleFactor = behaviourOmniwheel.visualDamage.hitScaleFactor;
-            }
-            else
-            {
-                MelonLogger.Msg("visual damage is null for " + aiBrain.gameObject.name);
-            }
+            aiData.chargeAttackSpeed = behaviourOmniwheel.chargeAttackSpeed;
+            aiData.chargeCooldown = behaviourOmniwheel.chargeCooldown;
+            aiData.chargePrepSpeed = behaviourOmniwheel.chargePrepSpeed;
+            aiData.chargeWindupDistance = behaviourOmniwheel.chargeWindupDistance;
+            aiData.defaultOmniEngagedMode = behaviourOmniwheel.engagedMode.ToString();
+
+            aiData.hearingSensitivity = behaviourOmniwheel.sensors.hearingSensitivity;
+            aiData.visionRadius = behaviourOmniwheel.sensors._visionSphere.radius;
+            aiData.pitchMultiplier = behaviourOmniwheel.sfx.pitchMultiplier;
+
             return aiData;
         }
     }

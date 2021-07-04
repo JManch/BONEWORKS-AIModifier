@@ -79,6 +79,10 @@ namespace AIModifier.UI
             NPCTypes.Add("Omni Wrecker");
             NPCTypes.Add("Turret");
 
+            List<string> combatProficiency = new List<string>();
+            combatProficiency.Add("FistFight");
+            combatProficiency.Add("WildPunch");
+
             TextProperties titleTextProperties = new TextProperties(12, Color.white, false, 15);
             TextProperties buttonTextProperties = new TextProperties(10, Color.white);
             TextProperties elementTextProperties = new TextProperties(8, Color.white, true);
@@ -165,8 +169,6 @@ namespace AIModifier.UI
 
             Transform healthSettingsPageTransform = menuPrefab.transform.FindChild("HealthSettingsPage");
             healthSettingsPage.AddElement(new TextDisplay(healthSettingsPageTransform.FindChild("Title").gameObject, "HEALTH SETTINGS", new TextProperties(10.5f, Color.white, false, 15)));
-            healthSettingsPage.AddElement(new InputField(healthSettingsPageTransform.FindChild("HipHealthElement").gameObject, "Hip Health:", "", elementTextProperties, int.MinValue, int.MaxValue, delegate (string s) { AIMenuFunctions.UpdateHipHealth(s); }));
-            healthSettingsPage.AddElement(new InputField(healthSettingsPageTransform.FindChild("SpineHealthElement").gameObject, "Spine Health:", "", elementTextProperties, int.MinValue, int.MaxValue, delegate (string s) { AIMenuFunctions.UpdateSpineHealth(s); }));
             healthSettingsPage.AddElement(new InputField(healthSettingsPageTransform.FindChild("LeftLegHealthElement").gameObject, "Left Leg Health:", "", elementTextProperties, int.MinValue, int.MaxValue, delegate (string s) { AIMenuFunctions.UpdateLeftLegHealth(s); }));
             healthSettingsPage.AddElement(new InputField(healthSettingsPageTransform.FindChild("RightLegHealthElement").gameObject, "Right Leg Health:", "", elementTextProperties, int.MinValue, int.MaxValue, delegate (string s) { AIMenuFunctions.UpdateRightLegHealth(s); }));
             healthSettingsPage.AddElement(new InputField(healthSettingsPageTransform.FindChild("LeftArmHealthElement").gameObject, "Left Arm Health:", "", elementTextProperties, int.MinValue, int.MaxValue, delegate (string s) { AIMenuFunctions.UpdateLeftArmHealth(s); }));
@@ -257,10 +259,10 @@ namespace AIModifier.UI
             Transform combatSettingsPageTransform = menuPrefab.transform.FindChild("CombatSettingsPage");
             combatSettingsPage.AddElement(new TextDisplay(combatSettingsPageTransform.FindChild("Title").gameObject, "COMBAT SETTINGS", new TextProperties(10.5f, Color.white, false, 15)));
             combatSettingsPage.AddElement(new GenericSelector<string>(combatSettingsPageTransform.FindChild("AgroOnNPCTypeElement").gameObject, "Agro On NPC Type:", elementTextProperties, NPCTypes, delegate (string s) { AIMenuFunctions.UpdateAgroOnNPCType(s); }));
-            combatSettingsPage.AddElement(new InputField(combatSettingsPageTransform.FindChild("CombatProficiencyElement").gameObject, "Combat Proficiency:", "", elementTextProperties, int.MinValue, int.MaxValue, delegate (string s) { AIMenuFunctions.UpdateCombatProficiency(s); }));
+            combatSettingsPage.AddElement(new GenericSelector<string>(combatSettingsPageTransform.FindChild("CombatProficiencyElement").gameObject, "Combat Proficiency:", elementTextProperties, combatProficiency, delegate (string s) { AIMenuFunctions.UpdateCombatProficiency(s); }));
             combatSettingsPage.AddElement(new InputField(combatSettingsPageTransform.FindChild("MeleeRangeElement").gameObject, "Melee Range:", "", elementTextProperties, int.MinValue, int.MaxValue, delegate (string s) { AIMenuFunctions.UpdateMeleeRange(s); }));
             combatSettingsPage.AddElement(new Button(combatSettingsPageTransform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("AdditionalSettingsPage2"); }));
-
+            
             #endregion
 
             MelonLogger.Msg("Built Combat Settings Page");

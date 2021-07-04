@@ -10,8 +10,6 @@
         #region Health Settings
 
         public float health { get; set; }
-        public float hipHealth { get; set; }
-        public float spineHealth { get; set; }
         public float leftLegHealth { get; set; }
         public float rightLegHealth { get; set; }
         public float leftArmHealth { get; set; }
@@ -70,7 +68,7 @@
         #region Combat Settings
 
         public string agroOnNPCType { get; set; }
-        public float combatProficiency { get; set; }
+        public string combatProficiency { get; set; }
         public float meleeRange { get; set; }
 
         #endregion
