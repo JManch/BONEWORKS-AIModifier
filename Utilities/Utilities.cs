@@ -70,10 +70,14 @@ namespace AIModifier.Utilities
         {
             // Just copies the "built-in" default AI XML to the active directory and replaces the existing one
             Assembly assembly = Assembly.GetExecutingAssembly();
-            using (Stream stream = assembly.GetManifestResourceStream("DefaultAIData.xml"))
+            using (Stream stream = assembly.GetManifestResourceStream("AIModifier.Resources.DefaultAIData.xml"))
             {
                 using (FileStream fileStream = new FileStream(boneworksDirectory + aiDataPath, FileMode.Create))
                 {
+                    if(stream == null)
+                    {
+                        MelonLogger.Msg("Stream is null");
+                    }
                     stream.CopyTo(fileStream);
                 }
             }
