@@ -94,8 +94,6 @@ namespace AIModifier.UI
 
             if(onButtonDownParameter != null)
             {
-                // GetValue is null for some reason
-
                 onButtonDownParameter(GetValue().ToString());
             }
         }

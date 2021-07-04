@@ -106,6 +106,7 @@
     <Compile Include="UI\MenuStructure\TextProperties.cs" />
     <Compile Include="Utilities\Utilities.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Resources\aimodifier_assets.asset" />
   </ItemGroup>
