@@ -208,7 +208,7 @@ namespace AIModifier.Utilities
         private static AIData BehaviourPowerLegsAIData(AIBrain aiBrain)
         {
             BehaviourPowerLegs behaviourPowerLegs = aiBrain.transform.GetChild(0).GetChild(0).GetComponent<BehaviourPowerLegs>();
-
+            
             AIData aiData = new AIData();
 
             aiData.name = SimpleHelpers.GetCleanObjectName(aiBrain.gameObject.name);

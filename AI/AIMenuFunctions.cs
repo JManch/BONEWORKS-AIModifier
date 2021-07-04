@@ -81,6 +81,53 @@ namespace AIModifier.AI
 
         #endregion
 
+        #region Health Settings Page
+
+        public static void UpdateHipHealth(string hipHealth)
+        {
+            if (float.TryParse(hipHealth, NumberStyles.Float, CultureInfo.InvariantCulture.NumberFormat, out float result))
+            {
+                AIDataManager.aiDataDictionary[selectedAI].hipHealth = result;
+            }
+        }
+        public static void UpdateSpineHealth(string spineHealth)
+        {
+            if (float.TryParse(spineHealth, NumberStyles.Float, CultureInfo.InvariantCulture.NumberFormat, out float result))
+            {
+                AIDataManager.aiDataDictionary[selectedAI].spineHealth = result;
+            }
+        }
+        public static void UpdateLeftLegHealth(string leftLegHealth)
+        {
+            if (float.TryParse(leftLegHealth, NumberStyles.Float, CultureInfo.InvariantCulture.NumberFormat, out float result))
+            {
+                AIDataManager.aiDataDictionary[selectedAI].leftLegHealth = result;
+            }
+        }
+        public static void UpdateRightLegHealth(string rightLegHealth)
+        {
+            if (float.TryParse(rightLegHealth, NumberStyles.Float, CultureInfo.InvariantCulture.NumberFormat, out float result))
+            {
+                AIDataManager.aiDataDictionary[selectedAI].rightLegHealth = result;
+            }
+        }
+        public static void UpdateLeftArmHealth(string leftArmHealth)
+        {
+            if (float.TryParse(leftArmHealth, NumberStyles.Float, CultureInfo.InvariantCulture.NumberFormat, out float result))
+            {
+                AIDataManager.aiDataDictionary[selectedAI].leftArmHealth = result;
+            }
+        }
+        public static void UpdateRightArmHealth(string rightArmHealth)
+        {
+            if (float.TryParse(rightArmHealth, NumberStyles.Float, CultureInfo.InvariantCulture.NumberFormat, out float result))
+            {
+                AIDataManager.aiDataDictionary[selectedAI].rightArmHealth = result;
+            }
+        }
+
+        #endregion
+
         #region Gun Settings Page
         public static void UpdateAIAccuracy(string accuracy)
         {
@@ -168,11 +215,11 @@ namespace AIModifier.AI
 
         #region Movement Settings Page
 
-        public static void UpdateAgroSpeed(string agroSpeed)
+        public static void UpdateAgroSpeed(string agroedSpeed)
         {
-            if (float.TryParse(agroSpeed, NumberStyles.Float, CultureInfo.InvariantCulture.NumberFormat, out float result))
+            if (float.TryParse(agroedSpeed, NumberStyles.Float, CultureInfo.InvariantCulture.NumberFormat, out float result))
             {
-                AIDataManager.aiDataDictionary[selectedAI].agroSpeed = result;
+                AIDataManager.aiDataDictionary[selectedAI].agroedSpeed = result;
             }
         }
         public static void UpdateRoamSpeed(string roamSpeed)
@@ -182,52 +229,43 @@ namespace AIModifier.AI
                 AIDataManager.aiDataDictionary[selectedAI].roamSpeed = result;
             }
         }
-        public static void UpdateRoamByDefault(bool roamByDefault)
+        public static void UpdateEngagedSpeed(string engagedSpeed)
         {
-            AIDataManager.aiDataDictionary[selectedAI].roamByDefault = roamByDefault;
+            if (float.TryParse(engagedSpeed, NumberStyles.Float, CultureInfo.InvariantCulture.NumberFormat, out float result))
+            {
+                AIDataManager.aiDataDictionary[selectedAI].engagedSpeed = result;
+            }
         }
-
-        #endregion
-
-        #region Pathing Settings Page
-        
+        public static void UpdateRoamRange(string roamRange)
+        {
+            if (float.TryParse(roamRange, NumberStyles.Float, CultureInfo.InvariantCulture.NumberFormat, out float result))
+            {
+                AIDataManager.aiDataDictionary[selectedAI].roamRange = result;
+            }
+        }
         public static void UpdateRoamWanders(bool roamWanders)
         {
             AIDataManager.aiDataDictionary[selectedAI].roamWanders = roamWanders;
         }
-        public static void UpdateBreakAgroHomeDistance(string breakAgroHomeDistance)
+
+
+        #endregion
+
+        #region Behaviour Settings Page
+
+        public static void UpdateDefaultMentalState(string defaultMentalState)
         {
-            if (float.TryParse(breakAgroHomeDistance, NumberStyles.Float, CultureInfo.InvariantCulture.NumberFormat, out float result))
-            {
-                AIDataManager.aiDataDictionary[selectedAI].breakAgroHomeDistance = result;
-            }
+            AIDataManager.aiDataDictionary[selectedAI].defaultMentalState = defaultMentalState;
         }
-        public static void UpdateBreakAgroTargetDistance(string breakAgroTargetDistance)
+        public static void UpdateDefaultEngagedMode(string defaultEngagedMode)
         {
-            if (float.TryParse(breakAgroTargetDistance, NumberStyles.Float, CultureInfo.InvariantCulture.NumberFormat, out float result))
-            {
-                AIDataManager.aiDataDictionary[selectedAI].breakAgroHomeDistance = result;
-            }
+            AIDataManager.aiDataDictionary[selectedAI].defaultEngagedMode = defaultEngagedMode;
         }
-        public static void UpdateInvestigateRange(string investigateRange)
+        public static void UpdateMirrorSkill(string mirrorSkill)
         {
-            if (float.TryParse(investigateRange, NumberStyles.Float, CultureInfo.InvariantCulture.NumberFormat, out float result))
+            if (float.TryParse(mirrorSkill, NumberStyles.Float, CultureInfo.InvariantCulture.NumberFormat, out float result))
             {
-                AIDataManager.aiDataDictionary[selectedAI].investigateRange = result;
-            }
-        }
-        public static void UpdateInvestigationCooldown(string investigationCooldown)
-        {
-            if (float.TryParse(investigationCooldown, NumberStyles.Float, CultureInfo.InvariantCulture.NumberFormat, out float result))
-            {
-                AIDataManager.aiDataDictionary[selectedAI].investigationCooldown = result;
-            }
-        }
-        public static void UpdateRestingRange(string restingRange)
-        {
-            if (float.TryParse(restingRange, NumberStyles.Float, CultureInfo.InvariantCulture.NumberFormat, out float result))
-            {
-                AIDataManager.aiDataDictionary[selectedAI].restingRange = result;
+                AIDataManager.aiDataDictionary[selectedAI].mirrorSkill = result;
             }
         }
 
@@ -261,23 +299,93 @@ namespace AIModifier.AI
                 AIDataManager.aiDataDictionary[selectedAI].jumpCooldown = result;
             }
         }
+        public static void UpdateJumpForce(string jumpForce)
+        {
+            if (float.TryParse(jumpForce, NumberStyles.Float, CultureInfo.InvariantCulture.NumberFormat, out float result))
+            {
+                AIDataManager.aiDataDictionary[selectedAI].jumpForce = result;
+            }
+        }
 
         #endregion
 
-        #region Other Settings Page
+        #region Combat Settings Page
+
+        public static void UpdateAgroOnNPCType(string agroOnNPCType)
+        {
+            AIDataManager.aiDataDictionary[selectedAI].agroOnNPCType = agroOnNPCType;
+        }
+        public static void UpdateCombatProficiency(string combatProficiency)
+        {
+            if (float.TryParse(combatProficiency, NumberStyles.Float, CultureInfo.InvariantCulture.NumberFormat, out float result))
+            {
+                AIDataManager.aiDataDictionary[selectedAI].combatProficiency = result;
+            }
+        }
+        public static void UpdateMeleeRange(string meleeRange)
+        {
+            if (float.TryParse(meleeRange, NumberStyles.Float, CultureInfo.InvariantCulture.NumberFormat, out float result))
+            {
+                AIDataManager.aiDataDictionary[selectedAI].meleeRange = result;
+            }
+        }
+
+        #endregion
+
+        #region Visual Settings Page
 
         public static void UpdateEmissionColor(string emissionColor)
         {
             AIDataManager.aiDataDictionary[selectedAI].emissionColor = emissionColor;
         }
-
-        public static void UpdateAITickFrequency(string aiTickFrequency)
+        public static void UpdateFaceExpressionCooldownTime(string faceExpressionCooldownTime)
         {
-            if (float.TryParse(aiTickFrequency, NumberStyles.Float, CultureInfo.InvariantCulture.NumberFormat, out float result))
+            if (float.TryParse(faceExpressionCooldownTime, NumberStyles.Float, CultureInfo.InvariantCulture.NumberFormat, out float result))
             {
-                AIDataManager.aiDataDictionary[selectedAI].aiTickFrequency = result;
+                AIDataManager.aiDataDictionary[selectedAI].faceExpressionCooldownTime = result;
             }
         }
+
+        #endregion
+
+        #region OmniWheel Settings Page
+
+        public static void UpdateChargeAttackSpeed(string chargeAttackSpeed)
+        {
+            if (float.TryParse(chargeAttackSpeed, NumberStyles.Float, CultureInfo.InvariantCulture.NumberFormat, out float result))
+            {
+                AIDataManager.aiDataDictionary[selectedAI].chargeAttackSpeed = result;
+            }
+        }
+        public static void UpdateChargeCooldown(string chargeCooldown)
+        {
+            if (float.TryParse(chargeCooldown, NumberStyles.Float, CultureInfo.InvariantCulture.NumberFormat, out float result))
+            {
+                AIDataManager.aiDataDictionary[selectedAI].chargeCooldown = result;
+            }
+        }
+        public static void UpdateChargePrepSpeed(string chargePrepSpeed)
+        {
+            if (float.TryParse(chargePrepSpeed, NumberStyles.Float, CultureInfo.InvariantCulture.NumberFormat, out float result))
+            {
+                AIDataManager.aiDataDictionary[selectedAI].chargePrepSpeed = result;
+            }
+        }
+        public static void UpdateChargeWindupDistance(string chargeWindupDistance)
+        {
+            if (float.TryParse(chargeWindupDistance, NumberStyles.Float, CultureInfo.InvariantCulture.NumberFormat, out float result))
+            {
+                AIDataManager.aiDataDictionary[selectedAI].chargeWindupDistance = result;
+            }
+        }
+        public static void UpdateDefaultOmniEngagedMode(string defaultOmniEngagedMode)
+        {
+            AIDataManager.aiDataDictionary[selectedAI].defaultOmniEngagedMode = defaultOmniEngagedMode;
+        }
+
+        #endregion
+
+        #region Other Settings Page
 
         public static void UpdateHearingSensitivity(string hearingSensitivity)
         {
@@ -286,11 +394,11 @@ namespace AIModifier.AI
                 AIDataManager.aiDataDictionary[selectedAI].hearingSensitivity = result;
             }
         }
-        public static void UpdateVisionFOV(string visionFOV)
+        public static void UpdateVisionRadius(string visionRadius)
         {
-            if (float.TryParse(visionFOV, NumberStyles.Float, CultureInfo.InvariantCulture.NumberFormat, out float result))
+            if (float.TryParse(visionRadius, NumberStyles.Float, CultureInfo.InvariantCulture.NumberFormat, out float result))
             {
-                AIDataManager.aiDataDictionary[selectedAI].visionFOV = result;
+                AIDataManager.aiDataDictionary[selectedAI].visionRadius = result;
             }
         }
         public static void UpdatePitchMultiplier(string pitchMultiplier)
@@ -300,15 +408,6 @@ namespace AIModifier.AI
                 AIDataManager.aiDataDictionary[selectedAI].pitchMultiplier = result;
             }
         }
-
-        public static void UpdateHitScaleFactor(string hitScaleFactor)
-        {
-            if (float.TryParse(hitScaleFactor, NumberStyles.Float, CultureInfo.InvariantCulture.NumberFormat, out float result))
-            {
-                AIDataManager.aiDataDictionary[selectedAI].hitScaleFactor = result;
-            }
-        }
-
 
         #endregion
 
