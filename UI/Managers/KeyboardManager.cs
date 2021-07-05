@@ -55,7 +55,7 @@ namespace AIModifier.UI
             rootPage.AddElement(new Button(rootPageTransform.FindChild(".").gameObject, ".", textProperties, Button.ButtonHighlightType.Color, null, null, null, delegate (string s) { numpad.OnKeyPressed(s); }));
 
             // Buttons
-            rootPage.AddElement(new Button(rootPageTransform.FindChild("Backspace").gameObject, "<-", textProperties, Button.ButtonHighlightType.Color, null, null, null, null, delegate (string s) { numpad.OnKeyPressed(s); }));
+            rootPage.AddElement(new Button(rootPageTransform.FindChild("Backspace").gameObject, "<-", textProperties, Button.ButtonHighlightType.Color, null, null, null, delegate (string s) { numpad.OnKeyPressed(s); }));
             rootPage.AddElement(new Button(rootPageTransform.FindChild("Enter").gameObject, "Enter", new TextProperties(3, Color.white), Button.ButtonHighlightType.Color, null, null, null, delegate (string s) { numpad.OnKeyPressed(s); }));
         }        
     }

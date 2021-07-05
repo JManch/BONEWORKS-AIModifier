@@ -76,11 +76,19 @@ namespace AIModifier.UI
         // Only update the "actual" value once the user presses Enter 
         public void OnEnterPressed()
         {
-            SetValue(textBox.GetValue());
-            if (onValueChanged != null)
+            if(GetDisplayValue() != "")
             {
-                onValueChanged(value);
+                SetValue(GetDisplayValue());
+                if (onValueChanged != null)
+                {
+                    onValueChanged(value);
+                }
             }
+            else
+            {
+                SetDisplayValue(GetValue().ToString());
+            }
+            
         }
 
         public void OnDeactivated()
@@ -93,6 +101,7 @@ namespace AIModifier.UI
             // Active the keyboard
             KeyboardManager.OpenNumpad();
             KeyboardManager.numpad.SetActiveInputField(this);
+            SetDisplayValue("");
         }
     }
 }

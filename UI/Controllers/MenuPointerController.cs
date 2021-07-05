@@ -116,8 +116,8 @@ namespace AIModifier.UI
             pointerTip = GameObject.CreatePrimitive(PrimitiveType.Sphere);
             pointerTip.name = "PointerTip";
             pointerTip.transform.SetParent(laser.transform);
-            pointerTip.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
-            pointerTip.GetComponent<MeshRenderer>().enabled = false;
+            pointerTip.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
+            //pointerTip.GetComponent<MeshRenderer>().enabled = false;
             Rigidbody rigidbody = pointerTip.AddComponent<Rigidbody>();
             rigidbody.isKinematic = true;
             rigidbody.useGravity = false;

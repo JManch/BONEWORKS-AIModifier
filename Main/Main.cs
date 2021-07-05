@@ -36,7 +36,7 @@ namespace AIModifier
 
             if(Input.GetKeyDown(KeyCode.C))
             {
-                Utilities.Utilities.GenerateDefaultAIData();
+                Utilities.Utilities.DebugAIData();
             }
 
             if (Input.GetKeyDown(KeyCode.M))

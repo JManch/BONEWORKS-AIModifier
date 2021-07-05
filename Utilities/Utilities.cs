@@ -175,7 +175,7 @@ namespace AIModifier.Utilities
             }
         }
 
-        public static void GenerateDefaultAIData()
+        public static void DebugAIData()
         {
             AIBrain[] aiBrains = GameObject.FindObjectsOfType<AIBrain>();
             BehaviourCrablet[] behaviourCrablets = GameObject.FindObjectsOfType<BehaviourCrablet>();
@@ -206,7 +206,7 @@ namespace AIModifier.Utilities
                 }   
             }
 
-            SaveXMLData(aiDatas, @"\Mods\DefaultAIData.xml");
+            SaveXMLData(aiDatas, @"\Mods\AIDataDebug.xml");
         }
 
         private static AIData BehaviourPowerLegsAIData(AIBrain aiBrain)
