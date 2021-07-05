@@ -25,18 +25,18 @@
     <engagedSpeed>0</engagedSpeed>
     <roamRange>15</roamRange>
     <roamWanders>false</roamWanders>
-    <defaultMentalState>Rest</defaultMentalState>
-    <defaultEngagedMode>Rest</defaultEngagedMode>
+    <defaultMentalState>Default</defaultMentalState>
+    <defaultEngagedMode>Default</defaultEngagedMode>
     <mirrorSkill>0</mirrorSkill>
-    <baseColor>RGBA(0.146, 2.049, 2.540, 1.000)</baseColor>
-    <agroColor>RGBA(2.540, 0.310, 0.143, 1.000)</agroColor>
+    <baseColor>Default</baseColor>
+    <agroColor>Default</agroColor>
     <jumpAttackEnabled>true</jumpAttackEnabled>
     <jumpCharge>0</jumpCharge>
     <jumpCooldown>3</jumpCooldown>
     <jumpForce>7</jumpForce>
     <agroOnNPCType>FordHair, FordShortHair, NullBody</agroOnNPCType>
     <meleeRange>0</meleeRange>
-    <emissionColor>124</emissionColor>
+    <emissionColor>Default</emissionColor>
     <faceExpressionCooldownTime>0</faceExpressionCooldownTime>
     <chargeAttackSpeed>0</chargeAttackSpeed>
     <chargeCooldown>0</chargeCooldown>
@@ -71,8 +71,8 @@
     <engagedSpeed>0</engagedSpeed>
     <roamRange>15</roamRange>
     <roamWanders>false</roamWanders>
-    <defaultMentalState>Investigate</defaultMentalState>
-    <defaultEngagedMode>Investigate</defaultEngagedMode>
+    <defaultMentalState>Default</defaultMentalState>
+    <defaultEngagedMode>Default</defaultEngagedMode>
     <mirrorSkill>0</mirrorSkill>
     <jumpAttackEnabled>false</jumpAttackEnabled>
     <jumpCharge>0</jumpCharge>
@@ -80,13 +80,13 @@
     <jumpForce>0</jumpForce>
     <agroOnNPCType>FordHair, FordShortHair, EarlyExit, NullBody</agroOnNPCType>
     <meleeRange>1</meleeRange>
-    <emissionColor>124</emissionColor>
+    <emissionColor>Default</emissionColor>
     <faceExpressionCooldownTime>0</faceExpressionCooldownTime>
     <chargeAttackSpeed>12</chargeAttackSpeed>
     <chargeCooldown>6</chargeCooldown>
     <chargePrepSpeed>3</chargePrepSpeed>
     <chargeWindupDistance>12</chargeWindupDistance>
-    <defaultOmniEngagedMode>Follow</defaultOmniEngagedMode>
+    <defaultOmniEngagedMode>Default</defaultOmniEngagedMode>
     <hearingSensitivity>0</hearingSensitivity>
     <visionRadius>5</visionRadius>
     <pitchMultiplier>1</pitchMultiplier>
@@ -116,8 +116,8 @@
     <engagedSpeed>1</engagedSpeed>
     <roamRange>15</roamRange>
     <roamWanders>false</roamWanders>
-    <defaultMentalState>Rest</defaultMentalState>
-    <defaultEngagedMode>Rest</defaultEngagedMode>
+    <defaultMentalState>Default</defaultMentalState>
+    <defaultEngagedMode>Default</defaultEngagedMode>
     <mirrorSkill>1</mirrorSkill>
     <jumpAttackEnabled>false</jumpAttackEnabled>
     <jumpCharge>0</jumpCharge>
@@ -126,7 +126,7 @@
     <agroOnNPCType>FordHair, EarlyExit, NullBody, OmniProjector, OmniWrecker, OmniTurret</agroOnNPCType>
     <combatProficiency>WildPunch, FistFight</combatProficiency>
     <meleeRange>1</meleeRange>
-    <emissionColor>124</emissionColor>
+    <emissionColor>Default</emissionColor>
     <faceExpressionCooldownTime>328.180573</faceExpressionCooldownTime>
     <chargeAttackSpeed>0</chargeAttackSpeed>
     <chargeCooldown>0</chargeCooldown>
@@ -161,18 +161,18 @@
     <engagedSpeed>0</engagedSpeed>
     <roamRange>15</roamRange>
     <roamWanders>false</roamWanders>
-    <defaultMentalState>Rest</defaultMentalState>
-    <defaultEngagedMode>Rest</defaultEngagedMode>
+    <defaultMentalState>Default</defaultMentalState>
+    <defaultEngagedMode>Default</defaultEngagedMode>
     <mirrorSkill>0</mirrorSkill>
-    <baseColor>RGBA(0.146, 2.049, 2.540, 1.000)</baseColor>
-    <agroColor>RGBA(2.540, 0.310, 0.143, 1.000)</agroColor>
+    <baseColor>Default</baseColor>
+    <agroColor>Default</agroColor>
     <jumpAttackEnabled>true</jumpAttackEnabled>
     <jumpCharge>0</jumpCharge>
     <jumpCooldown>3</jumpCooldown>
     <jumpForce>7</jumpForce>
     <agroOnNPCType>FordHair, FordShortHair, NullBody</agroOnNPCType>
     <meleeRange>0</meleeRange>
-    <emissionColor>124</emissionColor>
+    <emissionColor>Default</emissionColor>
     <faceExpressionCooldownTime>0</faceExpressionCooldownTime>
     <chargeAttackSpeed>0</chargeAttackSpeed>
     <chargeCooldown>0</chargeCooldown>
@@ -207,8 +207,8 @@
     <engagedSpeed>1</engagedSpeed>
     <roamRange>15</roamRange>
     <roamWanders>false</roamWanders>
-    <defaultMentalState>Rest</defaultMentalState>
-    <defaultEngagedMode>Rest</defaultEngagedMode>
+    <defaultMentalState>Default</defaultMentalState>
+    <defaultEngagedMode>Default</defaultEngagedMode>
     <mirrorSkill>1</mirrorSkill>
     <jumpAttackEnabled>false</jumpAttackEnabled>
     <jumpCharge>0</jumpCharge>
@@ -217,7 +217,7 @@
     <agroOnNPCType>FordHair, FordShortHair, EarlyExit, Fordlet, Crablet, OmniProjector, OmniWrecker, OmniTurret, Turret</agroOnNPCType>
     <combatProficiency>WildPunch, FistFight</combatProficiency>
     <meleeRange>1</meleeRange>
-    <emissionColor>124</emissionColor>
+    <emissionColor>Default</emissionColor>
     <faceExpressionCooldownTime>296.6736</faceExpressionCooldownTime>
     <chargeAttackSpeed>0</chargeAttackSpeed>
     <chargeCooldown>0</chargeCooldown>
@@ -252,8 +252,8 @@
     <engagedSpeed>0</engagedSpeed>
     <roamRange>1.8</roamRange>
     <roamWanders>true</roamWanders>
-    <defaultMentalState>Roam</defaultMentalState>
-    <defaultEngagedMode>Roam</defaultEngagedMode>
+    <defaultMentalState>Default</defaultMentalState>
+    <defaultEngagedMode>Default</defaultEngagedMode>
     <mirrorSkill>0</mirrorSkill>
     <jumpAttackEnabled>false</jumpAttackEnabled>
     <jumpCharge>0</jumpCharge>
@@ -261,13 +261,13 @@
     <jumpForce>0</jumpForce>
     <agroOnNPCType>0</agroOnNPCType>
     <meleeRange>1</meleeRange>
-    <emissionColor>124</emissionColor>
+    <emissionColor>Default</emissionColor>
     <faceExpressionCooldownTime>0</faceExpressionCooldownTime>
     <chargeAttackSpeed>6</chargeAttackSpeed>
     <chargeCooldown>8</chargeCooldown>
     <chargePrepSpeed>2</chargePrepSpeed>
     <chargeWindupDistance>12</chargeWindupDistance>
-    <defaultOmniEngagedMode>Hide</defaultOmniEngagedMode>
+    <defaultOmniEngagedMode>Default</defaultOmniEngagedMode>
     <hearingSensitivity>0</hearingSensitivity>
     <visionRadius>3</visionRadius>
     <pitchMultiplier>1</pitchMultiplier>
@@ -297,8 +297,8 @@
     <engagedSpeed>0</engagedSpeed>
     <roamRange>15</roamRange>
     <roamWanders>false</roamWanders>
-    <defaultMentalState>Rest</defaultMentalState>
-    <defaultEngagedMode>Rest</defaultEngagedMode>
+    <defaultMentalState>Default</defaultMentalState>
+    <defaultEngagedMode>Default</defaultEngagedMode>
     <mirrorSkill>0</mirrorSkill>
     <jumpAttackEnabled>false</jumpAttackEnabled>
     <jumpCharge>0</jumpCharge>
@@ -306,13 +306,13 @@
     <jumpForce>0</jumpForce>
     <agroOnNPCType>FordHair, FordShortHair, EarlyExit, NullBody, NullRat</agroOnNPCType>
     <meleeRange>1</meleeRange>
-    <emissionColor>124</emissionColor>
+    <emissionColor>Default</emissionColor>
     <faceExpressionCooldownTime>0</faceExpressionCooldownTime>
     <chargeAttackSpeed>6</chargeAttackSpeed>
     <chargeCooldown>8</chargeCooldown>
     <chargePrepSpeed>2</chargePrepSpeed>
     <chargeWindupDistance>12</chargeWindupDistance>
-    <defaultOmniEngagedMode>Follow</defaultOmniEngagedMode>
+    <defaultOmniEngagedMode>Default</defaultOmniEngagedMode>
     <hearingSensitivity>0</hearingSensitivity>
     <visionRadius>2</visionRadius>
     <pitchMultiplier>1</pitchMultiplier>
@@ -342,8 +342,8 @@
     <engagedSpeed>0</engagedSpeed>
     <roamRange>8</roamRange>
     <roamWanders>false</roamWanders>
-    <defaultMentalState>Roam</defaultMentalState>
-    <defaultEngagedMode>Roam</defaultEngagedMode>
+    <defaultMentalState>Default</defaultMentalState>
+    <defaultEngagedMode>Default</defaultEngagedMode>
     <mirrorSkill>0</mirrorSkill>
     <jumpAttackEnabled>false</jumpAttackEnabled>
     <jumpCharge>0</jumpCharge>
@@ -351,13 +351,13 @@
     <jumpForce>0</jumpForce>
     <agroOnNPCType>FordHair, FordShortHair, EarlyExit, NullBody, NullRat</agroOnNPCType>
     <meleeRange>1</meleeRange>
-    <emissionColor>124</emissionColor>
+    <emissionColor>Default</emissionColor>
     <faceExpressionCooldownTime>0</faceExpressionCooldownTime>
     <chargeAttackSpeed>6</chargeAttackSpeed>
     <chargeCooldown>8</chargeCooldown>
     <chargePrepSpeed>2</chargePrepSpeed>
     <chargeWindupDistance>12</chargeWindupDistance>
-    <defaultOmniEngagedMode>Follow</defaultOmniEngagedMode>
+    <defaultOmniEngagedMode>Default</defaultOmniEngagedMode>
     <hearingSensitivity>0</hearingSensitivity>
     <visionRadius>4.5</visionRadius>
     <pitchMultiplier>1</pitchMultiplier>
@@ -387,8 +387,8 @@
     <engagedSpeed>1</engagedSpeed>
     <roamRange>15</roamRange>
     <roamWanders>false</roamWanders>
-    <defaultMentalState>Rest</defaultMentalState>
-    <defaultEngagedMode>Rest</defaultEngagedMode>
+    <defaultMentalState>Default</defaultMentalState>
+    <defaultEngagedMode>Default</defaultEngagedMode>
     <mirrorSkill>1</mirrorSkill>
     <jumpAttackEnabled>false</jumpAttackEnabled>
     <jumpCharge>0</jumpCharge>
@@ -397,7 +397,7 @@
     <agroOnNPCType>FordHair, FordShortHair, NullBody, OmniProjector, OmniWrecker, OmniTurret</agroOnNPCType>
     <combatProficiency>WildPunch, FistFight</combatProficiency>
     <meleeRange>1</meleeRange>
-    <emissionColor>124</emissionColor>
+    <emissionColor>Default</emissionColor>
     <faceExpressionCooldownTime>314.211243</faceExpressionCooldownTime>
     <chargeAttackSpeed>0</chargeAttackSpeed>
     <chargeCooldown>0</chargeCooldown>
@@ -432,8 +432,8 @@
     <engagedSpeed>1</engagedSpeed>
     <roamRange>15</roamRange>
     <roamWanders>false</roamWanders>
-    <defaultMentalState>Rest</defaultMentalState>
-    <defaultEngagedMode>Rest</defaultEngagedMode>
+    <defaultMentalState>Default</defaultMentalState>
+    <defaultEngagedMode>Default</defaultEngagedMode>
     <mirrorSkill>1</mirrorSkill>
     <jumpAttackEnabled>false</jumpAttackEnabled>
     <jumpCharge>0</jumpCharge>
@@ -442,7 +442,7 @@
     <agroOnNPCType>FordHair, FordShortHair, NullBody, OmniProjector, OmniWrecker, OmniTurret</agroOnNPCType>
     <combatProficiency>WildPunch, FistFight</combatProficiency>
     <meleeRange>1</meleeRange>
-    <emissionColor>124</emissionColor>
+    <emissionColor>Default</emissionColor>
     <faceExpressionCooldownTime>321.32373</faceExpressionCooldownTime>
     <chargeAttackSpeed>0</chargeAttackSpeed>
     <chargeCooldown>0</chargeCooldown>
@@ -477,8 +477,8 @@
     <engagedSpeed>1</engagedSpeed>
     <roamRange>15</roamRange>
     <roamWanders>false</roamWanders>
-    <defaultMentalState>Rest</defaultMentalState>
-    <defaultEngagedMode>Rest</defaultEngagedMode>
+    <defaultMentalState>Default</defaultMentalState>
+    <defaultEngagedMode>Default</defaultEngagedMode>
     <mirrorSkill>1</mirrorSkill>
     <jumpAttackEnabled>false</jumpAttackEnabled>
     <jumpCharge>0</jumpCharge>
@@ -487,7 +487,7 @@
     <agroOnNPCType>FordShortHair, EarlyExit, NullBody, Fordlet, Crablet, OmniProjector, OmniWrecker, OmniTurret</agroOnNPCType>
     <combatProficiency>WildPunch, FistFight</combatProficiency>
     <meleeRange>1</meleeRange>
-    <emissionColor>124</emissionColor>
+    <emissionColor>Default</emissionColor>
     <faceExpressionCooldownTime>317.973755</faceExpressionCooldownTime>
     <chargeAttackSpeed>0</chargeAttackSpeed>
     <chargeCooldown>0</chargeCooldown>
@@ -522,8 +522,8 @@
     <engagedSpeed>1</engagedSpeed>
     <roamRange>15</roamRange>
     <roamWanders>false</roamWanders>
-    <defaultMentalState>Rest</defaultMentalState>
-    <defaultEngagedMode>Rest</defaultEngagedMode>
+    <defaultMentalState>Default</defaultMentalState>
+    <defaultEngagedMode>Default</defaultEngagedMode>
     <mirrorSkill>1</mirrorSkill>
     <jumpAttackEnabled>false</jumpAttackEnabled>
     <jumpCharge>0</jumpCharge>
@@ -532,7 +532,7 @@
     <agroOnNPCType>FordHair, FordShortHair, EarlyExit, Fordlet, Crablet, OmniProjector, OmniWrecker, OmniTurret, Turret</agroOnNPCType>
     <combatProficiency>WildPunch, FistFight</combatProficiency>
     <meleeRange>1</meleeRange>
-    <emissionColor>124</emissionColor>
+    <emissionColor>Default</emissionColor>
     <faceExpressionCooldownTime>349.360382</faceExpressionCooldownTime>
     <chargeAttackSpeed>0</chargeAttackSpeed>
     <chargeCooldown>0</chargeCooldown>

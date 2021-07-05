@@ -45,6 +45,7 @@ namespace AIModifier.UI
             boolList.Add(false);
 
             List<string> colorList = new List<string>();
+            colorList.Add("Default");
             colorList.Add("Red");
             colorList.Add("Blue");
             colorList.Add("Cyan");
@@ -56,16 +57,19 @@ namespace AIModifier.UI
             colorList.Add("Orange");
 
             List<string> mentalStates = new List<string>();
+            mentalStates.Add("Default");
             mentalStates.Add("Rest");
             mentalStates.Add("Roam");
 
             List<string> engagedModes = new List<string>();
+            engagedModes.Add("Default");
             engagedModes.Add("Stay");
             engagedModes.Add("Follow");
             engagedModes.Add("Mirror");
             engagedModes.Add("Hide");
 
             List<string> omniEngagedModes = new List<string>();
+            omniEngagedModes.Add("Default");
             omniEngagedModes.Add("Stay");
             omniEngagedModes.Add("Follow");
             omniEngagedModes.Add("Hide");
