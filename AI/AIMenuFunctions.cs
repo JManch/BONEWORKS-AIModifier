@@ -10,12 +10,72 @@ namespace AIModifier.AI
     {
         private static string selectedAI;
 
-        #region Configure AI Page
-        public static void LoadConfigureAIPageSettings()
+        public static void LoadAdditionalSettings()
         {
-            AIMenuManager.aiMenu.GetPage("ConfigureAIPage").GetElement("HealthElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].health);
+            MenuPage healthSettingsPage = AIMenuManager.aiMenu.GetPage("HealthSettingsPage");
+            healthSettingsPage.GetElement("LeftLegHealthElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].leftLegHealth);
+            healthSettingsPage.GetElement("RightLegHealthElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].rightLegHealth);
+            healthSettingsPage.GetElement("LeftArmHealthElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].leftArmHealth);
+            healthSettingsPage.GetElement("RightArmHealthElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].rightArmHealth);
+
+            MenuPage gunSettingsPage = AIMenuManager.aiMenu.GetPage("GunSettingsPage");
+            gunSettingsPage.GetElement("AccuracyElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].accuracy);
+            gunSettingsPage.GetElement("GunRangeElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].gunRange);
+            gunSettingsPage.GetElement("GunCooldownElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].gunCooldown);
+            gunSettingsPage.GetElement("ReloadTimeElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].reloadTime);
+            gunSettingsPage.GetElement("BurstSizeElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].burstSize);
+            gunSettingsPage.GetElement("ClipSizeElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].clipSize);
+
+            MenuPage throwSettingsPage = AIMenuManager.aiMenu.GetPage("ThrowSettingsPage");
+            throwSettingsPage.GetElement("EnableThrowAttackElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].enableThrowAttack);
+            throwSettingsPage.GetElement("ThrowCooldownElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].throwCooldown);
+            throwSettingsPage.GetElement("ThrowMaxRangeElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].throwMaxRange);
+            throwSettingsPage.GetElement("ThrowMinRangeElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].throwMinRange);
+            throwSettingsPage.GetElement("ThrowVelocityElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].throwVelocity);
+
+            MenuPage movementSettingsPage = AIMenuManager.aiMenu.GetPage("MovementSettingsPage");
+            movementSettingsPage.GetElement("AgroSpeedElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].agroedSpeed);
+            movementSettingsPage.GetElement("EngagedSpeedElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].engagedSpeed);
+            movementSettingsPage.GetElement("RoamSpeedElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].roamSpeed);
+            movementSettingsPage.GetElement("RoamRangeElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].roamRange);
+            movementSettingsPage.GetElement("RoamWandersElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].roamWanders);
+
+            MenuPage behaviourSettingsPage = AIMenuManager.aiMenu.GetPage("BehaviourSettingsPage");
+            behaviourSettingsPage.GetElement("DefaultMentalStateElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].defaultMentalState);
+            behaviourSettingsPage.GetElement("DefaultEngagedModeElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].defaultEngagedMode);
+            behaviourSettingsPage.GetElement("MirrorSkillElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].mirrorSkill);
+
+            MenuPage crabletSettingsPage = AIMenuManager.aiMenu.GetPage("CrabletSettingsPage");
+            crabletSettingsPage.GetElement("BaseColorElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].baseColor);
+            crabletSettingsPage.GetElement("AgroColorElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].agroColor);
+            crabletSettingsPage.GetElement("JumpAttackEnabledElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].jumpAttackEnabled);
+            crabletSettingsPage.GetElement("JumpChargeElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].jumpCharge);
+            crabletSettingsPage.GetElement("JumpCooldownElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].jumpCooldown);
+            crabletSettingsPage.GetElement("JumpForceElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].jumpForce);
+
+            MenuPage combatSettingsPage = AIMenuManager.aiMenu.GetPage("CombatSettingsPage");
+            combatSettingsPage.GetElement("AgroOnNPCTypeElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].agroOnNPCType);
+            combatSettingsPage.GetElement("CombatProficiencyElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].combatProficiency);
+            combatSettingsPage.GetElement("MeleeRangeElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].meleeRange);
+
+            MenuPage visualSettingsPage = AIMenuManager.aiMenu.GetPage("VisualSettingsPage");
+            visualSettingsPage.GetElement("EmissionColorElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].emissionColor);
+            visualSettingsPage.GetElement("FaceExpressionCooldownElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].faceExpressionCooldownTime);
+
+            MenuPage omniWheelSettingsPage = AIMenuManager.aiMenu.GetPage("OmniWheelSettingsPage");
+            omniWheelSettingsPage.GetElement("ChargeAttackSpeedElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].chargeAttackSpeed);
+            omniWheelSettingsPage.GetElement("ChargeCooldownElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].chargeCooldown);
+            omniWheelSettingsPage.GetElement("ChargePrepSpeedElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].chargePrepSpeed);
+            omniWheelSettingsPage.GetElement("ChargeWindupDistanceElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].chargeWindupDistance);
+            omniWheelSettingsPage.GetElement("DefaultEngagedModeElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].defaultOmniEngagedMode);
+
+            MenuPage otherSettingsPage = AIMenuManager.aiMenu.GetPage("OtherSettingsPage");
+            otherSettingsPage.GetElement("HearingSensitivityElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].hearingSensitivity);
+            otherSettingsPage.GetElement("VisionRadiusElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].visionRadius);
+            otherSettingsPage.GetElement("PitchMultiplierElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].pitchMultiplier);
         }
 
+        #region Configure AI Page
         public static void OnSelectedAIChanged(string selectedAI)
         {
             AIMenuFunctions.selectedAI = selectedAI;
@@ -41,14 +101,6 @@ namespace AIModifier.AI
         #endregion
 
         #region Health Settings Page
-        public static void LoadHealthPageSettings()
-        {
-            MenuPage healthSettingsPage = AIMenuManager.aiMenu.GetPage("HealthSettingsPage");
-            healthSettingsPage.GetElement("LeftLegHealthElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].leftLegHealth);
-            healthSettingsPage.GetElement("RightLegHealthElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].rightLegHealth);
-            healthSettingsPage.GetElement("LeftArmHealthElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].leftArmHealth);
-            healthSettingsPage.GetElement("RightArmHealthElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].rightArmHealth);
-        }
 
         public static void UpdateLeftLegHealth(string leftLegHealth)
         {
@@ -82,16 +134,6 @@ namespace AIModifier.AI
         #endregion
 
         #region Gun Settings Page
-        public static void LoadGunPageSettings()
-        {
-            MenuPage gunSettingsPage = AIMenuManager.aiMenu.GetPage("GunSettingsPage");
-            gunSettingsPage.GetElement("AccuracyElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].accuracy);
-            gunSettingsPage.GetElement("GunRangeElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].gunRange);
-            gunSettingsPage.GetElement("GunCooldownElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].gunCooldown);
-            gunSettingsPage.GetElement("ReloadTimeElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].reloadTime);
-            gunSettingsPage.GetElement("BurstSizeElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].burstSize);
-            gunSettingsPage.GetElement("ClipSizeElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].clipSize);
-        }
         public static void UpdateAIAccuracy(string accuracy)
         {
             if (float.TryParse(accuracy, NumberStyles.Float, CultureInfo.InvariantCulture.NumberFormat, out float result))
@@ -138,15 +180,7 @@ namespace AIModifier.AI
         #endregion
 
         #region Throw Settings Page
-        public static void LoadThrowPageSettings()
-        {
-            MenuPage throwSettingsPage = AIMenuManager.aiMenu.GetPage("ThrowSettingsPage");
-            throwSettingsPage.GetElement("EnableThrowAttackElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].enableThrowAttack);
-            throwSettingsPage.GetElement("ThrowCooldownElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].throwCooldown);
-            throwSettingsPage.GetElement("ThrowMaxRangeElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].throwMaxRange);
-            throwSettingsPage.GetElement("ThrowMinRangeElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].throwMinRange);
-            throwSettingsPage.GetElement("ThrowVelocityElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].throwVelocity);
-        }
+
         public static void UpdateEnableThrowAttack(bool enableThrowAttack)
         {
             AIDataManager.aiDataDictionary[selectedAI].enableThrowAttack = enableThrowAttack;
@@ -185,15 +219,7 @@ namespace AIModifier.AI
         #endregion
 
         #region Movement Settings Page
-        public static void LoadMovementPageSettings()
-        {
-            MenuPage movementSettingsPage = AIMenuManager.aiMenu.GetPage("MovementSettingsPage");
-            movementSettingsPage.GetElement("AgroSpeedElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].agroedSpeed);
-            movementSettingsPage.GetElement("EngagedSpeedElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].engagedSpeed);
-            movementSettingsPage.GetElement("RoamSpeedElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].roamSpeed);
-            movementSettingsPage.GetElement("RoamRangeElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].roamRange);
-            movementSettingsPage.GetElement("RoamWandersElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].roamWanders);
-        }
+
         public static void UpdateAgroSpeed(string agroedSpeed)
         {
             if (float.TryParse(agroedSpeed, NumberStyles.Float, CultureInfo.InvariantCulture.NumberFormat, out float result))
@@ -231,13 +257,7 @@ namespace AIModifier.AI
         #endregion
 
         #region Behaviour Settings Page
-        public static void LoadBehaviourPageSettings()
-        {
-            MenuPage behaviourSettingsPage = AIMenuManager.aiMenu.GetPage("BehaviourSettingsPage");
-            behaviourSettingsPage.GetElement("DefaultMentalStateElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].defaultMentalState);
-            behaviourSettingsPage.GetElement("DefaultEngagedModeElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].defaultEngagedMode);
-            behaviourSettingsPage.GetElement("MirrorSkillElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].mirrorSkill);
-        }
+
         public static void UpdateDefaultMentalState(string defaultMentalState)
         {
             AIDataManager.aiDataDictionary[selectedAI].defaultMentalState = defaultMentalState;
@@ -257,16 +277,7 @@ namespace AIModifier.AI
         #endregion
 
         #region Crablet Settings Page
-        public static void LoadCrabletPageSettings()
-        {
-            MenuPage crabletSettingsPage = AIMenuManager.aiMenu.GetPage("CrabletSettingsPage");
-            crabletSettingsPage.GetElement("BaseColorElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].baseColor);
-            crabletSettingsPage.GetElement("AgroColorElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].agroColor);
-            crabletSettingsPage.GetElement("JumpAttackEnabledElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].jumpAttackEnabled);
-            crabletSettingsPage.GetElement("JumpChargeElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].jumpCharge);
-            crabletSettingsPage.GetElement("JumpCooldownElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].jumpCooldown);
-            crabletSettingsPage.GetElement("JumpForceElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].jumpForce);
-        }
+
         public static void UpdateBaseColor(string baseColor)
         {
             AIDataManager.aiDataDictionary[selectedAI].baseColor = baseColor;
@@ -304,13 +315,7 @@ namespace AIModifier.AI
         #endregion
 
         #region Combat Settings Page
-        public static void LoadCombatPageSettings()
-        {
-            MenuPage combatSettingsPage = AIMenuManager.aiMenu.GetPage("CombatSettingsPage");
-            combatSettingsPage.GetElement("AgroOnNPCTypeElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].agroOnNPCType);
-            combatSettingsPage.GetElement("CombatProficiencyElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].combatProficiency);
-            combatSettingsPage.GetElement("MeleeRangeElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].meleeRange);
-        }
+
         public static void UpdateAgroOnNPCType(string agroOnNPCType)
         {
             AIDataManager.aiDataDictionary[selectedAI].agroOnNPCType = agroOnNPCType;
@@ -330,12 +335,7 @@ namespace AIModifier.AI
         #endregion
 
         #region Visual Settings Page
-        public static void LoadVisualPageSettings()
-        {
-            MenuPage visualSettingsPage = AIMenuManager.aiMenu.GetPage("VisualSettingsPage");
-            visualSettingsPage.GetElement("EmissionColorElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].emissionColor);
-            visualSettingsPage.GetElement("FaceExpressionCooldownElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].faceExpressionCooldownTime);
-        }
+
         public static void UpdateEmissionColor(string emissionColor)
         {
             AIDataManager.aiDataDictionary[selectedAI].emissionColor = emissionColor;
@@ -351,15 +351,7 @@ namespace AIModifier.AI
         #endregion
 
         #region OmniWheel Settings Page
-        public static void LoadOmniWheelPageSettings()
-        {
-            MenuPage omniWheelSettingsPage = AIMenuManager.aiMenu.GetPage("OmniWheelSettingsPage");
-            omniWheelSettingsPage.GetElement("ChargeAttackSpeedElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].chargeAttackSpeed);
-            omniWheelSettingsPage.GetElement("ChargeCooldownElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].chargeCooldown);
-            omniWheelSettingsPage.GetElement("ChargePrepSpeedElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].chargePrepSpeed);
-            omniWheelSettingsPage.GetElement("ChargeWindupDistanceElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].chargeWindupDistance);
-            omniWheelSettingsPage.GetElement("DefaultEngagedModeElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].defaultOmniEngagedMode);
-        }
+
         public static void UpdateChargeAttackSpeed(string chargeAttackSpeed)
         {
             if (float.TryParse(chargeAttackSpeed, NumberStyles.Float, CultureInfo.InvariantCulture.NumberFormat, out float result))
@@ -396,13 +388,7 @@ namespace AIModifier.AI
         #endregion
 
         #region Other Settings Page
-        public static void LoadOtherPageSettings()
-        {
-            MenuPage otherSettingsPage = AIMenuManager.aiMenu.GetPage("OtherSettingsPage");
-            otherSettingsPage.GetElement("HearingSensitivityElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].hearingSensitivity);
-            otherSettingsPage.GetElement("VisionRadiusElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].visionRadius);
-            otherSettingsPage.GetElement("PitchMultiplierElement").SetValue(AIDataManager.aiDataDictionary[selectedAI].pitchMultiplier);
-        }
+
         public static void UpdateHearingSensitivity(string hearingSensitivity)
         {
             if (float.TryParse(hearingSensitivity, NumberStyles.Float, CultureInfo.InvariantCulture.NumberFormat, out float result))
