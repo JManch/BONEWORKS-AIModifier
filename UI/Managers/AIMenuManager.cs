@@ -124,8 +124,6 @@ namespace AIModifier.UI
 
             #endregion
 
-            MelonLogger.Msg("Built root page");
-
             #region Configure AI Page
 
             Transform configureAIPageTransform = menuPrefab.transform.FindChild("ConfigureAIPage");
@@ -137,8 +135,6 @@ namespace AIModifier.UI
             configureAIPage.AddElement(new Button(configureAIPageTransform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("RootPage"); }));
 
             #endregion
-
-            MelonLogger.Msg("Built AI Page");
 
             #region Configure Additional Settings Page 1
 
@@ -156,8 +152,6 @@ namespace AIModifier.UI
 
             #endregion
 
-            MelonLogger.Msg("Built Additional Settings Page 1");
-
             #region Configure Additional Settings Page 2
 
             Transform additionalSettingsPage2Transform = menuPrefab.transform.FindChild("AdditionalSettingsPage2");
@@ -171,8 +165,6 @@ namespace AIModifier.UI
 
             #endregion
 
-            MelonLogger.Msg("Built Additional Settings Page 2");
-
             #region Configure Health Settings Page
 
             Transform healthSettingsPageTransform = menuPrefab.transform.FindChild("HealthSettingsPage");
@@ -184,8 +176,6 @@ namespace AIModifier.UI
             healthSettingsPage.AddElement(new Button(healthSettingsPageTransform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("AdditionalSettingsPage1"); }));
 
             #endregion
-
-            MelonLogger.Msg("Built Health Settings Page");
 
             #region Configure Gun Settings Page
 
@@ -201,8 +191,6 @@ namespace AIModifier.UI
 
             #endregion
 
-            MelonLogger.Msg("Built Gun Settings Page");
-
             #region Configure Throw Settings Page
 
             Transform throwSettingsPageTransform = menuPrefab.transform.FindChild("ThrowSettingsPage");
@@ -215,8 +203,6 @@ namespace AIModifier.UI
             throwSettingsPage.AddElement(new Button(throwSettingsPageTransform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("AdditionalSettingsPage1"); }));
 
             #endregion
-
-            MelonLogger.Msg("Built Throw Settings Page");
 
             #region Configure Movement Settings Page
 
