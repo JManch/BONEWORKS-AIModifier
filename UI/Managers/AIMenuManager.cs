@@ -124,21 +124,17 @@ namespace AIModifier.UI
 
             #endregion
 
-            MelonLogger.Msg("Built root page");
-
             #region Configure AI Page
 
             Transform configureAIPageTransform = menuPrefab.transform.FindChild("ConfigureAIPage");
             configureAIPage.AddElement(new TextDisplay(configureAIPageTransform.FindChild("Title").gameObject, "CONFIGURE AI", titleTextProperties));
             configureAIPage.AddElement(new GenericSelector<string>(configureAIPageTransform.FindChild("SelectedAIElement").gameObject, "Selected AI:", elementTextProperties, new List<string>(AIDataManager.aiDataDictionary.Keys), delegate (string s) { AIMenuFunctions.OnSelectedAIChanged(s); }));
             configureAIPage.AddElement(new InputField(configureAIPageTransform.FindChild("HealthElement").gameObject, "Health:", AIDataManager.aiDataDictionary["NullBody"].health.ToString(), elementTextProperties, int.MinValue, int.MaxValue, delegate(string health) { AIMenuFunctions.UpdateAIHealth(health); }));
-            configureAIPage.AddElement(new Button(configureAIPageTransform.FindChild("AdditionalSettingsButton").gameObject, "Additional Settings", buttonTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("AdditionalSettingsPage1"); }));
+            configureAIPage.AddElement(new Button(configureAIPageTransform.FindChild("AdditionalSettingsButton").gameObject, "Additional Settings", buttonTextProperties, Button.ButtonHighlightType.Underline, delegate { AIMenuFunctions.LoadAdditionalSettings(); aiMenu.SwitchPage("AdditionalSettingsPage1"); }));
             configureAIPage.AddElement(new Button(configureAIPageTransform.FindChild("SaveSettingsButton").gameObject, "Save Settings", buttonTextProperties, Button.ButtonHighlightType.Underline, delegate {  }));
             configureAIPage.AddElement(new Button(configureAIPageTransform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("RootPage"); }));
 
             #endregion
-
-            MelonLogger.Msg("Built AI Page");
 
             #region Configure Additional Settings Page 1
 
@@ -156,8 +152,6 @@ namespace AIModifier.UI
 
             #endregion
 
-            MelonLogger.Msg("Built Additional Settings Page 1");
-
             #region Configure Additional Settings Page 2
 
             Transform additionalSettingsPage2Transform = menuPrefab.transform.FindChild("AdditionalSettingsPage2");
@@ -171,8 +165,6 @@ namespace AIModifier.UI
 
             #endregion
 
-            MelonLogger.Msg("Built Additional Settings Page 2");
-
             #region Configure Health Settings Page
 
             Transform healthSettingsPageTransform = menuPrefab.transform.FindChild("HealthSettingsPage");
@@ -184,8 +176,6 @@ namespace AIModifier.UI
             healthSettingsPage.AddElement(new Button(healthSettingsPageTransform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("AdditionalSettingsPage1"); }));
 
             #endregion
-
-            MelonLogger.Msg("Built Health Settings Page");
 
             #region Configure Gun Settings Page
 
@@ -201,8 +191,6 @@ namespace AIModifier.UI
 
             #endregion
 
-            MelonLogger.Msg("Built Gun Settings Page");
-
             #region Configure Throw Settings Page
 
             Transform throwSettingsPageTransform = menuPrefab.transform.FindChild("ThrowSettingsPage");
@@ -216,8 +204,6 @@ namespace AIModifier.UI
 
             #endregion
 
-            MelonLogger.Msg("Built Throw Settings Page");
-
             #region Configure Movement Settings Page
 
             Transform movementSettingsPageTransform = menuPrefab.transform.FindChild("MovementSettingsPage");
@@ -227,11 +213,9 @@ namespace AIModifier.UI
             movementSettingsPage.AddElement(new InputField(movementSettingsPageTransform.FindChild("RoamSpeedElement").gameObject, "Roam Speed:", "", elementTextProperties, 0, int.MaxValue, delegate (string s) { AIMenuFunctions.UpdateRoamSpeed(s); }));
             movementSettingsPage.AddElement(new InputField(movementSettingsPageTransform.FindChild("RoamRangeElement").gameObject, "Roam Range:", "", elementTextProperties, 0, int.MaxValue, delegate (string s) { AIMenuFunctions.UpdateRoamRange(s); }));
             movementSettingsPage.AddElement(new GenericSelector<bool>(movementSettingsPageTransform.FindChild("RoamWandersElement").gameObject, "Roam Wanders:", elementTextProperties, boolList, delegate (bool b) { AIMenuFunctions.UpdateRoamWanders(b); }));
-            movementSettingsPage.AddElement(new Button(movementSettingsPageTransform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { AIMenuFunctions.LoadAdditionalSettings(); aiMenu.SwitchPage("AdditionalSettingsPage1"); }));
+            movementSettingsPage.AddElement(new Button(movementSettingsPageTransform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("AdditionalSettingsPage1"); }));
 
             #endregion
-
-            MelonLogger.Msg("Built Movement Settings Page");
 
             #region Configure Behaviour Settings Page
 
@@ -243,8 +227,6 @@ namespace AIModifier.UI
             behaviourSettingsPage.AddElement(new Button(behaviourSettingsPageTransform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("AdditionalSettingsPage1"); }));
 
             #endregion
-
-            MelonLogger.Msg("Built Behaviour Settings Page");
 
             #region Configure Crablet Settings Page
 
@@ -260,8 +242,6 @@ namespace AIModifier.UI
 
             #endregion
 
-            MelonLogger.Msg("Built Crablet Settings Page");
-
             #region Configure Combat Settings Page
 
             Transform combatSettingsPageTransform = menuPrefab.transform.FindChild("CombatSettingsPage");
@@ -273,8 +253,6 @@ namespace AIModifier.UI
             
             #endregion
 
-            MelonLogger.Msg("Built Combat Settings Page");
-
             #region Configure Visual Settings Page
 
             Transform visualSettingsPageTransform = menuPrefab.transform.FindChild("VisualSettingsPage");
@@ -284,8 +262,6 @@ namespace AIModifier.UI
             visualSettingsPage.AddElement(new Button(visualSettingsPageTransform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("AdditionalSettingsPage2"); }));
 
             #endregion
-
-            MelonLogger.Msg("Built Visual Settings Page");
 
             #region Configure OmniWheel Settings Page
 
@@ -300,8 +276,6 @@ namespace AIModifier.UI
 
             #endregion
 
-            MelonLogger.Msg("Built OmniWheel Settings Page");
-
             #region Other Settings Page
 
             Transform otherSettingsPageTranform = menuPrefab.transform.FindChild("OtherSettingsPage");
@@ -312,8 +286,6 @@ namespace AIModifier.UI
             otherSettingsPage.AddElement(new Button(otherSettingsPageTranform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("AdditionalSettingsPage2"); }));
 
             #endregion
-
-            MelonLogger.Msg("Built Other Settings Page");
 
             // Add the pages to the menu
             aiMenu = new Menu(menuPrefab, rootPage);
