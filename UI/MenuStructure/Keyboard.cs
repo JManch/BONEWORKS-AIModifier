@@ -15,7 +15,7 @@ namespace AIModifier.UI
         {
             if(key == "<-")
             {
-                if(activeInputField.GetValue().ToString().Length > 0)
+                if(activeInputField.GetDisplayValue().ToString().Length > 0)
                 {
                     // Remove the last character
                     activeInputField.SetDisplayValue(activeInputField.GetDisplayValue().Remove(activeInputField.GetDisplayValue().Length - 1));
