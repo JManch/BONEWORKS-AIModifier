@@ -33,7 +33,7 @@ namespace AIModifier.UI
             playerHead = Player.GetPlayerHead().transform;
 
             // AIData
-            AIData aiData = AIDataManager.aiDataDictionary[SimpleHelpers.GetCleanObjectName(aiBrain.gameObject.name)];
+            AIData aiData = AIDataManager.aiData[SimpleHelpers.GetCleanObjectName(aiBrain.gameObject.name)];
             aiHead = transform.parent.FindChild(aiData.headPlateTransformChildPath);
             healthPlateOffset = aiData.headPlateHeightOffset;
 

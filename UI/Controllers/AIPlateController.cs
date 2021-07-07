@@ -18,7 +18,7 @@ namespace AIModifier.UI
         protected virtual void Awake()
         {
             aiBrain = transform.GetComponent<AIBrain>();
-            aiData = AIDataManager.aiDataDictionary[SimpleHelpers.GetCleanObjectName(aiBrain.gameObject.name)];
+            aiData = AIDataManager.aiData[SimpleHelpers.GetCleanObjectName(aiBrain.gameObject.name)];
             playerHead = Player.GetPlayerHead().transform;
         }
 

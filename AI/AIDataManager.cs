@@ -8,15 +8,26 @@ namespace AIModifier.AI
 {
     public static class AIDataManager
     {
-        public static Dictionary<string, AIData> aiDataDictionary = new Dictionary<string, AIData>();
+        public static Dictionary<string, AIData> aiData = new Dictionary<string, AIData>();
+        public static Dictionary<string, AIData> defaultAiData = new Dictionary<string, AIData>();
+
+        public static void LoadDefaultAIData()
+        {
+            defaultAiData.Clear();
+            List<AIData> aiDatas = Utilities.Utilities.LoadXMLData<List<AIData>>(@"\Mods\AIModifier.xml");
+            foreach (AIData aiData in aiDatas)
+            {
+                AIDataManager.aiData.Add(aiData.name, aiData);
+            }
+        }
 
         public static void LoadAIData()
         {
-            aiDataDictionary.Clear();
-            List<AIData> aiDatas = Utilities.Utilities.LoadXMLData<List<AIData>>();
+            aiData.Clear();
+            List<AIData> aiDatas = Utilities.Utilities.LoadXMLData<List<AIData>>(@"\Mods\AIModifier.xml");
             foreach (AIData aiData in aiDatas)
             {
-                aiDataDictionary.Add(aiData.name, aiData);
+                AIDataManager.aiData.Add(aiData.name, aiData);
             }
         }
 

@@ -63,7 +63,7 @@ namespace AIModifier.AI
         // Called once on each AIBrain when it is first spawned in
         private static void ConfigureNewAI(AIBrain aiBrain)
         {
-            AIData aiData = AIDataManager.aiDataDictionary[SimpleHelpers.GetCleanObjectName(aiBrain.gameObject.name)];
+            AIData aiData = AIDataManager.aiData[SimpleHelpers.GetCleanObjectName(aiBrain.gameObject.name)];
 
             // Set AI properties
             switch (SimpleHelpers.GetCleanObjectName(aiBrain.gameObject.name))
@@ -88,7 +88,8 @@ namespace AIModifier.AI
             // Only add a health plate if it doesnt have one as it seems like zone spawners reuse gameobjects?
             if(aiBrain.transform.FindChild("HeadPlate(Clone)") == null)
             {
-                aiBrain.gameObject.AddComponent<AIHeadPlateController>();
+                var headPlate = aiBrain.gameObject.AddComponent<AIHeadPlateController>();
+                headPlate.OnSpawn();
             }
         }
 
@@ -125,10 +126,20 @@ namespace AIModifier.AI
             {
                 behaviourPowerLegs.SwitchMentalState((BehaviourBaseNav.MentalState)Enum.Parse(typeof(BehaviourBaseNav.MentalState), aiData.defaultMentalState));
             }
+            else
+            {
+                // Set mental state to default from default data file
+            }
+
             if (aiData.defaultEngagedMode != "Default")
             {
                 behaviourPowerLegs.SwitchEngagedState((BehaviourPowerLegs.EngagedMode)Enum.Parse(typeof(BehaviourPowerLegs.EngagedMode), aiData.defaultEngagedMode));
             }
+            else
+            {
+                // Set engaged mode to default from default data file
+            }
+
             behaviourPowerLegs.mirrorSkill = aiData.mirrorSkill;
 
             // AGRO ON NPC TYPE NEEDS TO BE IMPLEMENTED
@@ -141,6 +152,10 @@ namespace AIModifier.AI
                 {
                     behaviourPowerLegs.ChangeEmissiveColor(color);
                 }
+            }
+            else
+            {
+                // Set emission color to default from default data file
             }
             behaviourPowerLegs.faceAnim.SetCooldown(aiData.faceExpressionCooldownTime);
 

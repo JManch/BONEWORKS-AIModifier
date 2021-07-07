@@ -66,23 +66,6 @@ namespace AIModifier.Utilities
             }
         }
 
-        public static void LoadDefaultAIXML()
-        {
-            // Just copies the "built-in" default AI XML to the active directory and replaces the existing one
-            Assembly assembly = Assembly.GetExecutingAssembly();
-            using (Stream stream = assembly.GetManifestResourceStream("AIModifier.Resources.DefaultAIData.xml"))
-            {
-                using (FileStream fileStream = new FileStream(boneworksDirectory + aiDataPath, FileMode.Create))
-                {
-                    if(stream == null)
-                    {
-                        MelonLogger.Msg("Stream is null");
-                    }
-                    stream.CopyTo(fileStream);
-                }
-            }
-        }
-
         public static T GetSubAsset<T>(UnityEngine.Object[] allAssets) where T : class
         {
             for (int i = 0; i < allAssets.Length; i++)
@@ -99,32 +82,59 @@ namespace AIModifier.Utilities
         {
             boneworksDirectory = Directory.GetCurrentDirectory().ToString();
         }
+        private static void ReplaceAIXMLWithDefault()
+        {
+            // Just copies the "built-in" default AI XML to the active directory and replaces the existing one
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            using (Stream stream = assembly.GetManifestResourceStream("AIModifier.Resources.DefaultAIData.xml"))
+            {
+                using (FileStream fileStream = new FileStream(boneworksDirectory + aiDataPath, FileMode.Create))
+                {
+                    if (stream == null)
+                    {
+                        MelonLogger.Msg("Stream is null");
+                    }
+                    stream.CopyTo(fileStream);
+                }
+            }
+        }
 
         public static void InitialiseAIDataXML()
         {
             if(!File.Exists(boneworksDirectory + @"\Mods\AIModifier.xml"))
             {
-                LoadDefaultAIXML();
+                ReplaceAIXMLWithDefault();
             }
             AIDataManager.LoadAIData();
         }
 
-        public static T LoadXMLData<T>()
+        public static List<AIData> LoadDefaultAIData()
+        {
+            var deserializer = new XmlSerializer(typeof(List<AIData>));
+
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            using (Stream stream = assembly.GetManifestResourceStream("AIModifier.Resources.DefaultAIData.xml"))
+            {
+                return (List<AIData>)deserializer.Deserialize(stream);
+            }
+        }
+
+        public static T LoadXMLData<T>(string path)
         {
             var deserializer = new XmlSerializer(typeof(T));
-            FileStream xmlFile = File.OpenRead(boneworksDirectory + @"\Mods\AIModifier.xml");
-            object obj = deserializer.Deserialize(xmlFile);
-            xmlFile.Close();
-            T xmlData = (T)obj;
-            return xmlData;
+            using (FileStream xmlFile = File.OpenRead(boneworksDirectory + path))
+            {
+                return (T)deserializer.Deserialize(xmlFile);
+            }
         }
 
         public static void SaveXMLData<T>(T data, string path)
         {
             var serializer = new XmlSerializer(typeof(T));
-            FileStream xmlFile = File.OpenWrite(boneworksDirectory + path);
-            serializer.Serialize(xmlFile, data);
-            xmlFile.Close();
+            using (FileStream xmlFile = File.OpenWrite(boneworksDirectory + path))
+            {
+                serializer.Serialize(xmlFile, data);
+            }
         }
 
         public static void DebugLocalAIBrains()
@@ -145,7 +155,6 @@ namespace AIModifier.Utilities
 
         public static void SetupCollisionLayers()
         {
-
             // Setup layer 30 so it only collides with layer 31
             for (int j = 0; j < 32; j++)
             {

@@ -75,12 +75,12 @@ namespace AIModifier.UI
             omniEngagedModes.Add("Hide");
 
             List<string> NPCTypes = new List<string>();
+            NPCTypes.Add("Null Body");
+            NPCTypes.Add("Ford");
             NPCTypes.Add("Crablet");
             NPCTypes.Add("Ford Early Exit");
-            NPCTypes.Add("Ford");
             NPCTypes.Add("Ford Head");
             NPCTypes.Add("Ford VR Junkie");
-            NPCTypes.Add("Null Body");
             NPCTypes.Add("Null Rat");
             NPCTypes.Add("Omni Projector");
             NPCTypes.Add("Omni Turret");
@@ -128,8 +128,8 @@ namespace AIModifier.UI
 
             Transform configureAIPageTransform = menuPrefab.transform.FindChild("ConfigureAIPage");
             configureAIPage.AddElement(new TextDisplay(configureAIPageTransform.FindChild("Title").gameObject, "CONFIGURE AI", titleTextProperties));
-            configureAIPage.AddElement(new GenericSelector<string>(configureAIPageTransform.FindChild("SelectedAIElement").gameObject, "Selected AI:", elementTextProperties, new List<string>(AIDataManager.aiDataDictionary.Keys), delegate (string s) { AIMenuFunctions.OnSelectedAIChanged(s); }));
-            configureAIPage.AddElement(new InputField(configureAIPageTransform.FindChild("HealthElement").gameObject, "Health:", AIDataManager.aiDataDictionary["NullBody"].health.ToString(), elementTextProperties, int.MinValue, int.MaxValue, delegate(string health) { AIMenuFunctions.UpdateAIHealth(health); }));
+            configureAIPage.AddElement(new GenericSelector<string>(configureAIPageTransform.FindChild("SelectedAIElement").gameObject, "Selected AI:", elementTextProperties, new List<string>(AIDataManager.aiData.Keys), delegate (string s) { AIMenuFunctions.OnSelectedAIChanged(s); }));
+            configureAIPage.AddElement(new InputField(configureAIPageTransform.FindChild("HealthElement").gameObject, "Health:", AIDataManager.aiData["NullBody"].health.ToString(), elementTextProperties, int.MinValue, int.MaxValue, delegate(string health) { AIMenuFunctions.UpdateAIHealth(health); }));
             configureAIPage.AddElement(new Button(configureAIPageTransform.FindChild("AdditionalSettingsButton").gameObject, "Additional Settings", buttonTextProperties, Button.ButtonHighlightType.Underline, delegate { AIMenuFunctions.LoadAdditionalSettings(); aiMenu.SwitchPage("AdditionalSettingsPage1"); }));
             configureAIPage.AddElement(new Button(configureAIPageTransform.FindChild("SaveSettingsButton").gameObject, "Save Settings", buttonTextProperties, Button.ButtonHighlightType.Underline, delegate {  }));
             configureAIPage.AddElement(new Button(configureAIPageTransform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("RootPage"); }));

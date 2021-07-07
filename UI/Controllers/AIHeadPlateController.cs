@@ -29,8 +29,6 @@ namespace AIModifier.UI
             base.Awake();
 
             // Initialise vars
-            startHP = aiBrain.behaviour.health.cur_hp;
-            currentHP = aiBrain.behaviour.health.cur_hp;
             headPlate = GameObject.Instantiate(Utilities.Utilities.headPlatePrefab);
             headPlate.transform.SetParent(transform);
             headPlateWidth = headPlate.GetComponent<RectTransform>().sizeDelta.x;
@@ -47,8 +45,10 @@ namespace AIModifier.UI
             selected = headPlate.transform.FindChild("Selected").gameObject;
         }
 
-        void Start()
+        public void OnSpawn()
         {
+            startHP = aiBrain.behaviour.health.cur_hp;
+            currentHP = aiBrain.behaviour.health.cur_hp;
             UpdateHealthBar(currentHP);
             selected.SetActive(false);
         }
