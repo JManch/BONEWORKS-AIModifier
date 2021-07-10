@@ -20,7 +20,6 @@
         #region Gun Settings
         public float accuracy { get; set; }
         public float gunRange { get; set; }
-        public float gunCooldown { get; set; }
         public float reloadTime { get; set; }
         public float burstSize { get; set; }
         public float clipSize { get; set; }
@@ -32,7 +31,6 @@
         public float throwCooldown { get; set; }
         public float throwMaxRange { get; set; }
         public float throwMinRange { get; set; }
-        public float throwVelocity { get; set; }
 
         #endregion
 
@@ -50,7 +48,6 @@
 
         public string defaultMentalState { get; set; }
         public string defaultEngagedMode { get; set; }
-        public float mirrorSkill { get; set; }
 
         #endregion
 
@@ -59,24 +56,14 @@
         public string baseColor { get; set;}
         public string agroColor { get; set; }
         public bool jumpAttackEnabled { get; set; }
-        public float jumpCharge { get; set; }
         public float jumpCooldown { get; set; }
-        public float jumpForce { get; set; }
 
         #endregion
 
         #region Combat Settings
 
         public string agroOnNPCType { get; set; }
-        public string combatProficiency { get; set; }
         public float meleeRange { get; set; }
-
-        #endregion
-
-        #region Visual Settings
-
-        public string emissionColor { get; set; }
-        public float faceExpressionCooldownTime { get; set; }
 
         #endregion
 

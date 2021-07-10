@@ -16,7 +16,7 @@ namespace AIModifier
             Utilities.Utilities.CreateHooks();
             Utilities.Utilities.RegisterClasses();
             Utilities.Utilities.LoadAssetBundles();
-            Utilities.Utilities.InitialiseAIDataXML();
+            //Utilities.Utilities.InitialiseAIDataXML();
             Utilities.Utilities.SetupCollisionLayers();
         }
 
@@ -58,7 +58,10 @@ namespace AIModifier
                     MelonLogger.Msg("aiMenuPrefab is not null");
                 }
 
-                if (Utilities.Utilities.healthPlatePrefab == null)
+                if (Utilities.Utilities.
+                
+                
+                PlatePrefab == null)
                 {
                     MelonLogger.Msg("healthPlatePrefab is null");
                 }

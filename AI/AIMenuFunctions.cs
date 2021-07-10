@@ -21,7 +21,6 @@ namespace AIModifier.AI
             MenuPage gunSettingsPage = AIMenuManager.aiMenu.GetPage("GunSettingsPage");
             gunSettingsPage.GetElement("AccuracyElement").SetValue(AIDataManager.aiData[selectedAI].accuracy);
             gunSettingsPage.GetElement("GunRangeElement").SetValue(AIDataManager.aiData[selectedAI].gunRange);
-            gunSettingsPage.GetElement("GunCooldownElement").SetValue(AIDataManager.aiData[selectedAI].gunCooldown);
             gunSettingsPage.GetElement("ReloadTimeElement").SetValue(AIDataManager.aiData[selectedAI].reloadTime);
             gunSettingsPage.GetElement("BurstSizeElement").SetValue(AIDataManager.aiData[selectedAI].burstSize);
             gunSettingsPage.GetElement("ClipSizeElement").SetValue(AIDataManager.aiData[selectedAI].clipSize);
@@ -31,7 +30,6 @@ namespace AIModifier.AI
             throwSettingsPage.GetElement("ThrowCooldownElement").SetValue(AIDataManager.aiData[selectedAI].throwCooldown);
             throwSettingsPage.GetElement("ThrowMaxRangeElement").SetValue(AIDataManager.aiData[selectedAI].throwMaxRange);
             throwSettingsPage.GetElement("ThrowMinRangeElement").SetValue(AIDataManager.aiData[selectedAI].throwMinRange);
-            throwSettingsPage.GetElement("ThrowVelocityElement").SetValue(AIDataManager.aiData[selectedAI].throwVelocity);
 
             MenuPage movementSettingsPage = AIMenuManager.aiMenu.GetPage("MovementSettingsPage");
             movementSettingsPage.GetElement("AgroSpeedElement").SetValue(AIDataManager.aiData[selectedAI].agroedSpeed);
@@ -43,24 +41,16 @@ namespace AIModifier.AI
             MenuPage behaviourSettingsPage = AIMenuManager.aiMenu.GetPage("BehaviourSettingsPage");
             behaviourSettingsPage.GetElement("DefaultMentalStateElement").SetValue(AIDataManager.aiData[selectedAI].defaultMentalState);
             behaviourSettingsPage.GetElement("DefaultEngagedModeElement").SetValue(AIDataManager.aiData[selectedAI].defaultEngagedMode);
-            behaviourSettingsPage.GetElement("MirrorSkillElement").SetValue(AIDataManager.aiData[selectedAI].mirrorSkill);
 
             MenuPage crabletSettingsPage = AIMenuManager.aiMenu.GetPage("CrabletSettingsPage");
             crabletSettingsPage.GetElement("BaseColorElement").SetValue(AIDataManager.aiData[selectedAI].baseColor);
             crabletSettingsPage.GetElement("AgroColorElement").SetValue(AIDataManager.aiData[selectedAI].agroColor);
             crabletSettingsPage.GetElement("JumpAttackEnabledElement").SetValue(AIDataManager.aiData[selectedAI].jumpAttackEnabled);
-            crabletSettingsPage.GetElement("JumpChargeElement").SetValue(AIDataManager.aiData[selectedAI].jumpCharge);
             crabletSettingsPage.GetElement("JumpCooldownElement").SetValue(AIDataManager.aiData[selectedAI].jumpCooldown);
-            crabletSettingsPage.GetElement("JumpForceElement").SetValue(AIDataManager.aiData[selectedAI].jumpForce);
 
             MenuPage combatSettingsPage = AIMenuManager.aiMenu.GetPage("CombatSettingsPage");
             combatSettingsPage.GetElement("AgroOnNPCTypeElement").SetValue(AIDataManager.aiData[selectedAI].agroOnNPCType);
-            combatSettingsPage.GetElement("CombatProficiencyElement").SetValue(AIDataManager.aiData[selectedAI].combatProficiency);
             combatSettingsPage.GetElement("MeleeRangeElement").SetValue(AIDataManager.aiData[selectedAI].meleeRange);
-
-            MenuPage visualSettingsPage = AIMenuManager.aiMenu.GetPage("VisualSettingsPage");
-            visualSettingsPage.GetElement("EmissionColorElement").SetValue(AIDataManager.aiData[selectedAI].emissionColor);
-            visualSettingsPage.GetElement("FaceExpressionCooldownElement").SetValue(AIDataManager.aiData[selectedAI].faceExpressionCooldownTime);
 
             MenuPage omniWheelSettingsPage = AIMenuManager.aiMenu.GetPage("OmniWheelSettingsPage");
             omniWheelSettingsPage.GetElement("ChargeAttackSpeedElement").SetValue(AIDataManager.aiData[selectedAI].chargeAttackSpeed);
@@ -148,13 +138,6 @@ namespace AIModifier.AI
                 AIDataManager.aiData[selectedAI].gunRange = result;
             }
         }
-        public static void UpdateGunCooldown(string gunCooldown)
-        {
-            if (float.TryParse(gunCooldown, NumberStyles.Float, CultureInfo.InvariantCulture.NumberFormat, out float result))
-            {
-                AIDataManager.aiData[selectedAI].gunCooldown = result;
-            }
-        }
         public static void UpdateReloadTime(string reloadTime)
         {
             if (float.TryParse(reloadTime, NumberStyles.Float, CultureInfo.InvariantCulture.NumberFormat, out float result))
@@ -208,13 +191,6 @@ namespace AIModifier.AI
                 AIDataManager.aiData[selectedAI].throwMinRange = result;
             }
         }
-        public static void UpdateThrowVelocity(string throwVelocity)
-        {
-            if (float.TryParse(throwVelocity, NumberStyles.Float, CultureInfo.InvariantCulture.NumberFormat, out float result))
-            {
-                AIDataManager.aiData[selectedAI].throwVelocity = result;
-            }
-        }
 
         #endregion
 
@@ -266,13 +242,6 @@ namespace AIModifier.AI
         {
             AIDataManager.aiData[selectedAI].defaultEngagedMode = defaultEngagedMode;
         }
-        public static void UpdateMirrorSkill(string mirrorSkill)
-        {
-            if (float.TryParse(mirrorSkill, NumberStyles.Float, CultureInfo.InvariantCulture.NumberFormat, out float result))
-            {
-                AIDataManager.aiData[selectedAI].mirrorSkill = result;
-            }
-        }
 
         #endregion
 
@@ -290,25 +259,11 @@ namespace AIModifier.AI
         {
             AIDataManager.aiData[selectedAI].jumpAttackEnabled = jumpAttackEnabled;
         }
-        public static void UpdateJumpCharge(string jumpCharge)
-        {
-            if (float.TryParse(jumpCharge, NumberStyles.Float, CultureInfo.InvariantCulture.NumberFormat, out float result))
-            {
-                AIDataManager.aiData[selectedAI].jumpCharge = result;
-            }
-        }
         public static void UpdateJumpCooldown(string jumpCooldown)
         {
             if (float.TryParse(jumpCooldown, NumberStyles.Float, CultureInfo.InvariantCulture.NumberFormat, out float result))
             {
                 AIDataManager.aiData[selectedAI].jumpCooldown = result;
-            }
-        }
-        public static void UpdateJumpForce(string jumpForce)
-        {
-            if (float.TryParse(jumpForce, NumberStyles.Float, CultureInfo.InvariantCulture.NumberFormat, out float result))
-            {
-                AIDataManager.aiData[selectedAI].jumpForce = result;
             }
         }
 
@@ -320,31 +275,11 @@ namespace AIModifier.AI
         {
             AIDataManager.aiData[selectedAI].agroOnNPCType = agroOnNPCType;
         }
-        public static void UpdateCombatProficiency(string combatProficiency)
-        {
-            AIDataManager.aiData[selectedAI].combatProficiency = combatProficiency;
-        }
         public static void UpdateMeleeRange(string meleeRange)
         {
             if (float.TryParse(meleeRange, NumberStyles.Float, CultureInfo.InvariantCulture.NumberFormat, out float result))
             {
                 AIDataManager.aiData[selectedAI].meleeRange = result;
-            }
-        }
-
-        #endregion
-
-        #region Visual Settings Page
-
-        public static void UpdateEmissionColor(string emissionColor)
-        {
-            AIDataManager.aiData[selectedAI].emissionColor = emissionColor;
-        }
-        public static void UpdateFaceExpressionCooldownTime(string faceExpressionCooldownTime)
-        {
-            if (float.TryParse(faceExpressionCooldownTime, NumberStyles.Float, CultureInfo.InvariantCulture.NumberFormat, out float result))
-            {
-                AIDataManager.aiData[selectedAI].faceExpressionCooldownTime = result;
             }
         }
 

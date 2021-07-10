@@ -87,10 +87,6 @@ namespace AIModifier.UI
             NPCTypes.Add("Omni Wrecker");
             NPCTypes.Add("Turret");
 
-            List<string> combatProficiency = new List<string>();
-            combatProficiency.Add("FistFight");
-            combatProficiency.Add("WildPunch");
-
             TextProperties titleTextProperties = new TextProperties(12, Color.white, false, 15);
             TextProperties buttonTextProperties = new TextProperties(10, Color.white);
             TextProperties elementTextProperties = new TextProperties(8, Color.white, true);
@@ -108,7 +104,6 @@ namespace AIModifier.UI
             MenuPage behaviourSettingsPage = new MenuPage(menuPrefab.transform.FindChild("BehaviourSettingsPage").gameObject);
             MenuPage crabletSettingsPage = new MenuPage(menuPrefab.transform.FindChild("CrabletSettingsPage").gameObject);
             MenuPage combatSettingsPage = new MenuPage(menuPrefab.transform.FindChild("CombatSettingsPage").gameObject);
-            MenuPage visualSettingsPage = new MenuPage(menuPrefab.transform.FindChild("VisualSettingsPage").gameObject);
             MenuPage omniWheelSettingsPage = new MenuPage(menuPrefab.transform.FindChild("OmniWheelSettingsPage").gameObject);
             MenuPage otherSettingsPage = new MenuPage(menuPrefab.transform.FindChild("OtherSettingsPage").gameObject);
 
@@ -157,7 +152,6 @@ namespace AIModifier.UI
             Transform additionalSettingsPage2Transform = menuPrefab.transform.FindChild("AdditionalSettingsPage2");
             additionalSettingsPage2.AddElement(new TextDisplay(additionalSettingsPage2Transform.FindChild("Title").gameObject, "ADDITIONAL SETTINGS", new TextProperties(10.5f, Color.white, false, 15)));
             additionalSettingsPage2.AddElement(new Button(additionalSettingsPage2Transform.FindChild("CombatSettingsButton").gameObject, "Combat Settings", additionalSettingsButtonTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("CombatSettingsPage"); }));
-            additionalSettingsPage2.AddElement(new Button(additionalSettingsPage2Transform.FindChild("VisualSettingsButton").gameObject, "Visual Settings", additionalSettingsButtonTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("VisualSettingsPage"); }));
             additionalSettingsPage2.AddElement(new Button(additionalSettingsPage2Transform.FindChild("OmniWheelSettingsButton").gameObject, "OmniWheel Settings", additionalSettingsButtonTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("OmniWheelSettingsPage"); }));
             additionalSettingsPage2.AddElement(new Button(additionalSettingsPage2Transform.FindChild("OtherSettingsButton").gameObject, "Other Settings", additionalSettingsButtonTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("OtherSettingsPage"); }));
             additionalSettingsPage2.AddElement(new Button(additionalSettingsPage2Transform.FindChild("PreviousPageButton").gameObject, "<", new TextProperties(20, Color.white), Button.ButtonHighlightType.Color, delegate { aiMenu.SwitchPage("AdditionalSettingsPage1"); }));
@@ -183,7 +177,6 @@ namespace AIModifier.UI
             gunSettingsPage.AddElement(new TextDisplay(gunSettingsPageTransform.FindChild("Title").gameObject, "GUN SETTINGS", new TextProperties(10.5f, Color.white, false, 15)));
             gunSettingsPage.AddElement(new InputField(gunSettingsPageTransform.FindChild("AccuracyElement").gameObject, "Accuracy:", "", elementTextProperties, int.MinValue, int.MaxValue, delegate (string s) { AIMenuFunctions.UpdateAIAccuracy(s); }));
             gunSettingsPage.AddElement(new InputField(gunSettingsPageTransform.FindChild("GunRangeElement").gameObject, "Gun Range:", "", elementTextProperties, int.MinValue, int.MaxValue, delegate (string s) { AIMenuFunctions.UpdateGunRange(s); }));
-            gunSettingsPage.AddElement(new InputField(gunSettingsPageTransform.FindChild("GunCooldownElement").gameObject, "Gun Cooldown:", "", elementTextProperties, int.MinValue, int.MaxValue, delegate (string s) { AIMenuFunctions.UpdateGunCooldown(s); }));
             gunSettingsPage.AddElement(new InputField(gunSettingsPageTransform.FindChild("ReloadTimeElement").gameObject, "Reload Time:", "", elementTextProperties, int.MinValue, int.MaxValue, delegate (string s) { AIMenuFunctions.UpdateReloadTime(s); }));
             gunSettingsPage.AddElement(new InputField(gunSettingsPageTransform.FindChild("BurstSizeElement").gameObject, "Burst Size:", "", elementTextProperties, int.MinValue, int.MaxValue, delegate (string s) { AIMenuFunctions.UpdateBurstSize(s); }));
             gunSettingsPage.AddElement(new InputField(gunSettingsPageTransform.FindChild("ClipSizeElement").gameObject, "Clip Size:", "", elementTextProperties, int.MinValue, int.MaxValue, delegate (string s) { AIMenuFunctions.UpdateClipSize(s); }));
@@ -199,7 +192,6 @@ namespace AIModifier.UI
             throwSettingsPage.AddElement(new InputField(throwSettingsPageTransform.FindChild("ThrowCooldownElement").gameObject, "Throw Cooldown:", "", elementTextProperties, 0, int.MaxValue, delegate (string s) { AIMenuFunctions.UpdateThrowCooldown(s); }));
             throwSettingsPage.AddElement(new InputField(throwSettingsPageTransform.FindChild("ThrowMaxRangeElement").gameObject, "Throw Max Range:", "", elementTextProperties, 0, int.MaxValue, delegate (string s) { AIMenuFunctions.UpdateThrowMaxRange(s); }));
             throwSettingsPage.AddElement(new InputField(throwSettingsPageTransform.FindChild("ThrowMinRangeElement").gameObject, "Throw Min Range:", "", elementTextProperties, 0, int.MaxValue, delegate (string s) { AIMenuFunctions.UpdateThrowMinRange(s); }));
-            throwSettingsPage.AddElement(new InputField(throwSettingsPageTransform.FindChild("ThrowVelocityElement").gameObject, "Throw Velocity:", "", elementTextProperties, 0, int.MaxValue, delegate (string s) { AIMenuFunctions.UpdateThrowVelocity(s); }));
             throwSettingsPage.AddElement(new Button(throwSettingsPageTransform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("AdditionalSettingsPage1"); }));
 
             #endregion
@@ -223,7 +215,6 @@ namespace AIModifier.UI
             behaviourSettingsPage.AddElement(new TextDisplay(behaviourSettingsPageTransform.FindChild("Title").gameObject, "BEHAVIOUR SETTINGS", new TextProperties(10.5f, Color.white, false, 15)));
             behaviourSettingsPage.AddElement(new GenericSelector<string>(behaviourSettingsPageTransform.FindChild("DefaultMentalStateElement").gameObject, "Default Mental State:", elementTextProperties, mentalStates, delegate (string s) { AIMenuFunctions.UpdateDefaultMentalState(s); }));
             behaviourSettingsPage.AddElement(new GenericSelector<string>(behaviourSettingsPageTransform.FindChild("DefaultEngagedModeElement").gameObject, "Default Engaged Mode:", elementTextProperties, engagedModes, delegate (string s) { AIMenuFunctions.UpdateDefaultEngagedMode(s); }));
-            behaviourSettingsPage.AddElement(new InputField(behaviourSettingsPageTransform.FindChild("MirrorSkillElement").gameObject, "Mirror Skill:", "", elementTextProperties, int.MinValue, int.MaxValue, delegate (string s) { AIMenuFunctions.UpdateMirrorSkill(s); }));
             behaviourSettingsPage.AddElement(new Button(behaviourSettingsPageTransform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("AdditionalSettingsPage1"); }));
 
             #endregion
@@ -235,9 +226,7 @@ namespace AIModifier.UI
             crabletSettingsPage.AddElement(new GenericSelector<string>(crabletSettingsPageTranform.FindChild("BaseColorElement").gameObject, "Base Color:", elementTextProperties, colorList, delegate (string s) { AIMenuFunctions.UpdateBaseColor(s); }));
             crabletSettingsPage.AddElement(new GenericSelector<string>(crabletSettingsPageTranform.FindChild("AgroColorElement").gameObject, "Agro Color:", elementTextProperties, colorList, delegate (string s) { AIMenuFunctions.UpdateAgroColor(s); }));
             crabletSettingsPage.AddElement(new GenericSelector<bool>(crabletSettingsPageTranform.FindChild("JumpAttackEnabledElement").gameObject, "Jump Attack Enabled:", elementTextProperties, boolList, delegate (bool b) { AIMenuFunctions.UpdateJumpAttackEnabled(b); }));
-            crabletSettingsPage.AddElement(new InputField(crabletSettingsPageTranform.FindChild("JumpChargeElement").gameObject, "Jump Charge:", "", elementTextProperties, int.MinValue, int.MaxValue, delegate (string s) { AIMenuFunctions.UpdateJumpCharge(s); }));
             crabletSettingsPage.AddElement(new InputField(crabletSettingsPageTranform.FindChild("JumpCooldownElement").gameObject, "Jump Cooldown:", "", elementTextProperties, int.MinValue, int.MaxValue, delegate (string s) { AIMenuFunctions.UpdateJumpCooldown(s); }));
-            crabletSettingsPage.AddElement(new InputField(crabletSettingsPageTranform.FindChild("JumpForceElement").gameObject, "Jump Force:", "", elementTextProperties, int.MinValue, int.MaxValue, delegate (string s) { AIMenuFunctions.UpdateJumpForce(s); }));
             crabletSettingsPage.AddElement(new Button(crabletSettingsPageTranform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("AdditionalSettingsPage1"); }));
 
             #endregion
@@ -247,20 +236,9 @@ namespace AIModifier.UI
             Transform combatSettingsPageTransform = menuPrefab.transform.FindChild("CombatSettingsPage");
             combatSettingsPage.AddElement(new TextDisplay(combatSettingsPageTransform.FindChild("Title").gameObject, "COMBAT SETTINGS", new TextProperties(10.5f, Color.white, false, 15)));
             combatSettingsPage.AddElement(new GenericSelector<string>(combatSettingsPageTransform.FindChild("AgroOnNPCTypeElement").gameObject, "Agro On NPC Type:", elementTextProperties, NPCTypes, delegate (string s) { AIMenuFunctions.UpdateAgroOnNPCType(s); }));
-            combatSettingsPage.AddElement(new GenericSelector<string>(combatSettingsPageTransform.FindChild("CombatProficiencyElement").gameObject, "Combat Proficiency:", elementTextProperties, combatProficiency, delegate (string s) { AIMenuFunctions.UpdateCombatProficiency(s); }));
             combatSettingsPage.AddElement(new InputField(combatSettingsPageTransform.FindChild("MeleeRangeElement").gameObject, "Melee Range:", "", elementTextProperties, int.MinValue, int.MaxValue, delegate (string s) { AIMenuFunctions.UpdateMeleeRange(s); }));
             combatSettingsPage.AddElement(new Button(combatSettingsPageTransform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("AdditionalSettingsPage2"); }));
             
-            #endregion
-
-            #region Configure Visual Settings Page
-
-            Transform visualSettingsPageTransform = menuPrefab.transform.FindChild("VisualSettingsPage");
-            visualSettingsPage.AddElement(new TextDisplay(visualSettingsPageTransform.FindChild("Title").gameObject, "COMBAT SETTINGS", new TextProperties(10.5f, Color.white, false, 15)));
-            visualSettingsPage.AddElement(new GenericSelector<string>(visualSettingsPageTransform.FindChild("EmissionColorElement").gameObject, "Emission Color:", elementTextProperties, colorList, delegate (string s) { AIMenuFunctions.UpdateEmissionColor(s); }));
-            visualSettingsPage.AddElement(new InputField(visualSettingsPageTransform.FindChild("FaceExpressionCooldownElement").gameObject, "Face Expression Cooldown Time:", "", elementTextProperties, int.MinValue, int.MaxValue, delegate (string s) { AIMenuFunctions.UpdateFaceExpressionCooldownTime(s); }));
-            visualSettingsPage.AddElement(new Button(visualSettingsPageTransform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("AdditionalSettingsPage2"); }));
-
             #endregion
 
             #region Configure OmniWheel Settings Page
@@ -299,7 +277,6 @@ namespace AIModifier.UI
             aiMenu.AddPage(behaviourSettingsPage);
             aiMenu.AddPage(crabletSettingsPage);
             aiMenu.AddPage(combatSettingsPage);
-            aiMenu.AddPage(visualSettingsPage);
             aiMenu.AddPage(omniWheelSettingsPage);
             aiMenu.AddPage(otherSettingsPage);
         }

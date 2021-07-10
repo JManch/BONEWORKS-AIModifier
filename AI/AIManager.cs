@@ -105,7 +105,6 @@ namespace AIModifier.AI
 
             behaviourPowerLegs.accuracy = aiData.accuracy;
             behaviourPowerLegs.gunRange = aiData.gunRange;
-            behaviourPowerLegs.gunCooldown = aiData.gunCooldown;
             behaviourPowerLegs.reloadTime = aiData.reloadTime;
             behaviourPowerLegs.burstSize = (int)aiData.burstSize;
             behaviourPowerLegs.clipSize = (int)aiData.clipSize;
@@ -114,7 +113,6 @@ namespace AIModifier.AI
             behaviourPowerLegs.throwCooldown = aiData.throwCooldown;
             behaviourPowerLegs.throwMaxRange = aiData.throwMaxRange;
             behaviourPowerLegs.throwMinRange = aiData.throwMinRange;
-            behaviourPowerLegs.throwVelocity = aiData.throwVelocity;
 
             behaviourPowerLegs.agroedSpeed = aiData.agroedSpeed;
             behaviourPowerLegs.roamSpeed = aiData.roamSpeed;
@@ -140,24 +138,9 @@ namespace AIModifier.AI
                 // Set engaged mode to default from default data file
             }
 
-            behaviourPowerLegs.mirrorSkill = aiData.mirrorSkill;
-
             // AGRO ON NPC TYPE NEEDS TO BE IMPLEMENTED
             // COMBAT PROFICIENCY SHOULD BE SCRAPPED
             behaviourPowerLegs.meleeRange = aiData.meleeRange;
-
-            if(aiData.emissionColor != "Default")
-            {
-                if(ColorUtility.TryParseHtmlString(aiData.emissionColor, out Color color))
-                {
-                    behaviourPowerLegs.ChangeEmissiveColor(color);
-                }
-            }
-            else
-            {
-                // Set emission color to default from default data file
-            }
-            behaviourPowerLegs.faceAnim.SetCooldown(aiData.faceExpressionCooldownTime);
 
             behaviourPowerLegs.sensors.hearingSensitivity = aiData.hearingSensitivity;
             behaviourPowerLegs.sensors.SetVisionSphere(aiData.visionRadius);
@@ -176,7 +159,6 @@ namespace AIModifier.AI
 
             behaviourCrablet.accuracy = aiData.accuracy;
             behaviourCrablet.gunRange = aiData.gunRange;
-            behaviourCrablet.gunCooldown = aiData.gunCooldown;
             behaviourCrablet.reloadTime = aiData.reloadTime;
             behaviourCrablet.burstSize = (int)aiData.burstSize;
             behaviourCrablet.clipSize = (int)aiData.clipSize;
@@ -185,7 +167,6 @@ namespace AIModifier.AI
             behaviourCrablet.throwCooldown = aiData.throwCooldown;
             behaviourCrablet.throwMaxRange = aiData.throwMaxRange;
             behaviourCrablet.throwMinRange = aiData.throwMinRange;
-            behaviourCrablet.throwVelocity = aiData.throwVelocity;
 
             behaviourCrablet.agroedSpeed = aiData.agroedSpeed;
             behaviourCrablet.roamSpeed = aiData.roamSpeed;
@@ -212,20 +193,9 @@ namespace AIModifier.AI
                 }
             }
             behaviourCrablet.enableJumpAttack = aiData.jumpAttackEnabled;
-            behaviourCrablet.jumpCharge = aiData.jumpCharge;
             behaviourCrablet.jumpCooldown = aiData.jumpCooldown;
-            behaviourCrablet.linkJumpForce = aiData.jumpForce;
 
             // AGRO ON NPC TYPE NEEDS TO BE IMPLEMENTED
-            // COMBAT PROFICIENCY SHOULD BE SCRAPPED
-
-            if (aiData.emissionColor != "Default")
-            {
-                if (ColorUtility.TryParseHtmlString(aiData.emissionColor, out Color color))
-                {
-                    behaviourCrablet.ChangeEmissiveColor(color);
-                }
-            }
 
             behaviourCrablet.sensors.hearingSensitivity = aiData.hearingSensitivity;
             behaviourCrablet.sensors.SetVisionSphere(aiData.visionRadius);
@@ -244,7 +214,6 @@ namespace AIModifier.AI
 
             behaviourOmniwheel.accuracy = aiData.accuracy;
             behaviourOmniwheel.gunRange = aiData.gunRange;
-            behaviourOmniwheel.gunCooldown = aiData.gunCooldown;
             behaviourOmniwheel.reloadTime = aiData.reloadTime;
             behaviourOmniwheel.burstSize = (int)aiData.burstSize;
             behaviourOmniwheel.clipSize = (int)aiData.clipSize;
@@ -253,7 +222,6 @@ namespace AIModifier.AI
             behaviourOmniwheel.throwCooldown = aiData.throwCooldown;
             behaviourOmniwheel.throwMaxRange = aiData.throwMaxRange;
             behaviourOmniwheel.throwMinRange = aiData.throwMinRange;
-            behaviourOmniwheel.throwVelocity = aiData.throwVelocity;
 
             behaviourOmniwheel.agroedSpeed = aiData.agroedSpeed;
             behaviourOmniwheel.roamSpeed = aiData.roamSpeed;
@@ -268,14 +236,6 @@ namespace AIModifier.AI
             // AGRO ON NPC TYPE NEEDS TO BE IMPLEMENTED
             // COMBAT PROFICIENCY SHOULD BE SCRAPPED
             behaviourOmniwheel.meleeRange = aiData.meleeRange;
-
-            if (aiData.emissionColor != "Default")
-            {
-                if (ColorUtility.TryParseHtmlString(aiData.emissionColor, out Color color))
-                {
-                    behaviourOmniwheel.ChangeEmissiveColor(color);
-                }
-            }
 
             behaviourOmniwheel.chargeAttackSpeed = aiData.chargeAttackSpeed;
             behaviourOmniwheel.chargeCooldown = aiData.chargeCooldown;
