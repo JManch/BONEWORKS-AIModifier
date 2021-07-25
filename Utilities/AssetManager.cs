@@ -13,6 +13,7 @@ namespace AIModifier.Utilities
         public static GameObject headPlatePrefab { get; private set; }
         public static GameObject aiMenuPrefab { get; private set; }
         public static GameObject numpadPrefab { get; private set; }
+        public static GameObject aiSelectorPrefab { get; private set; }
 
         // Game references
         public static Hand leftHand { get; private set; }

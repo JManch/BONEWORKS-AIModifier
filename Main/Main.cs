@@ -13,9 +13,9 @@ namespace AIModifier
         public override void OnApplicationStart()
         {
             Utilities.Utilities.LoadBoneworksDirectory();
-            Utilities.Utilities.CreateHooks();
+            Hooks.CreateHooks();
             Utilities.Utilities.RegisterClasses();
-            Utilities.Utilities.LoadAssetBundles();
+            AssetManager.LoadAssetBundles();
             //Utilities.Utilities.InitialiseAIDataXML();
             Utilities.Utilities.SetupCollisionLayers();
         }
@@ -24,9 +24,9 @@ namespace AIModifier
         {
 
             // Getting variables
-            if(Utilities.Utilities.leftHand == null || Utilities.Utilities.rightHand == null)
+            if(AssetManager.leftHand == null || AssetManager.rightHand == null)
             {
-                Utilities.Utilities.GetHands();
+                AssetManager.GetHands();
             }
 
             if(Input.GetKeyDown(KeyCode.Space))
@@ -36,7 +36,7 @@ namespace AIModifier
 
             if(Input.GetKeyDown(KeyCode.C))
             {
-                Utilities.Utilities.DebugAIData();
+                Debugging.DebugAIData();
             }
 
             if (Input.GetKeyDown(KeyCode.M))

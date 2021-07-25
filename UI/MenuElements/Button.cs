@@ -20,10 +20,10 @@ namespace AIModifier.UI
         public Action<string> onButtonParameter { get; set; }
         public Action onButtonUp { get; set; }
         public Action onButton { get; set; }
+        public Color defaultColor { get; private set; }
 
-        private TextDisplay textDisplay;
         private Image image;
-        private Color defaultColor;
+        private TextDisplay textDisplay; 
         private ButtonHighlightType buttonHighlightType;
 
         public Button(GameObject gameObject, string buttonText, TextProperties textProperties, ButtonHighlightType buttonHighlightType, Action onButtonDown = null, Action onButton = null, Action onButtonUp = null, Action<string> onButtonDownParameter = null, Action<string> onButtonParameter = null) : base(gameObject)
@@ -133,6 +133,11 @@ namespace AIModifier.UI
                     onButtonParameter(GetValue().ToString());
                 }
             }
+        }
+
+        public void SetColor(Color color)
+        {
+            image.color = color;
         }
     }
 }

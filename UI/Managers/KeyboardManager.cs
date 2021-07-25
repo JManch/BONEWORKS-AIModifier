@@ -13,7 +13,7 @@ namespace AIModifier.UI
             if (numpad == null || numpad.gameObject == null)
             {
                 Transform playerPelvis = Player.GetRigManager().transform.FindChild("[SkeletonRig (Realtime SkeleBones)]").FindChild("Pelvis");
-                GameObject numpad = GameObject.Instantiate(Utilities.Utilities.numpadPrefab, playerPelvis.position + 0.8f * playerPelvis.transform.forward, Quaternion.identity);
+                GameObject numpad = GameObject.Instantiate(Utilities.AssetManager.numpadPrefab, playerPelvis.position + 0.8f * playerPelvis.transform.forward, Quaternion.identity);
                 BuildNumpad(numpad);
             }
             else

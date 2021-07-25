@@ -11,6 +11,7 @@ namespace AIModifier.UI
     {
         public static Menu aiMenu;
         public static Color uiHighlightColor = new Color(0.3962264f, 0.3962264f, 0.3962264f, 0.7490196f);
+        private static Menu aiSelectorMenu;
 
         public static void OpenAIMenu()
         {
@@ -31,7 +32,19 @@ namespace AIModifier.UI
 
         private static void SpawnAIMenu()
         {
-            BuildAIMenu(GameObject.Instantiate(Utilities.Utilities.aiMenuPrefab, Player.rightHand.transform.position + 4 * Player.GetRigManager().transform.forward, Quaternion.identity));
+            BuildAIMenu(GameObject.Instantiate(Utilities.AssetManager.aiMenuPrefab, Player.rightHand.transform.position + 4 * Player.GetRigManager().transform.forward, Quaternion.identity));
+        }
+
+        private static void BuildAISelector()
+        {
+            if(aiSelectorMenu == null || aiSelectorMenu.gameObject == null)
+            {
+                // Build it...
+                aiSelectorMenu = new Menu()
+
+                GameObject.Instantiate(Utilities.AssetManager.numpadPrefab, playerPelvis.position + 0.8f * playerPelvis.transform.forward, Quaternion.identity);
+
+            }
         }
 
         public static void BuildAIMenu(GameObject menuPrefab)
@@ -235,7 +248,7 @@ namespace AIModifier.UI
 
             Transform combatSettingsPageTransform = menuPrefab.transform.FindChild("CombatSettingsPage");
             combatSettingsPage.AddElement(new TextDisplay(combatSettingsPageTransform.FindChild("Title").gameObject, "COMBAT SETTINGS", new TextProperties(10.5f, Color.white, false, 15)));
-            combatSettingsPage.AddElement(new GenericSelector<string>(combatSettingsPageTransform.FindChild("AgroOnNPCTypeElement").gameObject, "Agro On NPC Type:", elementTextProperties, NPCTypes, delegate (string s) { AIMenuFunctions.UpdateAgroOnNPCType(s); }));
+            combatSettingsPage.AddElement(new Selector(, , "Agro On NPC Type:", elementTextProperties, NPCTypes));
             combatSettingsPage.AddElement(new InputField(combatSettingsPageTransform.FindChild("MeleeRangeElement").gameObject, "Melee Range:", "", elementTextProperties, int.MinValue, int.MaxValue, delegate (string s) { AIMenuFunctions.UpdateMeleeRange(s); }));
             combatSettingsPage.AddElement(new Button(combatSettingsPageTransform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("AdditionalSettingsPage2"); }));
             

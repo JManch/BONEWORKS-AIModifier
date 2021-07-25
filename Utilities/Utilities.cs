@@ -14,7 +14,7 @@ namespace AIModifier.Utilities
         {
             ClassInjector.RegisterTypeInIl2Cpp<MenuPointerController>();
             ClassInjector.RegisterTypeInIl2Cpp<ButtonController>();
-            ClassInjector.RegisterTypeInIl2Cpp<KeyboardController>();
+            ClassInjector.RegisterTypeInIl2Cpp<SmoothPlayerFollow>();
             ClassInjector.RegisterTypeInIl2Cpp<AISelectorController>();
             ClassInjector.RegisterTypeInIl2Cpp<AIPlateController>();
             ClassInjector.RegisterTypeInIl2Cpp<AIHeadPlateController>();

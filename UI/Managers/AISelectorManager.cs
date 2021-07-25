@@ -28,16 +28,16 @@ namespace AIModifier.UI
         {
             if(aiSelector == null)
             {
-                if (MenuPointerManager.activePointerHand == MenuPointerManager.PointerHand.Right && Utilities.Utilities.rightHand != null)
+                if (MenuPointerManager.activePointerHand == MenuPointerManager.PointerHand.Right && Utilities.AssetManager.rightHand != null)
                 {
                     aiSelector = new GameObject("AIPointer");
-                    aiSelector.transform.SetParent(Utilities.Utilities.rightHand.transform.FindChild("PalmCenter"));
+                    aiSelector.transform.SetParent(Utilities.AssetManager.rightHand.transform.FindChild("PalmCenter"));
                     aiSelectorController = aiSelector.AddComponent<AISelectorController>();
                 }
-                else if (Utilities.Utilities.leftHand != null)
+                else if (Utilities.AssetManager.leftHand != null)
                 {
                     aiSelector = new GameObject("AIPointer");
-                    aiSelector.transform.SetParent(Utilities.Utilities.leftHand.transform.FindChild("PalmCenter"));
+                    aiSelector.transform.SetParent(Utilities.AssetManager.leftHand.transform.FindChild("PalmCenter"));
                     aiSelectorController = aiSelector.AddComponent<AISelectorController>();
                 }
             }

@@ -8,7 +8,7 @@ namespace AIModifier.UI
 
         public Keyboard(GameObject gameObject, MenuPage page) : base(gameObject, page)
         {
-            gameObject.AddComponent<KeyboardController>();
+            gameObject.AddComponent<SmoothPlayerFollow>();
         }
 
         public void OnKeyPressed(string key)
