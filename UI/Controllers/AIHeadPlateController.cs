@@ -2,6 +2,7 @@
 using UnityEngine;
 using TMPro;
 using MelonLoader;
+using AIModifier.Utilities;
 
 namespace AIModifier.UI
 {
@@ -29,7 +30,7 @@ namespace AIModifier.UI
             base.Awake();
 
             // Initialise vars
-            headPlate = GameObject.Instantiate(Utilities.Utilities.headPlatePrefab);
+            headPlate = GameObject.Instantiate(AssetManager.headPlatePrefab);
             headPlate.transform.SetParent(transform);
             headPlateWidth = headPlate.GetComponent<RectTransform>().sizeDelta.x;
 

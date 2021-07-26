@@ -14,7 +14,7 @@ namespace AIModifier.AI
         public static void LoadDefaultAIData()
         {
             defaultAiData.Clear();
-            List<AIData> aiDatas = Utilities.Utilities.LoadXMLData<List<AIData>>(@"\Mods\AIModifier.xml");
+            List<AIData> aiDatas = XMLDataManager.LoadXMLData<List<AIData>>(@"\Mods\AIModifier.xml");
             foreach (AIData aiData in aiDatas)
             {
                 AIDataManager.aiData.Add(aiData.name, aiData);
@@ -24,7 +24,7 @@ namespace AIModifier.AI
         public static void LoadAIData()
         {
             aiData.Clear();
-            List<AIData> aiDatas = Utilities.Utilities.LoadXMLData<List<AIData>>(@"\Mods\AIModifier.xml");
+            List<AIData> aiDatas = XMLDataManager.LoadXMLData<List<AIData>>(@"\Mods\AIModifier.xml");
             foreach (AIData aiData in aiDatas)
             {
                 AIDataManager.aiData.Add(aiData.name, aiData);

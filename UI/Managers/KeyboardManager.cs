@@ -12,9 +12,7 @@ namespace AIModifier.UI
         {
             if (numpad == null || numpad.gameObject == null)
             {
-                Transform playerPelvis = Player.GetRigManager().transform.FindChild("[SkeletonRig (Realtime SkeleBones)]").FindChild("Pelvis");
-                GameObject numpad = GameObject.Instantiate(Utilities.AssetManager.numpadPrefab, playerPelvis.position + 0.8f * playerPelvis.transform.forward, Quaternion.identity);
-                BuildNumpad(numpad);
+                BuildNumpad();
             }
             else
             {
@@ -30,8 +28,10 @@ namespace AIModifier.UI
             }
         }
 
-        public static void BuildNumpad(GameObject numpadPrefab)
+        public static void BuildNumpad()
         {
+            GameObject numpadPrefab = GameObject.Instantiate(Utilities.AssetManager.numpadPrefab, Utilities.AssetManager.playerPelvis.position + 0.8f * Utilities.AssetManager.playerPelvis.transform.forward, Quaternion.identity);
+
             // Define new menu and keyboard
             MenuPage rootPage = new MenuPage(numpadPrefab.transform.FindChild("RootPage").gameObject);
             numpad = new Keyboard(numpadPrefab, rootPage);

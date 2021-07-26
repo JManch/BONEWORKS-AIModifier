@@ -11,7 +11,7 @@ namespace AIModifier.UI
     {
         public static Menu aiMenu;
         public static Color uiHighlightColor = new Color(0.3962264f, 0.3962264f, 0.3962264f, 0.7490196f);
-        private static Menu aiSelectorMenu;
+        private static SelectorUI aiSelectorUI;
 
         public static void OpenAIMenu()
         {
@@ -37,13 +37,29 @@ namespace AIModifier.UI
 
         private static void BuildAISelector()
         {
-            if(aiSelectorMenu == null || aiSelectorMenu.gameObject == null)
+            if(aiSelectorUI == null || aiSelectorUI.gameObject == null)
             {
                 // Build it...
-                aiSelectorMenu = new Menu()
+                GameObject aiSelectorPrefab = GameObject.Instantiate(Utilities.AssetManager.aiSelectorPrefab, Utilities.AssetManager.playerPelvis.position + 0.8f * Utilities.AssetManager.playerPelvis.transform.forward, Quaternion.identity);
+                MenuPage rootPage = new MenuPage(aiSelectorPrefab.transform.FindChild("RootPage").gameObject);
+                aiSelectorUI = new SelectorUI(aiSelectorPrefab, rootPage);
 
-                GameObject.Instantiate(Utilities.AssetManager.numpadPrefab, playerPelvis.position + 0.8f * playerPelvis.transform.forward, Quaternion.identity);
+                Transform rootPageTransform = aiSelectorPrefab.transform.FindChild("RootPage");
+                TextProperties textProperties = new TextProperties(2, Color.white);
 
+                rootPage.AddElement(new Button(rootPageTransform.FindChild("FordHair").gameObject, "FordHair", textProperties, Button.ButtonHighlightType.Color, null, null, null, delegate (string s) { aiSelectorUI.OnKeyPressed(s); }));
+                rootPage.AddElement(new Button(rootPageTransform.FindChild("FordShortHair").gameObject, "FordShortHair", textProperties, Button.ButtonHighlightType.Color, null, null, null, delegate (string s) { aiSelectorUI.OnKeyPressed(s); }));
+                rootPage.AddElement(new Button(rootPageTransform.FindChild("EarlyExit").gameObject, "EarlyExit", textProperties, Button.ButtonHighlightType.Color, null, null, null, delegate (string s) { aiSelectorUI.OnKeyPressed(s); }));
+                rootPage.AddElement(new Button(rootPageTransform.FindChild("NullBody").gameObject, "NullBody", textProperties, Button.ButtonHighlightType.Color, null, null, null, delegate (string s) { aiSelectorUI.OnKeyPressed(s); }));
+                rootPage.AddElement(new Button(rootPageTransform.FindChild("Fordlet").gameObject, "Fordlet", textProperties, Button.ButtonHighlightType.Color, null, null, null, delegate (string s) { aiSelectorUI.OnKeyPressed(s); }));
+                rootPage.AddElement(new Button(rootPageTransform.FindChild("Crablet").gameObject, "Crablet", textProperties, Button.ButtonHighlightType.Color, null, null, null, delegate (string s) { aiSelectorUI.OnKeyPressed(s); }));
+                rootPage.AddElement(new Button(rootPageTransform.FindChild("OmniProjector").gameObject, "OmniProjector", textProperties, Button.ButtonHighlightType.Color, null, null, null, delegate (string s) { aiSelectorUI.OnKeyPressed(s); }));
+                rootPage.AddElement(new Button(rootPageTransform.FindChild("OmniWrecker").gameObject, "OmniWrecker", textProperties, Button.ButtonHighlightType.Color, null, null, null, delegate (string s) { aiSelectorUI.OnKeyPressed(s); }));
+                rootPage.AddElement(new Button(rootPageTransform.FindChild("OmniTurret").gameObject, "OmniTurret", textProperties, Button.ButtonHighlightType.Color, null, null, null, delegate (string s) { aiSelectorUI.OnKeyPressed(s); }));
+                rootPage.AddElement(new Button(rootPageTransform.FindChild("Turret").gameObject, "Turret", textProperties, Button.ButtonHighlightType.Color, null, null, null, delegate (string s) { aiSelectorUI.OnKeyPressed(s); }));
+                rootPage.AddElement(new Button(rootPageTransform.FindChild("NullRat").gameObject, "NullRat", textProperties, Button.ButtonHighlightType.Color, null, null, null, delegate (string s) { aiSelectorUI.OnKeyPressed(s); }));
+
+                rootPage.AddElement(new Button(rootPageTransform.FindChild("Enter").gameObject, "Enter", new TextProperties(3, Color.white), Button.ButtonHighlightType.Color, null, null, null, delegate (string s) { aiSelectorUI.OnKeyPressed(s); }));
             }
         }
 
@@ -248,7 +264,8 @@ namespace AIModifier.UI
 
             Transform combatSettingsPageTransform = menuPrefab.transform.FindChild("CombatSettingsPage");
             combatSettingsPage.AddElement(new TextDisplay(combatSettingsPageTransform.FindChild("Title").gameObject, "COMBAT SETTINGS", new TextProperties(10.5f, Color.white, false, 15)));
-            combatSettingsPage.AddElement(new Selector(, , "Agro On NPC Type:", elementTextProperties, NPCTypes));
+            BuildAISelector();
+            combatSettingsPage.AddElement(new Selector(combatSettingsPageTransform.FindChild("AgroOnNPCTypeElement").gameObject, aiSelectorUI, "Agro On NPC Type:", elementTextProperties, NPCTypes));
             combatSettingsPage.AddElement(new InputField(combatSettingsPageTransform.FindChild("MeleeRangeElement").gameObject, "Melee Range:", "", elementTextProperties, int.MinValue, int.MaxValue, delegate (string s) { AIMenuFunctions.UpdateMeleeRange(s); }));
             combatSettingsPage.AddElement(new Button(combatSettingsPageTransform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("AdditionalSettingsPage2"); }));
             

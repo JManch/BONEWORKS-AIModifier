@@ -62,19 +62,19 @@ namespace AIModifier.UI
 
         private static void InitialisePointers()
         {
-            if (rightPointer == null && Utilities.Utilities.rightHand != null)
+            if (rightPointer == null && AssetManager.rightHand != null)
             {
                 rightPointer = new GameObject("MenuPointer");
-                rightPointer.transform.SetParent(Utilities.Utilities.rightHand.transform.FindChild("PalmCenter"));
+                rightPointer.transform.SetParent(AssetManager.rightHand.transform.FindChild("PalmCenter"));
                 rightPointerController = rightPointer.AddComponent<MenuPointerController>();
                 rightPointerController.pointerHand = PointerHand.Right;
                 rightPointer.SetActive(false);
             }
 
-            if (leftPointer == null && Utilities.Utilities.leftHand != null)
+            if (leftPointer == null && AssetManager.leftHand != null)
             {
                 leftPointer = new GameObject("MenuPointer");
-                leftPointer.transform.SetParent(Utilities.Utilities.leftHand.transform.FindChild("PalmCenter"));
+                leftPointer.transform.SetParent(AssetManager.leftHand.transform.FindChild("PalmCenter"));
                 leftPointerController = leftPointer.AddComponent<MenuPointerController>();
                 leftPointerController.pointerHand = PointerHand.Left;
                 leftPointer.SetActive(false);

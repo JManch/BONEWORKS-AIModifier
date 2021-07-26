@@ -32,16 +32,23 @@ namespace AIModifier.UI
 
         public void OnKeyPressed(string selectorKey)
         {
-            selector.selectorOptions[selectorKey] = !selector.selectorOptions[selectorKey];
-
-            // Highlight the button accordingly 
-            if(selector.selectorOptions[selectorKey])
+            if(selectorKey == "Enter")
             {
-                ((Button)(rootPage.GetElement(selectorKey))).SetColor(selectedColor);
+                selector.CloseSelector();
             }
             else
             {
-                ((Button)(rootPage.GetElement(selectorKey))).SetColor(((Button)(rootPage.GetElement(selectorKey))).defaultColor);
+                selector.selectorOptions[selectorKey] = !selector.selectorOptions[selectorKey];
+
+                // Highlight the button accordingly 
+                if (selector.selectorOptions[selectorKey])
+                {
+                    ((Button)(rootPage.GetElement(selectorKey))).SetColor(selectedColor);
+                }
+                else
+                {
+                    ((Button)(rootPage.GetElement(selectorKey))).SetColor(((Button)(rootPage.GetElement(selectorKey))).defaultColor);
+                }
             }
         }
     }

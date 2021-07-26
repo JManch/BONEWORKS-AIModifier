@@ -18,6 +18,7 @@ namespace AIModifier.Utilities
         // Game references
         public static Hand leftHand { get; private set; }
         public static Hand rightHand { get; private set; }
+        public static Transform playerPelvis { get { return Player.GetRigManager().transform.FindChild("[SkeletonRig (Realtime SkeleBones)]").FindChild("Pelvis"); } }
 
         public static void LoadAssetBundles()
         {

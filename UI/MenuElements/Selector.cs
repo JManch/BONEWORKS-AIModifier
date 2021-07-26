@@ -9,14 +9,13 @@ namespace AIModifier.UI
     {
         public Dictionary<string, bool> selectorOptions { get; private set; }
 
-        private Button selectorButton;
         private SelectorUI selectorUI;
 
         // Passed selector UI prefab must be built
         public Selector(GameObject gameObject, SelectorUI selectorUI, string selectorText, TextProperties textProperties, List<string> options) : base(gameObject)
         {
             new TextDisplay(gameObject.transform.GetChild(0).gameObject, selectorText, textProperties);
-            selectorButton = new Button(gameObject.transform.FindChild("Select").gameObject, options[0], textProperties, Button.ButtonHighlightType.Color, OpenSelector);
+            Button selectorButton = new Button(gameObject.transform.FindChild("Select").gameObject, options[0], textProperties, Button.ButtonHighlightType.Color, OpenSelector);
 
             selectorOptions = new Dictionary<string, bool>();
             foreach (string s in options)
@@ -36,6 +35,14 @@ namespace AIModifier.UI
             if (!selectorUI.isOpen)
             {
                 selectorUI.OpenMenu();
+            }
+        }
+
+        public void CloseSelector()
+        {
+            if (selectorUI.isOpen)
+            {
+                selectorUI.CloseMenu();
             }
         }
 
