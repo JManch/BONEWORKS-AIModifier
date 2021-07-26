@@ -34,6 +34,7 @@ namespace AIModifier.UI
         {
             if(selectorKey == "Enter")
             {
+                selector.OnEnterPressed();
                 selector.CloseSelector();
             }
             else

@@ -9,13 +9,14 @@ namespace AIModifier.UI
     {
         public Dictionary<string, bool> selectorOptions { get; private set; }
 
+        private Action<string> onValueChanged;
         private SelectorUI selectorUI;
 
         // Passed selector UI prefab must be built
-        public Selector(GameObject gameObject, SelectorUI selectorUI, string selectorText, TextProperties textProperties, List<string> options) : base(gameObject)
+        public Selector(GameObject gameObject, SelectorUI selectorUI, string selectorText, TextProperties textProperties, List<string> options, Action<string> onValueChanged = null) : base(gameObject)
         {
             new TextDisplay(gameObject.transform.GetChild(0).gameObject, selectorText, textProperties);
-            Button selectorButton = new Button(gameObject.transform.FindChild("Select").gameObject, options[0], textProperties, Button.ButtonHighlightType.Color, OpenSelector);
+            Button selectorButton = new Button(gameObject.transform.FindChild("Select").gameObject, "Edit", textProperties, Button.ButtonHighlightType.Color, OpenSelector);
 
             selectorOptions = new Dictionary<string, bool>();
             foreach (string s in options)
@@ -25,9 +26,7 @@ namespace AIModifier.UI
 
             selectorUI.selector = this;
             this.selectorUI = selectorUI;
-
-            // REWRITE
-            SetValue(options[0]);
+            this.onValueChanged = onValueChanged;
         }
 
         private void OpenSelector()
@@ -35,6 +34,10 @@ namespace AIModifier.UI
             if (!selectorUI.isOpen)
             {
                 selectorUI.OpenMenu();
+                foreach (string key in selectorOptions.Keys.ToList()) 
+                {
+                    selectorUI.UpdateSelectedState(key);
+                }
             }
         }
 
@@ -50,7 +53,7 @@ namespace AIModifier.UI
         public override void SetValue(object value)
         {
             // Reset dictionary
-            foreach (string key in selectorOptions.Keys)
+            foreach (string key in selectorOptions.Keys.ToList())
             {
                 selectorOptions[key] = false;
             }
@@ -70,7 +73,7 @@ namespace AIModifier.UI
         {
             List<string> value = new List<string>();
             
-            foreach(string key in selectorOptions.Keys)
+            foreach(string key in selectorOptions.Keys.ToList())
             {
                 if(selectorOptions[key])
                 {
@@ -79,6 +82,24 @@ namespace AIModifier.UI
             }
 
             return value.ToArray<string>();
+        }
+
+        public void OnEnterPressed()
+        {
+            string[] value = GetValue() as string[];
+
+            string result = "";
+            foreach(string s in value)
+            {
+                result = result + s + ", ";
+            }
+
+            if(value.Length > 0)
+            {
+                result = result.Remove(result.Length - 2, 2);
+            }
+
+            onValueChanged(result);
         }
     }
 }

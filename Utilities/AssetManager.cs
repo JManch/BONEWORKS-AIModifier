@@ -36,6 +36,8 @@ namespace AIModifier.Utilities
                     aiMenuPrefab.hideFlags = HideFlags.DontUnloadUnusedAsset;
                     numpadPrefab = Array.Find(data, element => element.name == "Numpad").Cast<GameObject>();
                     numpadPrefab.hideFlags = HideFlags.DontUnloadUnusedAsset;
+                    aiSelectorPrefab = Array.Find(data, element => element.name == "AISelector").Cast<GameObject>();
+                    aiSelectorPrefab.hideFlags = HideFlags.DontUnloadUnusedAsset;
                 }
             }
         }

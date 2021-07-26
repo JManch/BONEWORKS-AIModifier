@@ -139,7 +139,15 @@ namespace AIModifier.AI
             }
 
             // AGRO ON NPC TYPE NEEDS TO BE IMPLEMENTED
-            // COMBAT PROFICIENCY SHOULD BE SCRAPPED
+            TriggerRefProxy.NpcType npcType;
+            if(Enum.TryParse(aiData.agroOnNPCType, out npcType))
+            {
+                behaviourPowerLegs.agroOnNpcType = npcType;
+            }
+            else
+            {
+                behaviourPowerLegs.agroOnNpcType = TriggerRefProxy.NpcType.Voidman;
+            }
             behaviourPowerLegs.meleeRange = aiData.meleeRange;
 
             behaviourPowerLegs.sensors.hearingSensitivity = aiData.hearingSensitivity;
@@ -195,7 +203,15 @@ namespace AIModifier.AI
             behaviourCrablet.enableJumpAttack = aiData.jumpAttackEnabled;
             behaviourCrablet.jumpCooldown = aiData.jumpCooldown;
 
-            // AGRO ON NPC TYPE NEEDS TO BE IMPLEMENTED
+            TriggerRefProxy.NpcType npcType;
+            if (Enum.TryParse(aiData.agroOnNPCType, out npcType))
+            {
+                behaviourCrablet.agroOnNpcType = npcType;
+            }
+            else
+            {
+                behaviourCrablet.agroOnNpcType = TriggerRefProxy.NpcType.Voidman;
+            }
 
             behaviourCrablet.sensors.hearingSensitivity = aiData.hearingSensitivity;
             behaviourCrablet.sensors.SetVisionSphere(aiData.visionRadius);
@@ -233,8 +249,16 @@ namespace AIModifier.AI
                 behaviourOmniwheel.SwitchMentalState((BehaviourBaseNav.MentalState)Enum.Parse(typeof(BehaviourBaseNav.MentalState), aiData.defaultMentalState));
             }
 
-            // AGRO ON NPC TYPE NEEDS TO BE IMPLEMENTED
-            // COMBAT PROFICIENCY SHOULD BE SCRAPPED
+            TriggerRefProxy.NpcType npcType;
+            if (Enum.TryParse(aiData.agroOnNPCType, out npcType))
+            {
+                behaviourOmniwheel.agroOnNpcType = npcType;
+            }
+            else
+            {
+                behaviourOmniwheel.agroOnNpcType = TriggerRefProxy.NpcType.Voidman;
+            }
+
             behaviourOmniwheel.meleeRange = aiData.meleeRange;
 
             behaviourOmniwheel.chargeAttackSpeed = aiData.chargeAttackSpeed;

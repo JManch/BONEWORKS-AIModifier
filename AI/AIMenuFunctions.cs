@@ -49,7 +49,7 @@ namespace AIModifier.AI
             crabletSettingsPage.GetElement("JumpCooldownElement").SetValue(AIDataManager.aiData[selectedAI].jumpCooldown);
 
             MenuPage combatSettingsPage = AIMenuManager.aiMenu.GetPage("CombatSettingsPage");
-            combatSettingsPage.GetElement("AgroOnNPCTypeElement").SetValue(AIDataManager.aiData[selectedAI].agroOnNPCType);
+            combatSettingsPage.GetElement("AgroOnNPCTypeElement").SetValue(AIDataManager.aiData[selectedAI].agroOnNPCType.Replace(" ", "").Split(','));
             combatSettingsPage.GetElement("MeleeRangeElement").SetValue(AIDataManager.aiData[selectedAI].meleeRange);
 
             MenuPage omniWheelSettingsPage = AIMenuManager.aiMenu.GetPage("OmniWheelSettingsPage");

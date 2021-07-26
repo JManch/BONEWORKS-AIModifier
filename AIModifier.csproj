@@ -113,6 +113,9 @@
     <Compile Include="Utilities\XMLDataManager.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\DefaultAIData.xml" />
+  </ItemGroup>
+  <ItemGroup>
     <EmbeddedResource Include="Resources\aimodifier_assets.asset" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

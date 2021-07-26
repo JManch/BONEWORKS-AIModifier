@@ -16,7 +16,7 @@ namespace AIModifier
             Hooks.CreateHooks();
             Utilities.Utilities.RegisterClasses();
             AssetManager.LoadAssetBundles();
-            //Utilities.Utilities.InitialiseAIDataXML();
+            XMLDataManager.InitialiseAIDataXML();
             Utilities.Utilities.SetupCollisionLayers();
         }
 

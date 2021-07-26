@@ -47,19 +47,20 @@ namespace AIModifier.UI
                 Transform rootPageTransform = aiSelectorPrefab.transform.FindChild("RootPage");
                 TextProperties textProperties = new TextProperties(2, Color.white);
 
-                rootPage.AddElement(new Button(rootPageTransform.FindChild("FordHair").gameObject, "FordHair", textProperties, Button.ButtonHighlightType.Color, null, null, null, delegate (string s) { aiSelectorUI.OnKeyPressed(s); }));
-                rootPage.AddElement(new Button(rootPageTransform.FindChild("FordShortHair").gameObject, "FordShortHair", textProperties, Button.ButtonHighlightType.Color, null, null, null, delegate (string s) { aiSelectorUI.OnKeyPressed(s); }));
-                rootPage.AddElement(new Button(rootPageTransform.FindChild("EarlyExit").gameObject, "EarlyExit", textProperties, Button.ButtonHighlightType.Color, null, null, null, delegate (string s) { aiSelectorUI.OnKeyPressed(s); }));
-                rootPage.AddElement(new Button(rootPageTransform.FindChild("NullBody").gameObject, "NullBody", textProperties, Button.ButtonHighlightType.Color, null, null, null, delegate (string s) { aiSelectorUI.OnKeyPressed(s); }));
-                rootPage.AddElement(new Button(rootPageTransform.FindChild("Fordlet").gameObject, "Fordlet", textProperties, Button.ButtonHighlightType.Color, null, null, null, delegate (string s) { aiSelectorUI.OnKeyPressed(s); }));
-                rootPage.AddElement(new Button(rootPageTransform.FindChild("Crablet").gameObject, "Crablet", textProperties, Button.ButtonHighlightType.Color, null, null, null, delegate (string s) { aiSelectorUI.OnKeyPressed(s); }));
-                rootPage.AddElement(new Button(rootPageTransform.FindChild("OmniProjector").gameObject, "OmniProjector", textProperties, Button.ButtonHighlightType.Color, null, null, null, delegate (string s) { aiSelectorUI.OnKeyPressed(s); }));
-                rootPage.AddElement(new Button(rootPageTransform.FindChild("OmniWrecker").gameObject, "OmniWrecker", textProperties, Button.ButtonHighlightType.Color, null, null, null, delegate (string s) { aiSelectorUI.OnKeyPressed(s); }));
-                rootPage.AddElement(new Button(rootPageTransform.FindChild("OmniTurret").gameObject, "OmniTurret", textProperties, Button.ButtonHighlightType.Color, null, null, null, delegate (string s) { aiSelectorUI.OnKeyPressed(s); }));
-                rootPage.AddElement(new Button(rootPageTransform.FindChild("Turret").gameObject, "Turret", textProperties, Button.ButtonHighlightType.Color, null, null, null, delegate (string s) { aiSelectorUI.OnKeyPressed(s); }));
-                rootPage.AddElement(new Button(rootPageTransform.FindChild("NullRat").gameObject, "NullRat", textProperties, Button.ButtonHighlightType.Color, null, null, null, delegate (string s) { aiSelectorUI.OnKeyPressed(s); }));
+                rootPage.AddElement(new Button(rootPageTransform.FindChild("FordHair").gameObject, "FordHair", textProperties, Button.ButtonHighlightType.Underline, null, null, null, delegate (string s) { aiSelectorUI.OnKeyPressed(s); }));
+                rootPage.AddElement(new Button(rootPageTransform.FindChild("FordShortHair").gameObject, "FordShortHair", textProperties, Button.ButtonHighlightType.Underline, null, null, null, delegate (string s) { aiSelectorUI.OnKeyPressed(s); }));
+                rootPage.AddElement(new Button(rootPageTransform.FindChild("EarlyExit").gameObject, "EarlyExit", textProperties, Button.ButtonHighlightType.Underline, null, null, null, delegate (string s) { aiSelectorUI.OnKeyPressed(s); }));
+                rootPage.AddElement(new Button(rootPageTransform.FindChild("NullBody").gameObject, "NullBody", textProperties, Button.ButtonHighlightType.Underline, null, null, null, delegate (string s) { aiSelectorUI.OnKeyPressed(s); }));
+                rootPage.AddElement(new Button(rootPageTransform.FindChild("Fordlet").gameObject, "Fordlet", textProperties, Button.ButtonHighlightType.Underline, null, null, null, delegate (string s) { aiSelectorUI.OnKeyPressed(s); }));
+                rootPage.AddElement(new Button(rootPageTransform.FindChild("Crablet").gameObject, "Crablet", textProperties, Button.ButtonHighlightType.Underline, null, null, null, delegate (string s) { aiSelectorUI.OnKeyPressed(s); }));
+                rootPage.AddElement(new Button(rootPageTransform.FindChild("OmniProjector").gameObject, "OmniProjector", textProperties, Button.ButtonHighlightType.Underline, null, null, null, delegate (string s) { aiSelectorUI.OnKeyPressed(s); }));
+                rootPage.AddElement(new Button(rootPageTransform.FindChild("OmniWrecker").gameObject, "OmniWrecker", textProperties, Button.ButtonHighlightType.Underline, null, null, null, delegate (string s) { aiSelectorUI.OnKeyPressed(s); }));
+                rootPage.AddElement(new Button(rootPageTransform.FindChild("OmniTurret").gameObject, "OmniTurret", textProperties, Button.ButtonHighlightType.Underline, null, null, null, delegate (string s) { aiSelectorUI.OnKeyPressed(s); }));
+                rootPage.AddElement(new Button(rootPageTransform.FindChild("Turret").gameObject, "Turret", textProperties, Button.ButtonHighlightType.Underline, null, null, null, delegate (string s) { aiSelectorUI.OnKeyPressed(s); }));
+                rootPage.AddElement(new Button(rootPageTransform.FindChild("NullRat").gameObject, "NullRat", textProperties, Button.ButtonHighlightType.Underline, null, null, null, delegate (string s) { aiSelectorUI.OnKeyPressed(s); }));
 
                 rootPage.AddElement(new Button(rootPageTransform.FindChild("Enter").gameObject, "Enter", new TextProperties(3, Color.white), Button.ButtonHighlightType.Color, null, null, null, delegate (string s) { aiSelectorUI.OnKeyPressed(s); }));
+                aiSelectorUI.CloseMenu();
             }
         }
 
@@ -104,22 +105,22 @@ namespace AIModifier.UI
             omniEngagedModes.Add("Hide");
 
             List<string> NPCTypes = new List<string>();
-            NPCTypes.Add("Null Body");
-            NPCTypes.Add("Ford");
+            NPCTypes.Add("FordHair");
+            NPCTypes.Add("FordShortHair");
+            NPCTypes.Add("EarlyExit");
+            NPCTypes.Add("NullBody");
+            NPCTypes.Add("Fordlet");
             NPCTypes.Add("Crablet");
-            NPCTypes.Add("Ford Early Exit");
-            NPCTypes.Add("Ford Head");
-            NPCTypes.Add("Ford VR Junkie");
-            NPCTypes.Add("Null Rat");
-            NPCTypes.Add("Omni Projector");
-            NPCTypes.Add("Omni Turret");
-            NPCTypes.Add("Omni Wrecker");
+            NPCTypes.Add("OmniProjector");
+            NPCTypes.Add("OmniWrecker");
+            NPCTypes.Add("OmniTurret");
             NPCTypes.Add("Turret");
+            NPCTypes.Add("NullRat");
 
             TextProperties titleTextProperties = new TextProperties(12, Color.white, false, 15);
             TextProperties buttonTextProperties = new TextProperties(10, Color.white);
             TextProperties elementTextProperties = new TextProperties(8, Color.white, true);
-
+            
             #region Page Definitions
 
             MenuPage rootPage = new MenuPage(menuPrefab.transform.FindChild("RootPage").gameObject);
@@ -137,7 +138,7 @@ namespace AIModifier.UI
             MenuPage otherSettingsPage = new MenuPage(menuPrefab.transform.FindChild("OtherSettingsPage").gameObject);
 
             #endregion
-
+            MelonLogger.Msg("1");
             #region Configure Root Page
 
             Transform rootPageTransform = menuPrefab.transform.FindChild("RootPage");
@@ -147,19 +148,20 @@ namespace AIModifier.UI
             rootPage.AddElement(new Button(rootPageTransform.FindChild("SettingsButton").gameObject, "Settings", buttonTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("Settings"); }));
 
             #endregion
-
+            MelonLogger.Msg("2");
             #region Configure AI Page
 
             Transform configureAIPageTransform = menuPrefab.transform.FindChild("ConfigureAIPage");
             configureAIPage.AddElement(new TextDisplay(configureAIPageTransform.FindChild("Title").gameObject, "CONFIGURE AI", titleTextProperties));
             configureAIPage.AddElement(new GenericSelector<string>(configureAIPageTransform.FindChild("SelectedAIElement").gameObject, "Selected AI:", elementTextProperties, new List<string>(AIDataManager.aiData.Keys), delegate (string s) { AIMenuFunctions.OnSelectedAIChanged(s); }));
             configureAIPage.AddElement(new InputField(configureAIPageTransform.FindChild("HealthElement").gameObject, "Health:", AIDataManager.aiData["NullBody"].health.ToString(), elementTextProperties, int.MinValue, int.MaxValue, delegate(string health) { AIMenuFunctions.UpdateAIHealth(health); }));
+            MelonLogger.Msg("2.1");
             configureAIPage.AddElement(new Button(configureAIPageTransform.FindChild("AdditionalSettingsButton").gameObject, "Additional Settings", buttonTextProperties, Button.ButtonHighlightType.Underline, delegate { AIMenuFunctions.LoadAdditionalSettings(); aiMenu.SwitchPage("AdditionalSettingsPage1"); }));
             configureAIPage.AddElement(new Button(configureAIPageTransform.FindChild("SaveSettingsButton").gameObject, "Save Settings", buttonTextProperties, Button.ButtonHighlightType.Underline, delegate {  }));
             configureAIPage.AddElement(new Button(configureAIPageTransform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("RootPage"); }));
 
             #endregion
-
+            MelonLogger.Msg("3");
             #region Configure Additional Settings Page 1
 
             TextProperties additionalSettingsButtonTextProperties = new TextProperties(9, Color.white);
@@ -175,7 +177,7 @@ namespace AIModifier.UI
             additionalSettingsPage1.AddElement(new Button(additionalSettingsPage1Transform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("ConfigureAIPage"); }));
 
             #endregion
-
+            MelonLogger.Msg("4");
             #region Configure Additional Settings Page 2
 
             Transform additionalSettingsPage2Transform = menuPrefab.transform.FindChild("AdditionalSettingsPage2");
@@ -187,7 +189,7 @@ namespace AIModifier.UI
             additionalSettingsPage2.AddElement(new Button(additionalSettingsPage2Transform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("ConfigureAIPage"); }));
 
             #endregion
-
+            MelonLogger.Msg("5");
             #region Configure Health Settings Page
 
             Transform healthSettingsPageTransform = menuPrefab.transform.FindChild("HealthSettingsPage");
@@ -199,7 +201,7 @@ namespace AIModifier.UI
             healthSettingsPage.AddElement(new Button(healthSettingsPageTransform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("AdditionalSettingsPage1"); }));
 
             #endregion
-
+            MelonLogger.Msg("6");
             #region Configure Gun Settings Page
 
             Transform gunSettingsPageTransform = menuPrefab.transform.FindChild("GunSettingsPage");
@@ -212,7 +214,7 @@ namespace AIModifier.UI
             gunSettingsPage.AddElement(new Button(gunSettingsPageTransform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("AdditionalSettingsPage1"); }));
 
             #endregion
-
+            MelonLogger.Msg("7");
             #region Configure Throw Settings Page
 
             Transform throwSettingsPageTransform = menuPrefab.transform.FindChild("ThrowSettingsPage");
@@ -224,7 +226,7 @@ namespace AIModifier.UI
             throwSettingsPage.AddElement(new Button(throwSettingsPageTransform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("AdditionalSettingsPage1"); }));
 
             #endregion
-
+            MelonLogger.Msg("8");
             #region Configure Movement Settings Page
 
             Transform movementSettingsPageTransform = menuPrefab.transform.FindChild("MovementSettingsPage");
@@ -237,7 +239,7 @@ namespace AIModifier.UI
             movementSettingsPage.AddElement(new Button(movementSettingsPageTransform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("AdditionalSettingsPage1"); }));
 
             #endregion
-
+            MelonLogger.Msg("9");
             #region Configure Behaviour Settings Page
 
             Transform behaviourSettingsPageTransform = menuPrefab.transform.FindChild("BehaviourSettingsPage");
@@ -247,7 +249,7 @@ namespace AIModifier.UI
             behaviourSettingsPage.AddElement(new Button(behaviourSettingsPageTransform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("AdditionalSettingsPage1"); }));
 
             #endregion
-
+            MelonLogger.Msg("10");
             #region Configure Crablet Settings Page
 
             Transform crabletSettingsPageTranform = menuPrefab.transform.FindChild("CrabletSettingsPage");
@@ -259,18 +261,18 @@ namespace AIModifier.UI
             crabletSettingsPage.AddElement(new Button(crabletSettingsPageTranform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("AdditionalSettingsPage1"); }));
 
             #endregion
-
+            MelonLogger.Msg("11");
             #region Configure Combat Settings Page
 
             Transform combatSettingsPageTransform = menuPrefab.transform.FindChild("CombatSettingsPage");
             combatSettingsPage.AddElement(new TextDisplay(combatSettingsPageTransform.FindChild("Title").gameObject, "COMBAT SETTINGS", new TextProperties(10.5f, Color.white, false, 15)));
             BuildAISelector();
-            combatSettingsPage.AddElement(new Selector(combatSettingsPageTransform.FindChild("AgroOnNPCTypeElement").gameObject, aiSelectorUI, "Agro On NPC Type:", elementTextProperties, NPCTypes));
+            combatSettingsPage.AddElement(new Selector(combatSettingsPageTransform.FindChild("AgroOnNPCTypeElement").gameObject, aiSelectorUI, "Agro On NPC Type:", elementTextProperties, NPCTypes, delegate (string s) { AIMenuFunctions.UpdateAgroOnNPCType(s);  }));
             combatSettingsPage.AddElement(new InputField(combatSettingsPageTransform.FindChild("MeleeRangeElement").gameObject, "Melee Range:", "", elementTextProperties, int.MinValue, int.MaxValue, delegate (string s) { AIMenuFunctions.UpdateMeleeRange(s); }));
             combatSettingsPage.AddElement(new Button(combatSettingsPageTransform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("AdditionalSettingsPage2"); }));
-            
-            #endregion
 
+            #endregion
+            MelonLogger.Msg("12");
             #region Configure OmniWheel Settings Page
 
             Transform omniWheelSettingsPageTransform = menuPrefab.transform.FindChild("OmniWheelSettingsPage");
@@ -283,7 +285,7 @@ namespace AIModifier.UI
             omniWheelSettingsPage.AddElement(new Button(omniWheelSettingsPageTransform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("AdditionalSettingsPage2"); }));
 
             #endregion
-
+            MelonLogger.Msg("13");
             #region Other Settings Page
 
             Transform otherSettingsPageTranform = menuPrefab.transform.FindChild("OtherSettingsPage");
@@ -294,7 +296,7 @@ namespace AIModifier.UI
             otherSettingsPage.AddElement(new Button(otherSettingsPageTranform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("AdditionalSettingsPage2"); }));
 
             #endregion
-
+            MelonLogger.Msg("14");
             // Add the pages to the menu
             aiMenu = new Menu(menuPrefab, rootPage);
             aiMenu.AddPage(configureAIPage);
