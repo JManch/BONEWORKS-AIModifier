@@ -2,6 +2,7 @@
 using StressLevelZero.Zones;
 using UnhollowerRuntimeLib;
 using AIModifier.UI;
+using AIModifier.AI;
 using System.IO;
 
 namespace AIModifier.Utilities
@@ -18,6 +19,7 @@ namespace AIModifier.Utilities
             ClassInjector.RegisterTypeInIl2Cpp<AISelectorController>();
             ClassInjector.RegisterTypeInIl2Cpp<AIPlateController>();
             ClassInjector.RegisterTypeInIl2Cpp<AIHeadPlateController>();
+            ClassInjector.RegisterTypeInIl2Cpp<AIDataComponent>();
         }
 
         public static void LoadBoneworksDirectory()
