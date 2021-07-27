@@ -156,7 +156,7 @@ namespace AIModifier.UI
             configureAIPage.AddElement(new GenericSelector<string>(configureAIPageTransform.FindChild("SelectedAIElement").gameObject, "Selected AI:", elementTextProperties, new List<string>(AIDataManager.aiData.Keys), delegate (string s) { AIMenuFunctions.OnSelectedAIChanged(s); }));
             configureAIPage.AddElement(new InputField(configureAIPageTransform.FindChild("HealthElement").gameObject, "Health:", AIDataManager.aiData["NullBody"].health.ToString(), elementTextProperties, int.MinValue, int.MaxValue, delegate(string health) { AIMenuFunctions.UpdateAIHealth(health); }));
             MelonLogger.Msg("2.1");
-            configureAIPage.AddElement(new Button(configureAIPageTransform.FindChild("AdditionalSettingsButton").gameObject, "Additional Settings", buttonTextProperties, Button.ButtonHighlightType.Underline, delegate { AIMenuFunctions.LoadAdditionalSettings(); aiMenu.SwitchPage("AdditionalSettingsPage1"); }));
+            configureAIPage.AddElement(new Button(configureAIPageTransform.FindChild("AdditionalSettingsButton").gameObject, "Additional Settings", buttonTextProperties, Button.ButtonHighlightType.Underline, delegate { AIMenuFunctions.LoadAIDataIntoUI(); aiMenu.SwitchPage("AdditionalSettingsPage1"); }));
             configureAIPage.AddElement(new Button(configureAIPageTransform.FindChild("SaveSettingsButton").gameObject, "Save Settings", buttonTextProperties, Button.ButtonHighlightType.Underline, delegate {  }));
             configureAIPage.AddElement(new Button(configureAIPageTransform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("RootPage"); }));
 
@@ -198,6 +198,7 @@ namespace AIModifier.UI
             healthSettingsPage.AddElement(new InputField(healthSettingsPageTransform.FindChild("RightLegHealthElement").gameObject, "Right Leg Health:", "", elementTextProperties, int.MinValue, int.MaxValue, delegate (string s) { AIMenuFunctions.UpdateRightLegHealth(s); }));
             healthSettingsPage.AddElement(new InputField(healthSettingsPageTransform.FindChild("LeftArmHealthElement").gameObject, "Left Arm Health:", "", elementTextProperties, int.MinValue, int.MaxValue, delegate (string s) { AIMenuFunctions.UpdateLeftArmHealth(s); }));
             healthSettingsPage.AddElement(new InputField(healthSettingsPageTransform.FindChild("RightArmHealthElement").gameObject, "Right Arm Health:", "", elementTextProperties, int.MinValue, int.MaxValue, delegate (string s) { AIMenuFunctions.UpdateRightArmHealth(s); }));
+            healthSettingsPage.AddElement(new Button(healthSettingsPageTransform.FindChild("RestoreButton").gameObject, "", titleTextProperties, Button.ButtonHighlightType.Color, delegate { AIMenuFunctions.RestoreHealthSettings(); }));
             healthSettingsPage.AddElement(new Button(healthSettingsPageTransform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("AdditionalSettingsPage1"); }));
 
             #endregion
@@ -211,6 +212,7 @@ namespace AIModifier.UI
             gunSettingsPage.AddElement(new InputField(gunSettingsPageTransform.FindChild("ReloadTimeElement").gameObject, "Reload Time:", "", elementTextProperties, int.MinValue, int.MaxValue, delegate (string s) { AIMenuFunctions.UpdateReloadTime(s); }));
             gunSettingsPage.AddElement(new InputField(gunSettingsPageTransform.FindChild("BurstSizeElement").gameObject, "Burst Size:", "", elementTextProperties, int.MinValue, int.MaxValue, delegate (string s) { AIMenuFunctions.UpdateBurstSize(s); }));
             gunSettingsPage.AddElement(new InputField(gunSettingsPageTransform.FindChild("ClipSizeElement").gameObject, "Clip Size:", "", elementTextProperties, int.MinValue, int.MaxValue, delegate (string s) { AIMenuFunctions.UpdateClipSize(s); }));
+            gunSettingsPage.AddElement(new Button(gunSettingsPageTransform.FindChild("RestoreButton").gameObject, "", titleTextProperties, Button.ButtonHighlightType.Color, delegate { AIMenuFunctions.RestoreGunSettings(); }));
             gunSettingsPage.AddElement(new Button(gunSettingsPageTransform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("AdditionalSettingsPage1"); }));
 
             #endregion
@@ -223,6 +225,7 @@ namespace AIModifier.UI
             throwSettingsPage.AddElement(new InputField(throwSettingsPageTransform.FindChild("ThrowCooldownElement").gameObject, "Throw Cooldown:", "", elementTextProperties, 0, int.MaxValue, delegate (string s) { AIMenuFunctions.UpdateThrowCooldown(s); }));
             throwSettingsPage.AddElement(new InputField(throwSettingsPageTransform.FindChild("ThrowMaxRangeElement").gameObject, "Throw Max Range:", "", elementTextProperties, 0, int.MaxValue, delegate (string s) { AIMenuFunctions.UpdateThrowMaxRange(s); }));
             throwSettingsPage.AddElement(new InputField(throwSettingsPageTransform.FindChild("ThrowMinRangeElement").gameObject, "Throw Min Range:", "", elementTextProperties, 0, int.MaxValue, delegate (string s) { AIMenuFunctions.UpdateThrowMinRange(s); }));
+            throwSettingsPage.AddElement(new Button(throwSettingsPageTransform.FindChild("RestoreButton").gameObject, "", titleTextProperties, Button.ButtonHighlightType.Color, delegate { AIMenuFunctions.RestoreThrowSettings(); }));
             throwSettingsPage.AddElement(new Button(throwSettingsPageTransform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("AdditionalSettingsPage1"); }));
 
             #endregion
@@ -236,6 +239,7 @@ namespace AIModifier.UI
             movementSettingsPage.AddElement(new InputField(movementSettingsPageTransform.FindChild("RoamSpeedElement").gameObject, "Roam Speed:", "", elementTextProperties, 0, int.MaxValue, delegate (string s) { AIMenuFunctions.UpdateRoamSpeed(s); }));
             movementSettingsPage.AddElement(new InputField(movementSettingsPageTransform.FindChild("RoamRangeElement").gameObject, "Roam Range:", "", elementTextProperties, 0, int.MaxValue, delegate (string s) { AIMenuFunctions.UpdateRoamRange(s); }));
             movementSettingsPage.AddElement(new GenericSelector<bool>(movementSettingsPageTransform.FindChild("RoamWandersElement").gameObject, "Roam Wanders:", elementTextProperties, boolList, delegate (bool b) { AIMenuFunctions.UpdateRoamWanders(b); }));
+            movementSettingsPage.AddElement(new Button(movementSettingsPageTransform.FindChild("RestoreButton").gameObject, "", titleTextProperties, Button.ButtonHighlightType.Color, delegate { AIMenuFunctions.RestoreMovementSettings(); }));
             movementSettingsPage.AddElement(new Button(movementSettingsPageTransform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("AdditionalSettingsPage1"); }));
 
             #endregion
@@ -246,6 +250,7 @@ namespace AIModifier.UI
             behaviourSettingsPage.AddElement(new TextDisplay(behaviourSettingsPageTransform.FindChild("Title").gameObject, "BEHAVIOUR SETTINGS", new TextProperties(10.5f, Color.white, false, 15)));
             behaviourSettingsPage.AddElement(new GenericSelector<string>(behaviourSettingsPageTransform.FindChild("DefaultMentalStateElement").gameObject, "Default Mental State:", elementTextProperties, mentalStates, delegate (string s) { AIMenuFunctions.UpdateDefaultMentalState(s); }));
             behaviourSettingsPage.AddElement(new GenericSelector<string>(behaviourSettingsPageTransform.FindChild("DefaultEngagedModeElement").gameObject, "Default Engaged Mode:", elementTextProperties, engagedModes, delegate (string s) { AIMenuFunctions.UpdateDefaultEngagedMode(s); }));
+            behaviourSettingsPage.AddElement(new Button(behaviourSettingsPageTransform.FindChild("RestoreButton").gameObject, "", titleTextProperties, Button.ButtonHighlightType.Color, delegate { AIMenuFunctions.RestoreBehaviourSettings(); }));
             behaviourSettingsPage.AddElement(new Button(behaviourSettingsPageTransform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("AdditionalSettingsPage1"); }));
 
             #endregion
@@ -258,6 +263,7 @@ namespace AIModifier.UI
             crabletSettingsPage.AddElement(new GenericSelector<string>(crabletSettingsPageTranform.FindChild("AgroColorElement").gameObject, "Agro Color:", elementTextProperties, colorList, delegate (string s) { AIMenuFunctions.UpdateAgroColor(s); }));
             crabletSettingsPage.AddElement(new GenericSelector<bool>(crabletSettingsPageTranform.FindChild("JumpAttackEnabledElement").gameObject, "Jump Attack Enabled:", elementTextProperties, boolList, delegate (bool b) { AIMenuFunctions.UpdateJumpAttackEnabled(b); }));
             crabletSettingsPage.AddElement(new InputField(crabletSettingsPageTranform.FindChild("JumpCooldownElement").gameObject, "Jump Cooldown:", "", elementTextProperties, int.MinValue, int.MaxValue, delegate (string s) { AIMenuFunctions.UpdateJumpCooldown(s); }));
+            crabletSettingsPage.AddElement(new Button(crabletSettingsPageTranform.FindChild("RestoreButton").gameObject, "", titleTextProperties, Button.ButtonHighlightType.Color, delegate { AIMenuFunctions.RestoreCrabletSettings(); }));
             crabletSettingsPage.AddElement(new Button(crabletSettingsPageTranform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("AdditionalSettingsPage1"); }));
 
             #endregion
@@ -269,6 +275,7 @@ namespace AIModifier.UI
             BuildAISelector();
             combatSettingsPage.AddElement(new Selector(combatSettingsPageTransform.FindChild("AgroOnNPCTypeElement").gameObject, aiSelectorUI, "Agro On NPC Type:", elementTextProperties, NPCTypes, delegate (string s) { AIMenuFunctions.UpdateAgroOnNPCType(s);  }));
             combatSettingsPage.AddElement(new InputField(combatSettingsPageTransform.FindChild("MeleeRangeElement").gameObject, "Melee Range:", "", elementTextProperties, int.MinValue, int.MaxValue, delegate (string s) { AIMenuFunctions.UpdateMeleeRange(s); }));
+            combatSettingsPage.AddElement(new Button(combatSettingsPageTransform.FindChild("RestoreButton").gameObject, "", titleTextProperties, Button.ButtonHighlightType.Color, delegate { AIMenuFunctions.RestoreCombatSettings(); }));
             combatSettingsPage.AddElement(new Button(combatSettingsPageTransform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("AdditionalSettingsPage2"); }));
 
             #endregion
@@ -282,6 +289,7 @@ namespace AIModifier.UI
             omniWheelSettingsPage.AddElement(new InputField(omniWheelSettingsPageTransform.FindChild("ChargePrepSpeedElement").gameObject, "Charge Prep Speed:", "", elementTextProperties, int.MinValue, int.MaxValue, delegate (string s) { AIMenuFunctions.UpdateChargePrepSpeed(s); }));
             omniWheelSettingsPage.AddElement(new InputField(omniWheelSettingsPageTransform.FindChild("ChargeWindupDistanceElement").gameObject, "Charge Wind-up Distance:", "", elementTextProperties, int.MinValue, int.MaxValue, delegate (string s) { AIMenuFunctions.UpdateChargeWindupDistance(s); }));
             omniWheelSettingsPage.AddElement(new GenericSelector<string>(omniWheelSettingsPageTransform.FindChild("DefaultEngagedModeElement").gameObject, "Default Engaged Mode:", elementTextProperties, omniEngagedModes, delegate (string s) { AIMenuFunctions.UpdateDefaultOmniEngagedMode(s); }));
+            omniWheelSettingsPage.AddElement(new Button(omniWheelSettingsPageTransform.FindChild("RestoreButton").gameObject, "", titleTextProperties, Button.ButtonHighlightType.Color, delegate { AIMenuFunctions.RestoreOmniWheelSettings(); }));
             omniWheelSettingsPage.AddElement(new Button(omniWheelSettingsPageTransform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("AdditionalSettingsPage2"); }));
 
             #endregion
@@ -293,6 +301,7 @@ namespace AIModifier.UI
             otherSettingsPage.AddElement(new InputField(otherSettingsPageTranform.FindChild("HearingSensitivityElement").gameObject, "Hearing Sensitivity:", "", elementTextProperties, int.MinValue, int.MaxValue, delegate (string s) { AIMenuFunctions.UpdateHearingSensitivity(s); }));
             otherSettingsPage.AddElement(new InputField(otherSettingsPageTranform.FindChild("VisionRadiusElement").gameObject, "Vision Radius:", "", elementTextProperties, int.MinValue, int.MaxValue, delegate (string s) { AIMenuFunctions.UpdateVisionRadius(s); }));
             otherSettingsPage.AddElement(new InputField(otherSettingsPageTranform.FindChild("PitchMultiplierElement").gameObject, "Pitch Multiplier:", "", elementTextProperties, int.MinValue, int.MaxValue, delegate (string s) { AIMenuFunctions.UpdatePitchMultiplier(s); }));
+            otherSettingsPage.AddElement(new Button(otherSettingsPageTranform.FindChild("RestoreButton").gameObject, "", titleTextProperties, Button.ButtonHighlightType.Color, delegate { AIMenuFunctions.RestoreOtherSettings(); }));
             otherSettingsPage.AddElement(new Button(otherSettingsPageTranform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("AdditionalSettingsPage2"); }));
 
             #endregion

@@ -10,7 +10,7 @@ namespace AIModifier.AI
     {
         private static string selectedAI;
 
-        public static void LoadAdditionalSettings()
+        public static void LoadAIDataIntoUI()
         {
             MenuPage healthSettingsPage = AIMenuManager.aiMenu.GetPage("HealthSettingsPage");
             healthSettingsPage.GetElement("LeftLegHealthElement").SetValue(AIDataManager.aiData[selectedAI].leftLegHealth);
@@ -120,6 +120,14 @@ namespace AIModifier.AI
                 AIDataManager.aiData[selectedAI].rightArmHealth = result;
             }
         }
+        public static void RestoreHealthSettings()
+        {
+            AIDataManager.aiData[selectedAI].leftLegHealth = AIDataManager.defaultAIConfigurations[selectedAI].leftLegHealth;
+            AIDataManager.aiData[selectedAI].rightLegHealth = AIDataManager.defaultAIConfigurations[selectedAI].rightLegHealth;
+            AIDataManager.aiData[selectedAI].leftArmHealth = AIDataManager.defaultAIConfigurations[selectedAI].leftArmHealth;
+            AIDataManager.aiData[selectedAI].rightArmHealth = AIDataManager.defaultAIConfigurations[selectedAI].rightArmHealth;
+            LoadAIDataIntoUI();
+        }
 
         #endregion
 
@@ -159,6 +167,14 @@ namespace AIModifier.AI
                 AIDataManager.aiData[selectedAI].clipSize = result;
             }
         }
+        public static void RestoreGunSettings()
+        {
+            AIDataManager.aiData[selectedAI].accuracy = AIDataManager.defaultAIConfigurations[selectedAI].accuracy;
+            AIDataManager.aiData[selectedAI].gunRange = AIDataManager.defaultAIConfigurations[selectedAI].gunRange;
+            AIDataManager.aiData[selectedAI].burstSize = AIDataManager.defaultAIConfigurations[selectedAI].burstSize;
+            AIDataManager.aiData[selectedAI].clipSize = AIDataManager.defaultAIConfigurations[selectedAI].clipSize;
+            LoadAIDataIntoUI();
+        }
 
         #endregion
 
@@ -191,11 +207,18 @@ namespace AIModifier.AI
                 AIDataManager.aiData[selectedAI].throwMinRange = result;
             }
         }
+        public static void RestoreThrowSettings()
+        {
+            AIDataManager.aiData[selectedAI].enableThrowAttack = AIDataManager.defaultAIConfigurations[selectedAI].enableThrowAttack;
+            AIDataManager.aiData[selectedAI].throwCooldown = AIDataManager.defaultAIConfigurations[selectedAI].throwCooldown;
+            AIDataManager.aiData[selectedAI].throwMaxRange = AIDataManager.defaultAIConfigurations[selectedAI].throwMaxRange;
+            AIDataManager.aiData[selectedAI].throwMinRange = AIDataManager.defaultAIConfigurations[selectedAI].throwMinRange;
+            LoadAIDataIntoUI();
+        }
 
         #endregion
 
         #region Movement Settings Page
-
         public static void UpdateAgroSpeed(string agroedSpeed)
         {
             if (float.TryParse(agroedSpeed, NumberStyles.Float, CultureInfo.InvariantCulture.NumberFormat, out float result))
@@ -228,7 +251,15 @@ namespace AIModifier.AI
         {
             AIDataManager.aiData[selectedAI].roamWanders = roamWanders;
         }
-
+        public static void RestoreMovementSettings()
+        {
+            AIDataManager.aiData[selectedAI].agroedSpeed = AIDataManager.defaultAIConfigurations[selectedAI].agroedSpeed;
+            AIDataManager.aiData[selectedAI].roamSpeed = AIDataManager.defaultAIConfigurations[selectedAI].roamSpeed;
+            AIDataManager.aiData[selectedAI].engagedSpeed = AIDataManager.defaultAIConfigurations[selectedAI].engagedSpeed;
+            AIDataManager.aiData[selectedAI].roamRange = AIDataManager.defaultAIConfigurations[selectedAI].roamRange;
+            AIDataManager.aiData[selectedAI].roamWanders = AIDataManager.defaultAIConfigurations[selectedAI].roamWanders;
+            LoadAIDataIntoUI();
+        }
 
         #endregion
 
@@ -241,6 +272,12 @@ namespace AIModifier.AI
         public static void UpdateDefaultEngagedMode(string defaultEngagedMode)
         {
             AIDataManager.aiData[selectedAI].defaultEngagedMode = defaultEngagedMode;
+        }
+        public static void RestoreBehaviourSettings()
+        {
+            AIDataManager.aiData[selectedAI].defaultMentalState = AIDataManager.defaultAIConfigurations[selectedAI].defaultMentalState;
+            AIDataManager.aiData[selectedAI].defaultEngagedMode = AIDataManager.defaultAIConfigurations[selectedAI].defaultEngagedMode;
+            LoadAIDataIntoUI();
         }
 
         #endregion
@@ -266,6 +303,14 @@ namespace AIModifier.AI
                 AIDataManager.aiData[selectedAI].jumpCooldown = result;
             }
         }
+        public static void RestoreCrabletSettings()
+        {
+            AIDataManager.aiData[selectedAI].baseColor = AIDataManager.defaultAIConfigurations[selectedAI].baseColor;
+            AIDataManager.aiData[selectedAI].agroColor = AIDataManager.defaultAIConfigurations[selectedAI].agroColor;
+            AIDataManager.aiData[selectedAI].jumpAttackEnabled = AIDataManager.defaultAIConfigurations[selectedAI].jumpAttackEnabled;
+            AIDataManager.aiData[selectedAI].jumpCooldown = AIDataManager.defaultAIConfigurations[selectedAI].jumpCooldown;
+            LoadAIDataIntoUI();
+        }
 
         #endregion
 
@@ -281,6 +326,12 @@ namespace AIModifier.AI
             {
                 AIDataManager.aiData[selectedAI].meleeRange = result;
             }
+        }
+        public static void RestoreCombatSettings()
+        {
+            AIDataManager.aiData[selectedAI].agroOnNPCType = AIDataManager.defaultAIConfigurations[selectedAI].agroOnNPCType;
+            AIDataManager.aiData[selectedAI].meleeRange = AIDataManager.defaultAIConfigurations[selectedAI].meleeRange;
+            LoadAIDataIntoUI();
         }
 
         #endregion
@@ -319,6 +370,15 @@ namespace AIModifier.AI
         {
             AIDataManager.aiData[selectedAI].defaultOmniEngagedMode = defaultOmniEngagedMode;
         }
+        public static void RestoreOmniWheelSettings()
+        {
+            AIDataManager.aiData[selectedAI].chargeAttackSpeed = AIDataManager.defaultAIConfigurations[selectedAI].chargeAttackSpeed;
+            AIDataManager.aiData[selectedAI].chargeCooldown = AIDataManager.defaultAIConfigurations[selectedAI].chargeCooldown;
+            AIDataManager.aiData[selectedAI].chargePrepSpeed = AIDataManager.defaultAIConfigurations[selectedAI].chargePrepSpeed;
+            AIDataManager.aiData[selectedAI].chargeWindupDistance = AIDataManager.defaultAIConfigurations[selectedAI].chargeWindupDistance;
+            AIDataManager.aiData[selectedAI].defaultOmniEngagedMode = AIDataManager.defaultAIConfigurations[selectedAI].defaultOmniEngagedMode;
+            LoadAIDataIntoUI();
+        }
 
         #endregion
 
@@ -344,6 +404,13 @@ namespace AIModifier.AI
             {
                 AIDataManager.aiData[selectedAI].pitchMultiplier = result;
             }
+        }
+        public static void RestoreOtherSettings()
+        {
+            AIDataManager.aiData[selectedAI].hearingSensitivity = AIDataManager.defaultAIConfigurations[selectedAI].hearingSensitivity;
+            AIDataManager.aiData[selectedAI].visionRadius = AIDataManager.defaultAIConfigurations[selectedAI].visionRadius;
+            AIDataManager.aiData[selectedAI].pitchMultiplier = AIDataManager.defaultAIConfigurations[selectedAI].pitchMultiplier;
+            LoadAIDataIntoUI();
         }
 
         #endregion
