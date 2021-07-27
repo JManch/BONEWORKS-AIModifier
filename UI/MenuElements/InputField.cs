@@ -70,7 +70,7 @@ namespace AIModifier.UI
         public override void OnPageClose()
         {
             textBox.SetValue(value);
-            KeyboardManager.CloseNumpad();
+            Keyboard.numpad.CloseMenu();
         }
 
         // Only update the "actual" value once the user presses Enter 
@@ -99,8 +99,8 @@ namespace AIModifier.UI
         private void OnSelect()
         {
             // Active the keyboard
-            KeyboardManager.OpenNumpad();
-            KeyboardManager.numpad.SetActiveInputField(this);
+            Keyboard.OpenNumpad();
+            Keyboard.numpad.SetActiveInputField(this);
             SetDisplayValue("");
         }
     }

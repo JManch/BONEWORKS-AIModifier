@@ -53,12 +53,12 @@ namespace AIModifier.UI
 
         public override void OnPageOpen()
         {
-            DisableOnButton();
+            buttonController.disableOnButton = true;
         }
 
-        public void DisableOnButton()
+        public override void OnPageClose()
         {
-            buttonController.disableOnButton = true;
+            OnButtonUnhighlighted();
         }
 
         public void OnButtonHighlighted() 
@@ -134,7 +134,6 @@ namespace AIModifier.UI
                 }
             }
         }
-
         public void SetColor(Color color)
         {
             image.color = color;

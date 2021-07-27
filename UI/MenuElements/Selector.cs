@@ -104,5 +104,10 @@ namespace AIModifier.UI
 
             onValueChanged(result);
         }
+
+        public override void OnPageClose()
+        {
+            selectorUI.CloseMenu();
+        }
     }
 }

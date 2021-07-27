@@ -91,7 +91,6 @@
     <Compile Include="UI\MenuElements\Selector.cs" />
     <Compile Include="UI\MenuStructure\Keyboard.cs" />
     <Compile Include="UI\Controllers\SmoothPlayerFollow.cs" />
-    <Compile Include="UI\Managers\KeyboardManager.cs" />
     <Compile Include="UI\MenuElements\Button.cs" />
     <Compile Include="UI\MenuElements\GenericSelector.cs" />
     <Compile Include="UI\Controllers\HealthPlateController.cs" />
