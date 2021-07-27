@@ -49,7 +49,7 @@ namespace AIModifier.UI
             }
         }
 
-        // Pass an array of strings to set the value
+        // Pass an array of strings to set the value. Passes 0 when there are no agro enemies.
         public override void SetValue(object value)
         {
             // Reset dictionary
@@ -63,8 +63,11 @@ namespace AIModifier.UI
             {
                 foreach(string s in arr)
                 {
-                    selectorOptions[s] = true;
-                    selectorUI.UpdateSelectedState(s);
+                    if(s != "0")
+                    {
+                        selectorOptions[s] = true;
+                        selectorUI.UpdateSelectedState(s);
+                    }
                 }    
             }
         }

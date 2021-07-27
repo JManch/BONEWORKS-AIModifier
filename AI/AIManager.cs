@@ -138,7 +138,6 @@ namespace AIModifier.AI
                 // Set engaged mode to default from default data file
             }
 
-            // AGRO ON NPC TYPE NEEDS TO BE IMPLEMENTED
             TriggerRefProxy.NpcType npcType;
             if(Enum.TryParse(aiData.agroOnNPCType, out npcType))
             {
@@ -146,7 +145,7 @@ namespace AIModifier.AI
             }
             else
             {
-                behaviourPowerLegs.agroOnNpcType = TriggerRefProxy.NpcType.Voidman;
+                behaviourPowerLegs.agroOnNpcType = 0;
             }
             behaviourPowerLegs.meleeRange = aiData.meleeRange;
 
@@ -210,7 +209,7 @@ namespace AIModifier.AI
             }
             else
             {
-                behaviourCrablet.agroOnNpcType = TriggerRefProxy.NpcType.Voidman;
+                behaviourCrablet.agroOnNpcType = 0;
             }
 
             behaviourCrablet.sensors.hearingSensitivity = aiData.hearingSensitivity;
@@ -256,7 +255,7 @@ namespace AIModifier.AI
             }
             else
             {
-                behaviourOmniwheel.agroOnNpcType = TriggerRefProxy.NpcType.Voidman;
+                behaviourOmniwheel.agroOnNpcType = 0;
             }
 
             behaviourOmniwheel.meleeRange = aiData.meleeRange;
