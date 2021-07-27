@@ -5,6 +5,8 @@ using AIModifier.Utilities;
 using ModThatIsNotMod;
 using PuppetMasta;
 using UnityEngine;
+using System.Linq;
+using System.IO;
 
 namespace AIModifier.AI
 {
@@ -30,6 +32,30 @@ namespace AIModifier.AI
             foreach (AIData aiData in aiDatas)
             {
                 AIDataManager.aiData.Add(aiData.name, aiData);
+            }
+        }
+
+        public static void WriteAIDataToDisk(string aiName = "")
+        {
+            if(aiName == "")
+            {
+                // Just save. Not sure if this overwrites, test it.
+                XMLDataManager.SaveXMLData(aiData.Values.ToList(), @"\Mods\AIModifier.xml");
+                
+            }
+            else
+            {
+                List<AIData> aiDatas = XMLDataManager.LoadXMLData<List<AIData>>(@"\Mods\AIModifier.xml");
+                File.Delete(Utilities.Utilities.boneworksDirectory + @"\Mods\AIModifier.xml");
+                for (int i = 0; i < aiDatas.Count; i++)
+                {
+                    if (aiDatas[i].name == aiName)
+                    {
+                        aiDatas[i] = aiData[aiName];
+                        break;
+                    }
+                }
+                XMLDataManager.SaveXMLData(aiDatas, @"\Mods\AIModifier.xml");
             }
         }
 

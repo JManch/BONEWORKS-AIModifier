@@ -8,7 +8,7 @@ namespace AIModifier.AI
 {
     public static class AIMenuFunctions
     {
-        private static string selectedAI;
+        public static string selectedAI { get; private set; }
 
         public static void LoadAIDataIntoUI()
         {

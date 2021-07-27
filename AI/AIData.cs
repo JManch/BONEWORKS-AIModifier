@@ -6,7 +6,6 @@
         public string headPlateTransformChildPath { get; set; }
         public float headPlateHeightOffset { get; set; }
 
-
         #region Health Settings
 
         public float health { get; set; }
@@ -76,7 +75,6 @@
         public string defaultOmniEngagedMode { get; set; }
 
         #endregion
-
 
         #region Other Settings
 

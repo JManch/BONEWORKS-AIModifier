@@ -2,8 +2,7 @@
 <ArrayOfAIData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <AIData>
     <name>Crablet</name>
-	<headPlateTransformChildPath>PhysicsRig/Head</headPlateTransformChildPath>
-    <headPlateHeightOffset>0.4</headPlateHeightOffset>
+    <headPlateHeightOffset>0</headPlateHeightOffset>
     <health>100</health>
     <leftLegHealth>100</leftLegHealth>
     <rightLegHealth>100</rightLegHealth>
@@ -11,7 +10,6 @@
     <rightArmHealth>100</rightArmHealth>
     <accuracy>3</accuracy>
     <gunRange>60</gunRange>
-    <gunCooldown>1.2</gunCooldown>
     <reloadTime>2.2</reloadTime>
     <burstSize>3</burstSize>
     <clipSize>1</clipSize>
@@ -19,7 +17,6 @@
     <throwCooldown>3</throwCooldown>
     <throwMaxRange>20</throwMaxRange>
     <throwMinRange>3</throwMinRange>
-    <throwVelocity>4</throwVelocity>
     <agroedSpeed>0.8</agroedSpeed>
     <roamSpeed>1</roamSpeed>
     <engagedSpeed>0</engagedSpeed>
@@ -27,17 +24,12 @@
     <roamWanders>false</roamWanders>
     <defaultMentalState>Default</defaultMentalState>
     <defaultEngagedMode>Default</defaultEngagedMode>
-    <mirrorSkill>0</mirrorSkill>
     <baseColor>Default</baseColor>
     <agroColor>Default</agroColor>
     <jumpAttackEnabled>true</jumpAttackEnabled>
-    <jumpCharge>0</jumpCharge>
     <jumpCooldown>3</jumpCooldown>
-    <jumpForce>7</jumpForce>
     <agroOnNPCType>FordHair, FordShortHair, NullBody</agroOnNPCType>
     <meleeRange>0</meleeRange>
-    <emissionColor>Default</emissionColor>
-    <faceExpressionCooldownTime>0</faceExpressionCooldownTime>
     <chargeAttackSpeed>0</chargeAttackSpeed>
     <chargeCooldown>0</chargeCooldown>
     <chargePrepSpeed>0</chargePrepSpeed>
@@ -48,8 +40,7 @@
   </AIData>
   <AIData>
     <name>OmniWrecker</name>
-	<headPlateTransformChildPath>Physics/InnerBrain</headPlateTransformChildPath>
-    <headPlateHeightOffset>0.6</headPlateHeightOffset>
+    <headPlateHeightOffset>0</headPlateHeightOffset>
     <health>100</health>
     <leftLegHealth>100</leftLegHealth>
     <rightLegHealth>100</rightLegHealth>
@@ -57,7 +48,6 @@
     <rightArmHealth>100</rightArmHealth>
     <accuracy>3</accuracy>
     <gunRange>60</gunRange>
-    <gunCooldown>1.2</gunCooldown>
     <reloadTime>2.2</reloadTime>
     <burstSize>3</burstSize>
     <clipSize>1</clipSize>
@@ -65,7 +55,6 @@
     <throwCooldown>3</throwCooldown>
     <throwMaxRange>20</throwMaxRange>
     <throwMinRange>3</throwMinRange>
-    <throwVelocity>4</throwVelocity>
     <agroedSpeed>1</agroedSpeed>
     <roamSpeed>2.5</roamSpeed>
     <engagedSpeed>0</engagedSpeed>
@@ -73,15 +62,10 @@
     <roamWanders>false</roamWanders>
     <defaultMentalState>Default</defaultMentalState>
     <defaultEngagedMode>Default</defaultEngagedMode>
-    <mirrorSkill>0</mirrorSkill>
     <jumpAttackEnabled>false</jumpAttackEnabled>
-    <jumpCharge>0</jumpCharge>
     <jumpCooldown>0</jumpCooldown>
-    <jumpForce>0</jumpForce>
     <agroOnNPCType>FordHair, FordShortHair, EarlyExit, NullBody</agroOnNPCType>
     <meleeRange>1</meleeRange>
-    <emissionColor>Default</emissionColor>
-    <faceExpressionCooldownTime>0</faceExpressionCooldownTime>
     <chargeAttackSpeed>12</chargeAttackSpeed>
     <chargeCooldown>6</chargeCooldown>
     <chargePrepSpeed>3</chargePrepSpeed>
@@ -93,8 +77,7 @@
   </AIData>
   <AIData>
     <name>FordVrJunkie</name>
-	<headPlateTransformChildPath>Physics/Root_M/Spine_M/Chest_M/Head_M</headPlateTransformChildPath>
-    <headPlateHeightOffset>0.275</headPlateHeightOffset>
+    <headPlateHeightOffset>0</headPlateHeightOffset>
     <health>100</health>
     <leftLegHealth>100</leftLegHealth>
     <rightLegHealth>100</rightLegHealth>
@@ -102,7 +85,6 @@
     <rightArmHealth>100</rightArmHealth>
     <accuracy>3</accuracy>
     <gunRange>60</gunRange>
-    <gunCooldown>1.2</gunCooldown>
     <reloadTime>2.2</reloadTime>
     <burstSize>3</burstSize>
     <clipSize>1</clipSize>
@@ -110,7 +92,6 @@
     <throwCooldown>3</throwCooldown>
     <throwMaxRange>20</throwMaxRange>
     <throwMinRange>3</throwMinRange>
-    <throwVelocity>4</throwVelocity>
     <agroedSpeed>1.25</agroedSpeed>
     <roamSpeed>1.35</roamSpeed>
     <engagedSpeed>1</engagedSpeed>
@@ -118,16 +99,10 @@
     <roamWanders>false</roamWanders>
     <defaultMentalState>Default</defaultMentalState>
     <defaultEngagedMode>Default</defaultEngagedMode>
-    <mirrorSkill>1</mirrorSkill>
     <jumpAttackEnabled>false</jumpAttackEnabled>
-    <jumpCharge>0</jumpCharge>
     <jumpCooldown>0</jumpCooldown>
-    <jumpForce>0</jumpForce>
     <agroOnNPCType>FordHair, EarlyExit, NullBody, OmniProjector, OmniWrecker, OmniTurret</agroOnNPCType>
-    <combatProficiency>WildPunch, FistFight</combatProficiency>
     <meleeRange>1</meleeRange>
-    <emissionColor>Default</emissionColor>
-    <faceExpressionCooldownTime>328.180573</faceExpressionCooldownTime>
     <chargeAttackSpeed>0</chargeAttackSpeed>
     <chargeCooldown>0</chargeCooldown>
     <chargePrepSpeed>0</chargePrepSpeed>
@@ -138,8 +113,7 @@
   </AIData>
   <AIData>
     <name>CrabletPlus</name>
-	<headPlateTransformChildPath>PhysicsRig/Head</headPlateTransformChildPath>
-    <headPlateHeightOffset>0.7</headPlateHeightOffset>
+    <headPlateHeightOffset>0</headPlateHeightOffset>
     <health>100</health>
     <leftLegHealth>100</leftLegHealth>
     <rightLegHealth>100</rightLegHealth>
@@ -147,7 +121,6 @@
     <rightArmHealth>100</rightArmHealth>
     <accuracy>3</accuracy>
     <gunRange>60</gunRange>
-    <gunCooldown>1.2</gunCooldown>
     <reloadTime>2.2</reloadTime>
     <burstSize>3</burstSize>
     <clipSize>1</clipSize>
@@ -155,7 +128,6 @@
     <throwCooldown>3</throwCooldown>
     <throwMaxRange>20</throwMaxRange>
     <throwMinRange>3</throwMinRange>
-    <throwVelocity>4</throwVelocity>
     <agroedSpeed>4</agroedSpeed>
     <roamSpeed>3</roamSpeed>
     <engagedSpeed>0</engagedSpeed>
@@ -163,17 +135,12 @@
     <roamWanders>false</roamWanders>
     <defaultMentalState>Default</defaultMentalState>
     <defaultEngagedMode>Default</defaultEngagedMode>
-    <mirrorSkill>0</mirrorSkill>
     <baseColor>Default</baseColor>
     <agroColor>Default</agroColor>
     <jumpAttackEnabled>true</jumpAttackEnabled>
-    <jumpCharge>0</jumpCharge>
     <jumpCooldown>3</jumpCooldown>
-    <jumpForce>7</jumpForce>
     <agroOnNPCType>FordHair, FordShortHair, NullBody</agroOnNPCType>
     <meleeRange>0</meleeRange>
-    <emissionColor>Default</emissionColor>
-    <faceExpressionCooldownTime>0</faceExpressionCooldownTime>
     <chargeAttackSpeed>0</chargeAttackSpeed>
     <chargeCooldown>0</chargeCooldown>
     <chargePrepSpeed>0</chargePrepSpeed>
@@ -184,8 +151,7 @@
   </AIData>
   <AIData>
     <name>NullBody</name>
-	<headPlateTransformChildPath>Physics/Root_M/Spine_M/Chest_M/Head_M</headPlateTransformChildPath>
-    <headPlateHeightOffset>0.225</headPlateHeightOffset>
+    <headPlateHeightOffset>0</headPlateHeightOffset>
     <health>100</health>
     <leftLegHealth>100</leftLegHealth>
     <rightLegHealth>100</rightLegHealth>
@@ -193,7 +159,6 @@
     <rightArmHealth>100</rightArmHealth>
     <accuracy>3</accuracy>
     <gunRange>60</gunRange>
-    <gunCooldown>1.2</gunCooldown>
     <reloadTime>2.2</reloadTime>
     <burstSize>3</burstSize>
     <clipSize>1</clipSize>
@@ -201,7 +166,6 @@
     <throwCooldown>3</throwCooldown>
     <throwMaxRange>20</throwMaxRange>
     <throwMinRange>3</throwMinRange>
-    <throwVelocity>4</throwVelocity>
     <agroedSpeed>1.25</agroedSpeed>
     <roamSpeed>1.35</roamSpeed>
     <engagedSpeed>1</engagedSpeed>
@@ -209,16 +173,10 @@
     <roamWanders>false</roamWanders>
     <defaultMentalState>Default</defaultMentalState>
     <defaultEngagedMode>Default</defaultEngagedMode>
-    <mirrorSkill>1</mirrorSkill>
     <jumpAttackEnabled>false</jumpAttackEnabled>
-    <jumpCharge>0</jumpCharge>
     <jumpCooldown>0</jumpCooldown>
-    <jumpForce>0</jumpForce>
     <agroOnNPCType>FordHair, FordShortHair, EarlyExit, Fordlet, Crablet, OmniProjector, OmniWrecker, OmniTurret, Turret</agroOnNPCType>
-    <combatProficiency>WildPunch, FistFight</combatProficiency>
     <meleeRange>1</meleeRange>
-    <emissionColor>Default</emissionColor>
-    <faceExpressionCooldownTime>296.6736</faceExpressionCooldownTime>
     <chargeAttackSpeed>0</chargeAttackSpeed>
     <chargeCooldown>0</chargeCooldown>
     <chargePrepSpeed>0</chargePrepSpeed>
@@ -229,8 +187,7 @@
   </AIData>
   <AIData>
     <name>NullRat</name>
-	<headPlateTransformChildPath>Physics/Head</headPlateTransformChildPath>
-    <headPlateHeightOffset>0.2</headPlateHeightOffset>
+    <headPlateHeightOffset>0</headPlateHeightOffset>
     <health>100</health>
     <leftLegHealth>100</leftLegHealth>
     <rightLegHealth>100</rightLegHealth>
@@ -238,7 +195,6 @@
     <rightArmHealth>100</rightArmHealth>
     <accuracy>3</accuracy>
     <gunRange>60</gunRange>
-    <gunCooldown>1.2</gunCooldown>
     <reloadTime>2.2</reloadTime>
     <burstSize>3</burstSize>
     <clipSize>1</clipSize>
@@ -246,7 +202,6 @@
     <throwCooldown>3</throwCooldown>
     <throwMaxRange>20</throwMaxRange>
     <throwMinRange>3</throwMinRange>
-    <throwVelocity>4</throwVelocity>
     <agroedSpeed>1</agroedSpeed>
     <roamSpeed>2.5</roamSpeed>
     <engagedSpeed>0</engagedSpeed>
@@ -254,15 +209,10 @@
     <roamWanders>true</roamWanders>
     <defaultMentalState>Default</defaultMentalState>
     <defaultEngagedMode>Default</defaultEngagedMode>
-    <mirrorSkill>0</mirrorSkill>
     <jumpAttackEnabled>false</jumpAttackEnabled>
-    <jumpCharge>0</jumpCharge>
     <jumpCooldown>0</jumpCooldown>
-    <jumpForce>0</jumpForce>
     <agroOnNPCType>0</agroOnNPCType>
     <meleeRange>1</meleeRange>
-    <emissionColor>Default</emissionColor>
-    <faceExpressionCooldownTime>0</faceExpressionCooldownTime>
     <chargeAttackSpeed>6</chargeAttackSpeed>
     <chargeCooldown>8</chargeCooldown>
     <chargePrepSpeed>2</chargePrepSpeed>
@@ -274,8 +224,7 @@
   </AIData>
   <AIData>
     <name>OmniTurret</name>
-	<headPlateTransformChildPath>Physics/Body/Chest</headPlateTransformChildPath>
-    <headPlateHeightOffset>0.6</headPlateHeightOffset>
+    <headPlateHeightOffset>0</headPlateHeightOffset>
     <health>100</health>
     <leftLegHealth>100</leftLegHealth>
     <rightLegHealth>100</rightLegHealth>
@@ -283,7 +232,6 @@
     <rightArmHealth>100</rightArmHealth>
     <accuracy>3</accuracy>
     <gunRange>60</gunRange>
-    <gunCooldown>3</gunCooldown>
     <reloadTime>2.2</reloadTime>
     <burstSize>3</burstSize>
     <clipSize>1</clipSize>
@@ -291,7 +239,6 @@
     <throwCooldown>3</throwCooldown>
     <throwMaxRange>20</throwMaxRange>
     <throwMinRange>3</throwMinRange>
-    <throwVelocity>4</throwVelocity>
     <agroedSpeed>1</agroedSpeed>
     <roamSpeed>2.5</roamSpeed>
     <engagedSpeed>0</engagedSpeed>
@@ -299,15 +246,10 @@
     <roamWanders>false</roamWanders>
     <defaultMentalState>Default</defaultMentalState>
     <defaultEngagedMode>Default</defaultEngagedMode>
-    <mirrorSkill>0</mirrorSkill>
     <jumpAttackEnabled>false</jumpAttackEnabled>
-    <jumpCharge>0</jumpCharge>
     <jumpCooldown>0</jumpCooldown>
-    <jumpForce>0</jumpForce>
     <agroOnNPCType>FordHair, FordShortHair, EarlyExit, NullBody, NullRat</agroOnNPCType>
     <meleeRange>1</meleeRange>
-    <emissionColor>Default</emissionColor>
-    <faceExpressionCooldownTime>0</faceExpressionCooldownTime>
     <chargeAttackSpeed>6</chargeAttackSpeed>
     <chargeCooldown>8</chargeCooldown>
     <chargePrepSpeed>2</chargePrepSpeed>
@@ -319,8 +261,7 @@
   </AIData>
   <AIData>
     <name>OmniProjector</name>
-	<headPlateTransformChildPath>Physics/Root/Head</headPlateTransformChildPath>
-    <headPlateHeightOffset>0.3</headPlateHeightOffset>
+    <headPlateHeightOffset>0</headPlateHeightOffset>
     <health>100</health>
     <leftLegHealth>100</leftLegHealth>
     <rightLegHealth>100</rightLegHealth>
@@ -328,7 +269,6 @@
     <rightArmHealth>100</rightArmHealth>
     <accuracy>2</accuracy>
     <gunRange>60</gunRange>
-    <gunCooldown>1.2</gunCooldown>
     <reloadTime>2.2</reloadTime>
     <burstSize>3</burstSize>
     <clipSize>15</clipSize>
@@ -336,7 +276,6 @@
     <throwCooldown>3</throwCooldown>
     <throwMaxRange>20</throwMaxRange>
     <throwMinRange>3</throwMinRange>
-    <throwVelocity>4</throwVelocity>
     <agroedSpeed>3</agroedSpeed>
     <roamSpeed>2.5</roamSpeed>
     <engagedSpeed>0</engagedSpeed>
@@ -344,15 +283,10 @@
     <roamWanders>false</roamWanders>
     <defaultMentalState>Default</defaultMentalState>
     <defaultEngagedMode>Default</defaultEngagedMode>
-    <mirrorSkill>0</mirrorSkill>
     <jumpAttackEnabled>false</jumpAttackEnabled>
-    <jumpCharge>0</jumpCharge>
     <jumpCooldown>0</jumpCooldown>
-    <jumpForce>0</jumpForce>
     <agroOnNPCType>FordHair, FordShortHair, EarlyExit, NullBody, NullRat</agroOnNPCType>
     <meleeRange>1</meleeRange>
-    <emissionColor>Default</emissionColor>
-    <faceExpressionCooldownTime>0</faceExpressionCooldownTime>
     <chargeAttackSpeed>6</chargeAttackSpeed>
     <chargeCooldown>8</chargeCooldown>
     <chargePrepSpeed>2</chargePrepSpeed>
@@ -364,8 +298,7 @@
   </AIData>
   <AIData>
     <name>Ford_EarlyExit</name>
-	<headPlateTransformChildPath>Physics/Root_M/Spine_M/Chest_M/Head_M</headPlateTransformChildPath>
-    <headPlateHeightOffset>0.25</headPlateHeightOffset>
+    <headPlateHeightOffset>0</headPlateHeightOffset>
     <health>100</health>
     <leftLegHealth>100</leftLegHealth>
     <rightLegHealth>100</rightLegHealth>
@@ -373,7 +306,6 @@
     <rightArmHealth>100</rightArmHealth>
     <accuracy>3</accuracy>
     <gunRange>60</gunRange>
-    <gunCooldown>1.2</gunCooldown>
     <reloadTime>2.2</reloadTime>
     <burstSize>3</burstSize>
     <clipSize>1</clipSize>
@@ -381,7 +313,6 @@
     <throwCooldown>3</throwCooldown>
     <throwMaxRange>20</throwMaxRange>
     <throwMinRange>3</throwMinRange>
-    <throwVelocity>4</throwVelocity>
     <agroedSpeed>1.68</agroedSpeed>
     <roamSpeed>1.35</roamSpeed>
     <engagedSpeed>1</engagedSpeed>
@@ -389,16 +320,10 @@
     <roamWanders>false</roamWanders>
     <defaultMentalState>Default</defaultMentalState>
     <defaultEngagedMode>Default</defaultEngagedMode>
-    <mirrorSkill>1</mirrorSkill>
     <jumpAttackEnabled>false</jumpAttackEnabled>
-    <jumpCharge>0</jumpCharge>
     <jumpCooldown>0</jumpCooldown>
-    <jumpForce>0</jumpForce>
     <agroOnNPCType>FordHair, FordShortHair, NullBody, OmniProjector, OmniWrecker, OmniTurret</agroOnNPCType>
-    <combatProficiency>WildPunch, FistFight</combatProficiency>
     <meleeRange>1</meleeRange>
-    <emissionColor>Default</emissionColor>
-    <faceExpressionCooldownTime>314.211243</faceExpressionCooldownTime>
     <chargeAttackSpeed>0</chargeAttackSpeed>
     <chargeCooldown>0</chargeCooldown>
     <chargePrepSpeed>0</chargePrepSpeed>
@@ -409,8 +334,7 @@
   </AIData>
   <AIData>
     <name>Ford_EarlyExit_headset</name>
-	<headPlateTransformChildPath>Physics/Root_M/Spine_M/Chest_M/Head_M</headPlateTransformChildPath>
-    <headPlateHeightOffset>0.275</headPlateHeightOffset>
+    <headPlateHeightOffset>0</headPlateHeightOffset>
     <health>100</health>
     <leftLegHealth>100</leftLegHealth>
     <rightLegHealth>100</rightLegHealth>
@@ -418,7 +342,6 @@
     <rightArmHealth>100</rightArmHealth>
     <accuracy>3</accuracy>
     <gunRange>60</gunRange>
-    <gunCooldown>1.2</gunCooldown>
     <reloadTime>2.2</reloadTime>
     <burstSize>3</burstSize>
     <clipSize>1</clipSize>
@@ -426,7 +349,6 @@
     <throwCooldown>3</throwCooldown>
     <throwMaxRange>20</throwMaxRange>
     <throwMinRange>3</throwMinRange>
-    <throwVelocity>4</throwVelocity>
     <agroedSpeed>1.68</agroedSpeed>
     <roamSpeed>1.35</roamSpeed>
     <engagedSpeed>1</engagedSpeed>
@@ -434,16 +356,10 @@
     <roamWanders>false</roamWanders>
     <defaultMentalState>Default</defaultMentalState>
     <defaultEngagedMode>Default</defaultEngagedMode>
-    <mirrorSkill>1</mirrorSkill>
     <jumpAttackEnabled>false</jumpAttackEnabled>
-    <jumpCharge>0</jumpCharge>
     <jumpCooldown>0</jumpCooldown>
-    <jumpForce>0</jumpForce>
     <agroOnNPCType>FordHair, FordShortHair, NullBody, OmniProjector, OmniWrecker, OmniTurret</agroOnNPCType>
-    <combatProficiency>WildPunch, FistFight</combatProficiency>
     <meleeRange>1</meleeRange>
-    <emissionColor>Default</emissionColor>
-    <faceExpressionCooldownTime>321.32373</faceExpressionCooldownTime>
     <chargeAttackSpeed>0</chargeAttackSpeed>
     <chargeCooldown>0</chargeCooldown>
     <chargePrepSpeed>0</chargePrepSpeed>
@@ -454,8 +370,7 @@
   </AIData>
   <AIData>
     <name>BrettEnemy</name>
-	<headPlateTransformChildPath>Physics/Root_M/Spine_M/Chest_M/Head_M</headPlateTransformChildPath>
-    <headPlateHeightOffset>0.25</headPlateHeightOffset>
+    <headPlateHeightOffset>0</headPlateHeightOffset>
     <health>100</health>
     <leftLegHealth>100</leftLegHealth>
     <rightLegHealth>100</rightLegHealth>
@@ -463,7 +378,6 @@
     <rightArmHealth>100</rightArmHealth>
     <accuracy>3</accuracy>
     <gunRange>60</gunRange>
-    <gunCooldown>1.2</gunCooldown>
     <reloadTime>2.2</reloadTime>
     <burstSize>3</burstSize>
     <clipSize>1</clipSize>
@@ -471,7 +385,6 @@
     <throwCooldown>3</throwCooldown>
     <throwMaxRange>20</throwMaxRange>
     <throwMinRange>3</throwMinRange>
-    <throwVelocity>4</throwVelocity>
     <agroedSpeed>1.25</agroedSpeed>
     <roamSpeed>1.35</roamSpeed>
     <engagedSpeed>1</engagedSpeed>
@@ -479,16 +392,10 @@
     <roamWanders>false</roamWanders>
     <defaultMentalState>Default</defaultMentalState>
     <defaultEngagedMode>Default</defaultEngagedMode>
-    <mirrorSkill>1</mirrorSkill>
     <jumpAttackEnabled>false</jumpAttackEnabled>
-    <jumpCharge>0</jumpCharge>
     <jumpCooldown>0</jumpCooldown>
-    <jumpForce>0</jumpForce>
     <agroOnNPCType>FordShortHair, EarlyExit, NullBody, Fordlet, Crablet, OmniProjector, OmniWrecker, OmniTurret</agroOnNPCType>
-    <combatProficiency>WildPunch, FistFight</combatProficiency>
     <meleeRange>1</meleeRange>
-    <emissionColor>Default</emissionColor>
-    <faceExpressionCooldownTime>317.973755</faceExpressionCooldownTime>
     <chargeAttackSpeed>0</chargeAttackSpeed>
     <chargeCooldown>0</chargeCooldown>
     <chargePrepSpeed>0</chargePrepSpeed>
@@ -499,8 +406,7 @@
   </AIData>
   <AIData>
     <name>NullBodyCorrupted</name>
-	<headPlateTransformChildPath>Physics/Root_M/Spine_M/Chest_M/Head_M</headPlateTransformChildPath>
-    <headPlateHeightOffset>0.225</headPlateHeightOffset>
+    <headPlateHeightOffset>0</headPlateHeightOffset>
     <health>100</health>
     <leftLegHealth>100</leftLegHealth>
     <rightLegHealth>100</rightLegHealth>
@@ -508,7 +414,6 @@
     <rightArmHealth>100</rightArmHealth>
     <accuracy>3</accuracy>
     <gunRange>60</gunRange>
-    <gunCooldown>1.2</gunCooldown>
     <reloadTime>2.2</reloadTime>
     <burstSize>3</burstSize>
     <clipSize>1</clipSize>
@@ -516,7 +421,6 @@
     <throwCooldown>3</throwCooldown>
     <throwMaxRange>20</throwMaxRange>
     <throwMinRange>3</throwMinRange>
-    <throwVelocity>4</throwVelocity>
     <agroedSpeed>1.25</agroedSpeed>
     <roamSpeed>1.35</roamSpeed>
     <engagedSpeed>1</engagedSpeed>
@@ -524,16 +428,10 @@
     <roamWanders>false</roamWanders>
     <defaultMentalState>Default</defaultMentalState>
     <defaultEngagedMode>Default</defaultEngagedMode>
-    <mirrorSkill>1</mirrorSkill>
     <jumpAttackEnabled>false</jumpAttackEnabled>
-    <jumpCharge>0</jumpCharge>
     <jumpCooldown>0</jumpCooldown>
-    <jumpForce>0</jumpForce>
     <agroOnNPCType>FordHair, FordShortHair, EarlyExit, Fordlet, Crablet, OmniProjector, OmniWrecker, OmniTurret, Turret</agroOnNPCType>
-    <combatProficiency>WildPunch, FistFight</combatProficiency>
     <meleeRange>1</meleeRange>
-    <emissionColor>Default</emissionColor>
-    <faceExpressionCooldownTime>349.360382</faceExpressionCooldownTime>
     <chargeAttackSpeed>0</chargeAttackSpeed>
     <chargeCooldown>0</chargeCooldown>
     <chargePrepSpeed>0</chargePrepSpeed>
