@@ -1,6 +1,6 @@
 ﻿namespace AIModifier.AI
 {
-    public class AIData
+    public class AIData 
     {
         public string name { get; set; }
         public string headPlateTransformChildPath { get; set; }

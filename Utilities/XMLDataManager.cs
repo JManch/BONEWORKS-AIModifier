@@ -32,6 +32,7 @@ namespace AIModifier.Utilities
             {
                 ReplaceAIXMLWithDefault();
             }
+            AIDataManager.LoadDefaultAIData();
             AIDataManager.LoadAIData();
         }
 

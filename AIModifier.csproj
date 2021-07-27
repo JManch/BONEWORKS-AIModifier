@@ -79,6 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AI\AIData.cs" />
+    <Compile Include="AI\AIDataComponent.cs" />
     <Compile Include="AI\AIDataManager.cs" />
     <Compile Include="AI\AIMenuFunctions.cs" />
     <Compile Include="Main\Main.cs" />
