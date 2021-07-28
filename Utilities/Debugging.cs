@@ -41,5 +41,20 @@ namespace AIModifier.Utilities
 
             XMLDataManager.SaveXMLData(aiDatas, @"\Mods\AIDataDebug.xml");
         }
+
+        public static void DebugTriggerRefProxy()
+        {
+            TriggerRefProxy[] triggerRefProxies = GameObject.FindObjectsOfType<TriggerRefProxy>();
+            MelonLogger.Msg("Found " + triggerRefProxies.Length + " trigger ref proxies");
+            foreach(TriggerRefProxy t in triggerRefProxies)
+            {
+                MelonLogger.Msg("Trigger ref proxy has NPC type " + t.npcType.ToString() + " and trigger type " + t.triggerType.ToString() + " gameobject is " + t.gameObject.name );
+            }
+        }
+
+        public static void OnSetAgro(BehaviourBaseNav __instance, TriggerRefProxy agroTarget)
+        {
+            MelonLogger.Msg("BehaviourBaseNav " + __instance.gameObject.name + " called OnSetAgro on trp with NPC type " + agroTarget.npcType.ToString() + " and trigger type " + agroTarget.triggerType.ToString());
+        }
     }
 }

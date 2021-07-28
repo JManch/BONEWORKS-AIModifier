@@ -10,12 +10,41 @@ using UnityEngine;
 using MelonLoader;
 using PuppetMasta;
 using AIModifier.UI;
+using System.Linq;
 
 namespace AIModifier.AI
 {
     public static class AIManager
     {
-        public static Dictionary<string, AIBrain> selectedAI = new Dictionary<string, AIBrain>();
+        private static Dictionary<string, AIBrain> selectedAI = new Dictionary<string, AIBrain>();
+
+        public static void ClearSelectedAI()
+        {
+            foreach(AIBrain aiBrain in selectedAI.Values.ToList())
+            {
+                if(aiBrain != null)
+                {
+                    aiBrain.GetComponent<AISelectedPlateController>().DisableSelectedIcon();
+                }
+            }
+            selectedAI.Clear();
+        }
+        public static void ToggleSelectedAI(AIBrain aiBrain)
+        {
+            if(!selectedAI.ContainsKey(aiBrain.name))
+            {
+                selectedAI.Add(aiBrain.name, aiBrain);
+                aiBrain.GetComponent<AISelectedPlateController>().EnableSelectedIcon();
+            }
+            else
+            {
+                selectedAI.Remove(aiBrain.name);
+                aiBrain.GetComponent<AISelectedPlateController>().DisableSelectedIcon();
+            }
+
+            // Update UI
+            AIMenuManager.aiMenu.GetPage("ControlAIPage").GetElement("ControlAIButton").SetValue("Control " + selectedAI.Count + " Selected AI");
+        }
 
         #region Utility gun AI
         public static void OnFireSpawnGun(SpawnGun __instance)
@@ -77,10 +106,15 @@ namespace AIModifier.AI
             AIDataManager.ApplyAIData(aiBrain, aiData, AIDataManager.defaultAIConfigurations[SimpleHelpers.GetCleanObjectName(aiBrain.gameObject.name)]);
 
             // Only add a health plate if it doesnt have one as it seems like zone spawners reuse gameobjects?
-            if(aiBrain.transform.FindChild("HeadPlate(Clone)") == null)
+            if(aiBrain.transform.FindChild("HealthPlate(Clone)") == null)
             {
-                var headPlate = aiBrain.gameObject.AddComponent<AIHeadPlateController>();
+                var headPlate = aiBrain.gameObject.AddComponent<AIHealthPlateController>();
                 headPlate.OnSpawn();
+            }
+
+            if (aiBrain.transform.FindChild("SelectedPlate(Clone)") == null)
+            {
+                aiBrain.gameObject.AddComponent<AISelectedPlateController>();
             }
         }
     }

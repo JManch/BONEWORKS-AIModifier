@@ -2,7 +2,8 @@
 <ArrayOfAIData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <AIData>
     <name>Crablet</name>
-    <headPlateHeightOffset>0</headPlateHeightOffset>
+    <headPlateTransformChildPath>PhysicsRig/Head</headPlateTransformChildPath>
+    <headPlateHeightOffset>0.4</headPlateHeightOffset>
     <health>100</health>
     <leftLegHealth>100</leftLegHealth>
     <rightLegHealth>100</rightLegHealth>
@@ -40,7 +41,8 @@
   </AIData>
   <AIData>
     <name>OmniWrecker</name>
-    <headPlateHeightOffset>0</headPlateHeightOffset>
+    <headPlateTransformChildPath>Physics/InnerBrain</headPlateTransformChildPath>
+    <headPlateHeightOffset>0.6</headPlateHeightOffset>
     <health>100</health>
     <leftLegHealth>100</leftLegHealth>
     <rightLegHealth>100</rightLegHealth>
@@ -77,7 +79,8 @@
   </AIData>
   <AIData>
     <name>FordVrJunkie</name>
-    <headPlateHeightOffset>0</headPlateHeightOffset>
+    <headPlateTransformChildPath>Physics/Root_M/Spine_M/Chest_M/Head_M</headPlateTransformChildPath>
+    <headPlateHeightOffset>0.275</headPlateHeightOffset>
     <health>100</health>
     <leftLegHealth>100</leftLegHealth>
     <rightLegHealth>100</rightLegHealth>
@@ -113,7 +116,8 @@
   </AIData>
   <AIData>
     <name>CrabletPlus</name>
-    <headPlateHeightOffset>0</headPlateHeightOffset>
+    <headPlateTransformChildPath>PhysicsRig/Head</headPlateTransformChildPath>
+    <headPlateHeightOffset>0.7</headPlateHeightOffset>
     <health>100</health>
     <leftLegHealth>100</leftLegHealth>
     <rightLegHealth>100</rightLegHealth>
@@ -151,7 +155,8 @@
   </AIData>
   <AIData>
     <name>NullBody</name>
-    <headPlateHeightOffset>0</headPlateHeightOffset>
+    <headPlateTransformChildPath>Physics/Root_M/Spine_M/Chest_M/Head_M</headPlateTransformChildPath>
+    <headPlateHeightOffset>0.225</headPlateHeightOffset>
     <health>100</health>
     <leftLegHealth>100</leftLegHealth>
     <rightLegHealth>100</rightLegHealth>
@@ -187,7 +192,8 @@
   </AIData>
   <AIData>
     <name>NullRat</name>
-    <headPlateHeightOffset>0</headPlateHeightOffset>
+    <headPlateTransformChildPath>Physics/Head</headPlateTransformChildPath>
+    <headPlateHeightOffset>0.2</headPlateHeightOffset>
     <health>100</health>
     <leftLegHealth>100</leftLegHealth>
     <rightLegHealth>100</rightLegHealth>
@@ -224,7 +230,8 @@
   </AIData>
   <AIData>
     <name>OmniTurret</name>
-    <headPlateHeightOffset>0</headPlateHeightOffset>
+    <headPlateTransformChildPath>Physics/Body/Chest</headPlateTransformChildPath>
+    <headPlateHeightOffset>0.6</headPlateHeightOffset>
     <health>100</health>
     <leftLegHealth>100</leftLegHealth>
     <rightLegHealth>100</rightLegHealth>
@@ -261,7 +268,8 @@
   </AIData>
   <AIData>
     <name>OmniProjector</name>
-    <headPlateHeightOffset>0</headPlateHeightOffset>
+    <headPlateTransformChildPath>Physics/Root/Head</headPlateTransformChildPath>
+    <headPlateHeightOffset>0.3</headPlateHeightOffset>
     <health>100</health>
     <leftLegHealth>100</leftLegHealth>
     <rightLegHealth>100</rightLegHealth>
@@ -298,7 +306,8 @@
   </AIData>
   <AIData>
     <name>Ford_EarlyExit</name>
-    <headPlateHeightOffset>0</headPlateHeightOffset>
+    <headPlateTransformChildPath>Physics/Root_M/Spine_M/Chest_M/Head_M</headPlateTransformChildPath>
+    <headPlateHeightOffset>0.25</headPlateHeightOffset>
     <health>100</health>
     <leftLegHealth>100</leftLegHealth>
     <rightLegHealth>100</rightLegHealth>
@@ -334,7 +343,8 @@
   </AIData>
   <AIData>
     <name>Ford_EarlyExit_headset</name>
-    <headPlateHeightOffset>0</headPlateHeightOffset>
+    <headPlateTransformChildPath>Physics/Root_M/Spine_M/Chest_M/Head_M</headPlateTransformChildPath>
+    <headPlateHeightOffset>0.275</headPlateHeightOffset>
     <health>100</health>
     <leftLegHealth>100</leftLegHealth>
     <rightLegHealth>100</rightLegHealth>
@@ -370,7 +380,8 @@
   </AIData>
   <AIData>
     <name>BrettEnemy</name>
-    <headPlateHeightOffset>0</headPlateHeightOffset>
+    <headPlateTransformChildPath>Physics/Root_M/Spine_M/Chest_M/Head_M</headPlateTransformChildPath>
+    <headPlateHeightOffset>0.25</headPlateHeightOffset>
     <health>100</health>
     <leftLegHealth>100</leftLegHealth>
     <rightLegHealth>100</rightLegHealth>
@@ -406,7 +417,8 @@
   </AIData>
   <AIData>
     <name>NullBodyCorrupted</name>
-    <headPlateHeightOffset>0</headPlateHeightOffset>
+    <headPlateTransformChildPath>Physics/Root_M/Spine_M/Chest_M/Head_M</headPlateTransformChildPath>
+    <headPlateHeightOffset>0.225</headPlateHeightOffset>
     <health>100</health>
     <leftLegHealth>100</leftLegHealth>
     <rightLegHealth>100</rightLegHealth>

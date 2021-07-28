@@ -31,7 +31,6 @@ namespace AIModifier.UI
 
         void Start()
         {
-            
             transform.rotation = transform.parent.rotation;
             
             laser.transform.SetParent(transform);
@@ -52,7 +51,7 @@ namespace AIModifier.UI
             laser.gameObject.SetActive(false);
         }
 
-        protected virtual void FixedUpdate()
+        void FixedUpdate()
         {
             // Need some kind of limitation here to prevent the raycast always running. Only run when within x units of the UI?
             pointingAtUI = PerformHandRaycast();
@@ -138,27 +137,5 @@ namespace AIModifier.UI
             pointerOrigin.GetComponent<SphereCollider>().enabled = false;
             pointerOrigin.GetComponent<Renderer>().material = transparentMaterial;
         }
-
-        /*
-        private void GetSLZLaser()
-        {
-            GameObject tempGun = CustomItems.SpawnFromPool("Rifle M16 Laser Foregrip", Vector3.zero, Quaternion.identity);
-            GameObject laser = tempGun.transform.FindChild("attachment_Lazer/offset/LaserPointer").gameObject;
-            laser.transform.SetParent(transform);
-            if(hand.gameObject.name == "Hand (left)")
-            {
-                laser.transform.localPosition = new Vector3(-0.04f, 0, -0.04f);
-                laser.transform.eulerAngles = new Vector3(356f, 322f, 349f);
-            }
-            else
-            {
-                laser.transform.localPosition = new Vector3(0.04f, 0, -0.04f);
-                laser.transform.eulerAngles = new Vector3(356f, 38f, 349f);
-            }
-            
-            Destroy(tempGun);
-            laserPointer = laser.GetComponent<SLZ_LaserPointer>();
-        }
-        */
     }
 }

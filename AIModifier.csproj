@@ -84,8 +84,9 @@
     <Compile Include="AI\AIMenuFunctions.cs" />
     <Compile Include="Main\Main.cs" />
     <Compile Include="AI\AIManager.cs" />
-    <Compile Include="UI\Controllers\AIHeadPlateController.cs" />
+    <Compile Include="UI\Controllers\AIHealthPlateController.cs" />
     <Compile Include="UI\Controllers\AIPlateController.cs" />
+    <Compile Include="UI\Controllers\AISelectedPlateController.cs" />
     <Compile Include="UI\Controllers\AISelectorController.cs" />
     <Compile Include="UI\Managers\AISelectorManager.cs" />
     <Compile Include="UI\MenuElements\Selector.cs" />
@@ -93,7 +94,6 @@
     <Compile Include="UI\Controllers\SmoothPlayerFollow.cs" />
     <Compile Include="UI\MenuElements\Button.cs" />
     <Compile Include="UI\MenuElements\GenericSelector.cs" />
-    <Compile Include="UI\Controllers\HealthPlateController.cs" />
     <Compile Include="UI\Controllers\ButtonController.cs" />
     <Compile Include="UI\MenuStructure\Menu.cs" />
     <Compile Include="UI\MenuStructure\MenuElement.cs" />
@@ -113,10 +113,10 @@
     <Compile Include="Utilities\XMLDataManager.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\aimodifier_assets.asset" />
+    <EmbeddedResource Include="Resources\DefaultAIData.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\DefaultAIData.xml" />
+    <EmbeddedResource Include="Resources\aimodifier_assets.asset" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

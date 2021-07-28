@@ -74,8 +74,10 @@ namespace AIModifier
 
             if(Input.GetKeyDown(KeyCode.F))
             {
-                AIMenuFunctions.FreezeSelectedAI();
+                AISelectorManager.EnableAISelector();
             }
+
+            
         }
     }
 }

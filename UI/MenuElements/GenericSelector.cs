@@ -7,7 +7,7 @@ namespace AIModifier.UI
 {
     class GenericSelector<T> : MenuElement
     {
-        private List<T> elements;
+        private T[] elements;
         private TextDisplay itemDisplay;
         private int pointer = 0;
         private Action<T> action;
@@ -15,7 +15,7 @@ namespace AIModifier.UI
         private Button nextButton;
         private Button prevButton;
 
-        public GenericSelector(GameObject gameObject, string elementSelectorText, TextProperties textProperties, List<T> elements, Action<T> onSelectorAction = null) : base(gameObject)
+        public GenericSelector(GameObject gameObject, string elementSelectorText, TextProperties textProperties, T[] elements, Action<T> onSelectorAction = null) : base(gameObject)
         {
             // Configure text components
             new TextDisplay(gameObject.transform.GetChild(0).gameObject, elementSelectorText, textProperties);
@@ -23,7 +23,7 @@ namespace AIModifier.UI
             nextButton = new Button(gameObject.transform.FindChild("Next").gameObject, ">", textProperties, Button.ButtonHighlightType.Color, NextItem);
             prevButton = new Button(gameObject.transform.FindChild("Previous").gameObject, "<", textProperties, Button.ButtonHighlightType.Color, PrevItem);
             this.elements = elements;
-            if (this.elements.Count > 0)
+            if (this.elements.Length > 0)
             {
                 itemDisplay.SetValue(elements[0]);
             }
@@ -41,7 +41,7 @@ namespace AIModifier.UI
 
         public override void SetValue(object value)
         {
-            for(int i = 0; i < elements.Count; ++i)
+            for(int i = 0; i < elements.Length; ++i)
             {
                 if(elements[i].Equals((T)value))
                 {
@@ -61,7 +61,7 @@ namespace AIModifier.UI
 
         private void NextItem()
         {
-            if(pointer != elements.Count - 1)
+            if(pointer != elements.Length - 1)
             {
                 ++pointer;
                 itemDisplay.SetValue(elements[pointer]);
@@ -87,7 +87,7 @@ namespace AIModifier.UI
             }
             else
             {
-                pointer = elements.Count - 1;
+                pointer = elements.Length - 1;
                 itemDisplay.SetValue(elements[pointer]);
             }
 

@@ -10,7 +10,8 @@ namespace AIModifier.Utilities
     public static class AssetManager
     {
         // Loaded assets
-        public static GameObject headPlatePrefab { get; private set; }
+        public static GameObject healthPlatePrefab { get; private set; }
+        public static GameObject selectedPlatePrefab { get; private set; }
         public static GameObject aiMenuPrefab { get; private set; }
         public static GameObject numpadPrefab { get; private set; }
         public static GameObject aiSelectorPrefab { get; private set; }
@@ -30,8 +31,10 @@ namespace AIModifier.Utilities
                     stream.CopyTo(memoryStream);
                     AssetBundle assetBundle = AssetBundle.LoadFromMemory(memoryStream.ToArray());
                     UnityEngine.Object[] data = assetBundle.LoadAllAssets();
-                    headPlatePrefab = Array.Find(data, element => element.name == "HeadPlate").Cast<GameObject>();
-                    headPlatePrefab.hideFlags = HideFlags.DontUnloadUnusedAsset;
+                    healthPlatePrefab = Array.Find(data, element => element.name == "HealthPlate").Cast<GameObject>();
+                    healthPlatePrefab.hideFlags = HideFlags.DontUnloadUnusedAsset;
+                    selectedPlatePrefab = Array.Find(data, element => element.name == "SelectedPlate").Cast<GameObject>();
+                    selectedPlatePrefab.hideFlags = HideFlags.DontUnloadUnusedAsset;
                     aiMenuPrefab = Array.Find(data, element => element.name == "AIMenu").Cast<GameObject>();
                     aiMenuPrefab.hideFlags = HideFlags.DontUnloadUnusedAsset;
                     numpadPrefab = Array.Find(data, element => element.name == "Numpad").Cast<GameObject>();

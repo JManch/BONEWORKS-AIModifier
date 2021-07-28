@@ -12,44 +12,52 @@ namespace AIModifier.UI
     {
         public AISelectorController(IntPtr ptr) : base(ptr) { }
 
-        private SLZ_LaserPointer laserPointer;
+        private GameObject laser;
+        private GameObject pointerTip;
         private Hand hand;
         private RaycastHit pointerHit;
-
         private AIBrain aiBrain;
+        
 
         void Awake()
         {
             hand = transform.parent.parent.GetComponent<Hand>();
-            GetSLZLaser();
+            laser = new GameObject("SelectorLaser");
         }
 
         void Start()
         {
-            transform.localPosition = Vector3.zero;
             transform.rotation = transform.parent.rotation;
-            laserPointer.gameObject.SetActive(true);
+
+            laser.transform.SetParent(transform);
+            laser.transform.rotation = transform.rotation;
+            laser.transform.localPosition = Vector3.zero;
+            if (hand.gameObject.name == "Hand (left)")
+            {
+                transform.localPosition = new Vector3(-0.1f, 0.05f, 0.1f);
+                laser.transform.localEulerAngles = new Vector3(350, 320, 0);
+            }
+            else
+            {
+                transform.localPosition = new Vector3(0.1f, 0.05f, 0.1f);
+                laser.transform.localEulerAngles = new Vector3(350, 40, 0);
+            }
+            InstantiatePointer();
         }
 
-        void Update()
+        void FixedUpdate()
         {
+            PerformHandRaycast();
+            pointerTip.transform.position = pointerHit.point;
+
             if (hand.controller.GetPrimaryInteractionButtonDown())
             {
-                PerformHandRaycast();
-
                 if(pointerHit.transform != null)
                 {
                     aiBrain = pointerHit.transform.root.gameObject.GetComponent<AIBrain>();
                     if (aiBrain != null)
                     {
-                        if (!AIModifier.AI.AIManager.selectedAI.ContainsKey(aiBrain.name))
-                        {
-                            AISelectorManager.OnAISelected(aiBrain);
-                        }
-                        else
-                        {
-                            AISelectorManager.OnAIDeselected(aiBrain);
-                        }
+                        AI.AIManager.ToggleSelectedAI(aiBrain);
                     }
                 }
             }
@@ -57,27 +65,16 @@ namespace AIModifier.UI
 
         private bool PerformHandRaycast()
         {
-            return Physics.Raycast(laserPointer.transform.position, laserPointer.transform.forward, out pointerHit, 100f);
+            return Physics.Raycast(laser.transform.position, laser.transform.forward, out pointerHit, 100f);
         }
 
-        private void GetSLZLaser()
+        private void InstantiatePointer()
         {
-            GameObject tempGun = CustomItems.SpawnFromPool("Rifle M16 Laser Foregrip", Vector3.zero, Quaternion.identity);
-            GameObject laser = tempGun.transform.FindChild("attachment_Lazer/offset/LaserPointer").gameObject;
-            laser.transform.SetParent(transform);
-            if (hand.gameObject.name == "Hand (left)")
-            {
-                laser.transform.localPosition = new Vector3(-0.04f, 0, -0.04f);
-                laser.transform.eulerAngles = new Vector3(356f, 322f, 349f);
-            }
-            else
-            {
-                laser.transform.localPosition = new Vector3(0.04f, 0, -0.04f);
-                laser.transform.eulerAngles = new Vector3(356f, 38f, 349f);
-            }
-
-            Destroy(tempGun);
-            laserPointer = laser.GetComponent<SLZ_LaserPointer>();
+            pointerTip = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            pointerTip.name = "PointerTip";
+            pointerTip.transform.SetParent(laser.transform);
+            pointerTip.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
+            pointerTip.GetComponent<SphereCollider>().enabled = false;
         }
     }
 }

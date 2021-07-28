@@ -90,6 +90,22 @@ namespace AIModifier.AI
 
         #endregion
 
+        #region Control AI Page
+        
+        public static void ToggleAISelector(string state)
+        {
+            if(state == "Active" && !AISelectorManager.selectorEnabled)
+            {
+                AISelectorManager.EnableAISelector();
+            }
+            else if(state == "Inactive" && AISelectorManager.selectorEnabled)
+            {
+                AISelectorManager.DisableAISelector();
+            }
+        }
+
+        #endregion
+
         #region Health Settings Page
 
         public static void UpdateLeftLegHealth(string leftLegHealth)
@@ -415,20 +431,5 @@ namespace AIModifier.AI
 
         #endregion
 
-        public static void FreezeSelectedAI()
-        {
-            foreach(AIBrain aiBrain in new List<AIBrain>(AIManager.selectedAI.Values))
-            {
-                if(aiBrain != null)
-                {
-                    aiBrain.behaviour.Freeze();
-                }
-            }
-        }
-
-        public static void UnfreezeSelectedAI()
-        {
-
-        }
     }
 }

@@ -6,53 +6,61 @@ namespace AIModifier.UI
 {
     public static class AISelectorManager
     {
-        private static GameObject aiSelector;
-        private static AISelectorController aiSelectorController;
+        private static AISelectorController aiSelectorControllerRight;
+        private static AISelectorController aiSelectorControllerLeft;
+
+        public static bool selectorEnabled { get; private set; }
 
         public static void EnableAISelector()
         {
-            if(aiSelector == null)
+            if (aiSelectorControllerLeft == null || aiSelectorControllerLeft == null)
             {
                 InitialiseSelector();
             }
 
-            aiSelector.SetActive(true);
+            if (MenuPointerManager.activePointerHand == MenuPointerManager.PointerHand.Right)
+            {
+                aiSelectorControllerRight.gameObject.SetActive(true);
+            }
+            else
+            {
+                aiSelectorControllerLeft.gameObject.SetActive(true);
+            }
+
+            selectorEnabled = true;
         }
 
         public static void DisableAISelector()
         {
-            aiSelector.SetActive(false);
-        }
-
-        public static void InitialiseSelector()
-        {
-            if(aiSelector == null)
+            if(aiSelectorControllerRight != null && aiSelectorControllerRight.gameObject != null)
             {
-                if (MenuPointerManager.activePointerHand == MenuPointerManager.PointerHand.Right && Utilities.AssetManager.rightHand != null)
-                {
-                    aiSelector = new GameObject("AIPointer");
-                    aiSelector.transform.SetParent(Utilities.AssetManager.rightHand.transform.FindChild("PalmCenter"));
-                    aiSelectorController = aiSelector.AddComponent<AISelectorController>();
-                }
-                else if (Utilities.AssetManager.leftHand != null)
-                {
-                    aiSelector = new GameObject("AIPointer");
-                    aiSelector.transform.SetParent(Utilities.AssetManager.leftHand.transform.FindChild("PalmCenter"));
-                    aiSelectorController = aiSelector.AddComponent<AISelectorController>();
-                }
+                aiSelectorControllerRight.gameObject.SetActive(false);
             }
+
+            if(aiSelectorControllerLeft != null && aiSelectorControllerLeft.gameObject != null)
+            {
+                aiSelectorControllerLeft.gameObject.SetActive(false);
+            }
+            selectorEnabled = false;
         }
 
-        public static void OnAISelected(AIBrain aiBrain)
+        private static void InitialiseSelector()
         {
-            AIModifier.AI.AIManager.selectedAI.Add(aiBrain.name, aiBrain);
-            aiBrain.GetComponent<AIHeadPlateController>().EnableSelectedIcon();
-        }
-
-        public static void OnAIDeselected(AIBrain aiBrain)
-        {
-            AIModifier.AI.AIManager.selectedAI.Remove(aiBrain.name);
-            aiBrain.GetComponent<AIHeadPlateController>().DisableSelectedIcon();
+            if (Utilities.AssetManager.rightHand != null)
+            {
+                GameObject aiSelector = new GameObject("AIPointer");
+                aiSelector.transform.SetParent(Utilities.AssetManager.rightHand.transform.FindChild("PalmCenter"));
+                aiSelectorControllerRight = aiSelector.AddComponent<AISelectorController>();
+                aiSelector.SetActive(false);
+            }
+            
+            if (Utilities.AssetManager.leftHand != null)
+            {
+                GameObject aiSelector = new GameObject("AIPointer");
+                aiSelector.transform.SetParent(Utilities.AssetManager.leftHand.transform.FindChild("PalmCenter"));
+                aiSelectorControllerLeft = aiSelector.AddComponent<AISelectorController>();
+                aiSelector.SetActive(false);
+            }
         }
     }
 }

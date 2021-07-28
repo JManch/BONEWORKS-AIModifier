@@ -70,7 +70,10 @@ namespace AIModifier.UI
         public override void OnPageClose()
         {
             textBox.SetValue(value);
-            Keyboard.numpad.CloseMenu();
+            if(Keyboard.numpad != null && Keyboard.numpad.isOpen)
+            {
+                Keyboard.numpad.CloseMenu();
+            }
         }
 
         // Only update the "actual" value once the user presses Enter 

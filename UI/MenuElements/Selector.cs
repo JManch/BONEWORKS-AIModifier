@@ -13,7 +13,7 @@ namespace AIModifier.UI
         private SelectorUI selectorUI;
 
         // Passed selector UI prefab must be built
-        public Selector(GameObject gameObject, SelectorUI selectorUI, string selectorText, TextProperties textProperties, List<string> options, Action<string> onValueChanged = null) : base(gameObject)
+        public Selector(GameObject gameObject, SelectorUI selectorUI, string selectorText, TextProperties textProperties, string[] options, Action<string> onValueChanged = null) : base(gameObject)
         {
             new TextDisplay(gameObject.transform.GetChild(0).gameObject, selectorText, textProperties);
             Button selectorButton = new Button(gameObject.transform.FindChild("Select").gameObject, "Edit", textProperties, Button.ButtonHighlightType.Color, OpenSelector);

@@ -1,5 +1,6 @@
 ﻿using StressLevelZero.Zones;
 using StressLevelZero.Props.Weapons;
+using PuppetMasta;
 using HarmonyLib;
 using ModThatIsNotMod;
 
