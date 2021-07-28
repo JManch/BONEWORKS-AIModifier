@@ -8,6 +8,7 @@ namespace AIModifier.UI
     public class MenuPage
     {
         public GameObject gameObject { get; private set; }
+        public Menu menu { get; set; }
 
         public Dictionary<string, MenuElement> elements { get; private set; }
 
@@ -19,7 +20,7 @@ namespace AIModifier.UI
 
         public void AddElement(MenuElement menuElement)
         {
-            elements.Add(menuElement.gameObject.name, menuElement);
+            elements.Add(menuElement.gameObject.name , menuElement);
         }
 
         public MenuElement GetElement(string elementName)

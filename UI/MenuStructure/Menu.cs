@@ -1,6 +1,7 @@
 ﻿using MelonLoader;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 namespace AIModifier.UI
 {
@@ -9,23 +10,28 @@ namespace AIModifier.UI
         public MenuPointerController menuPointer { get; set; }
         public GameObject gameObject { get; private set; }
         public bool isOpen { get; private set; }
+        public AudioSource audioSource { get; private set; }
         private Dictionary<string, MenuPage> pages;
-        private MenuPage activePage;
+        protected MenuPage activePage;
 
-        public Menu(GameObject gameObject, MenuPage startPage)
+        public Menu(GameObject gameObject)
         {
             this.gameObject = gameObject;
+            audioSource = gameObject.GetComponent<AudioSource>();
             pages = new Dictionary<string, MenuPage>();
-            pages.Add(startPage.gameObject.name, startPage);
-            startPage.gameObject.SetActive(true);
-            isOpen = true;
-            activePage = startPage;
         }
 
         public void AddPage(MenuPage page)
         {
             page.gameObject.SetActive(false);
             pages.Add(page.gameObject.name, page);
+            page.menu = this;
+            if (activePage == null)
+            {
+                activePage = page;
+                activePage.gameObject.SetActive(true);
+                isOpen = true;
+            }
         }
 
         public MenuPage GetPage(string pageName)
@@ -41,13 +47,13 @@ namespace AIModifier.UI
         public void SwitchPage(string page)
         {
             // Call On Trigger Exit For All Elements on the current page
-            foreach(MenuElement menuElement in new List<MenuElement>(GetPage(activePage.gameObject.name).elements.Values))
+            foreach(MenuElement menuElement in GetPage(activePage.gameObject.name).elements.Values.ToList())
             {
                 menuElement.OnPageClose();
             }
             activePage.gameObject.SetActive(false);
             activePage = pages[page];
-            foreach (MenuElement menuElement in new List<MenuElement>(activePage.elements.Values))
+            foreach (MenuElement menuElement in activePage.elements.Values.ToList())
             {
                 menuElement.OnPageOpen();
             }

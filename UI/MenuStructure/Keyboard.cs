@@ -8,7 +8,7 @@ namespace AIModifier.UI
 
         private InputField activeInputField;
 
-        public Keyboard(GameObject gameObject, MenuPage page) : base(gameObject, page)
+        public Keyboard(GameObject gameObject) : base(gameObject)
         {
             gameObject.AddComponent<SmoothPlayerFollow>();
         }
@@ -66,8 +66,8 @@ namespace AIModifier.UI
             GameObject numpadPrefab = GameObject.Instantiate(Utilities.AssetManager.numpadPrefab, Utilities.AssetManager.playerPelvis.position + 0.8f * Utilities.AssetManager.playerPelvis.transform.forward, Quaternion.identity);
 
             // Define new menu and keyboard
+            numpad = new Keyboard(numpadPrefab);
             MenuPage rootPage = new MenuPage(numpadPrefab.transform.FindChild("RootPage").gameObject);
-            numpad = new Keyboard(numpadPrefab, rootPage);
 
             // Configure number page
             Transform rootPageTransform = numpadPrefab.transform.FindChild("RootPage");
@@ -75,21 +75,22 @@ namespace AIModifier.UI
             TextProperties textProperties = new TextProperties(4, Color.white);
 
             // Digits
-            rootPage.AddElement(new Button(rootPageTransform.FindChild("0").gameObject, "0", textProperties, Button.ButtonHighlightType.Color, null, null, null, delegate (string s) { numpad.OnKeyPressed(s); }));
-            rootPage.AddElement(new Button(rootPageTransform.FindChild("1").gameObject, "1", textProperties, Button.ButtonHighlightType.Color, null, null, null, delegate (string s) { numpad.OnKeyPressed(s); }));
-            rootPage.AddElement(new Button(rootPageTransform.FindChild("2").gameObject, "2", textProperties, Button.ButtonHighlightType.Color, null, null, null, delegate (string s) { numpad.OnKeyPressed(s); }));
-            rootPage.AddElement(new Button(rootPageTransform.FindChild("3").gameObject, "3", textProperties, Button.ButtonHighlightType.Color, null, null, null, delegate (string s) { numpad.OnKeyPressed(s); }));
-            rootPage.AddElement(new Button(rootPageTransform.FindChild("4").gameObject, "4", textProperties, Button.ButtonHighlightType.Color, null, null, null, delegate (string s) { numpad.OnKeyPressed(s); }));
-            rootPage.AddElement(new Button(rootPageTransform.FindChild("5").gameObject, "5", textProperties, Button.ButtonHighlightType.Color, null, null, null, delegate (string s) { numpad.OnKeyPressed(s); }));
-            rootPage.AddElement(new Button(rootPageTransform.FindChild("6").gameObject, "6", textProperties, Button.ButtonHighlightType.Color, null, null, null, delegate (string s) { numpad.OnKeyPressed(s); }));
-            rootPage.AddElement(new Button(rootPageTransform.FindChild("7").gameObject, "7", textProperties, Button.ButtonHighlightType.Color, null, null, null, delegate (string s) { numpad.OnKeyPressed(s); }));
-            rootPage.AddElement(new Button(rootPageTransform.FindChild("8").gameObject, "8", textProperties, Button.ButtonHighlightType.Color, null, null, null, delegate (string s) { numpad.OnKeyPressed(s); }));
-            rootPage.AddElement(new Button(rootPageTransform.FindChild("9").gameObject, "9", textProperties, Button.ButtonHighlightType.Color, null, null, null, delegate (string s) { numpad.OnKeyPressed(s); }));
-            rootPage.AddElement(new Button(rootPageTransform.FindChild(".").gameObject, ".", textProperties, Button.ButtonHighlightType.Color, null, null, null, delegate (string s) { numpad.OnKeyPressed(s); }));
+            rootPage.AddElement(new Button(rootPage, rootPageTransform.FindChild("0").gameObject, "0", textProperties, Button.ButtonHighlightType.Color, null, null, null, delegate (string s) { numpad.OnKeyPressed(s); }));
+            rootPage.AddElement(new Button(rootPage, rootPageTransform.FindChild("1").gameObject, "1", textProperties, Button.ButtonHighlightType.Color, null, null, null, delegate (string s) { numpad.OnKeyPressed(s); }));
+            rootPage.AddElement(new Button(rootPage, rootPageTransform.FindChild("2").gameObject, "2", textProperties, Button.ButtonHighlightType.Color, null, null, null, delegate (string s) { numpad.OnKeyPressed(s); }));
+            rootPage.AddElement(new Button(rootPage, rootPageTransform.FindChild("3").gameObject, "3", textProperties, Button.ButtonHighlightType.Color, null, null, null, delegate (string s) { numpad.OnKeyPressed(s); }));
+            rootPage.AddElement(new Button(rootPage, rootPageTransform.FindChild("4").gameObject, "4", textProperties, Button.ButtonHighlightType.Color, null, null, null, delegate (string s) { numpad.OnKeyPressed(s); }));
+            rootPage.AddElement(new Button(rootPage, rootPageTransform.FindChild("5").gameObject, "5", textProperties, Button.ButtonHighlightType.Color, null, null, null, delegate (string s) { numpad.OnKeyPressed(s); }));
+            rootPage.AddElement(new Button(rootPage, rootPageTransform.FindChild("6").gameObject, "6", textProperties, Button.ButtonHighlightType.Color, null, null, null, delegate (string s) { numpad.OnKeyPressed(s); }));
+            rootPage.AddElement(new Button(rootPage, rootPageTransform.FindChild("7").gameObject, "7", textProperties, Button.ButtonHighlightType.Color, null, null, null, delegate (string s) { numpad.OnKeyPressed(s); }));
+            rootPage.AddElement(new Button(rootPage, rootPageTransform.FindChild("8").gameObject, "8", textProperties, Button.ButtonHighlightType.Color, null, null, null, delegate (string s) { numpad.OnKeyPressed(s); }));
+            rootPage.AddElement(new Button(rootPage, rootPageTransform.FindChild("9").gameObject, "9", textProperties, Button.ButtonHighlightType.Color, null, null, null, delegate (string s) { numpad.OnKeyPressed(s); }));
+            rootPage.AddElement(new Button(rootPage, rootPageTransform.FindChild(".").gameObject, ".", textProperties, Button.ButtonHighlightType.Color, null, null, null, delegate (string s) { numpad.OnKeyPressed(s); }));
 
             // Buttons
-            rootPage.AddElement(new Button(rootPageTransform.FindChild("Backspace").gameObject, "<-", textProperties, Button.ButtonHighlightType.Color, null, null, null, delegate (string s) { numpad.OnKeyPressed(s); }));
-            rootPage.AddElement(new Button(rootPageTransform.FindChild("Enter").gameObject, "Enter", new TextProperties(3, Color.white), Button.ButtonHighlightType.Color, null, null, null, delegate (string s) { numpad.OnKeyPressed(s); }));
+            rootPage.AddElement(new Button(rootPage, rootPageTransform.FindChild("Backspace").gameObject, "<-", textProperties, Button.ButtonHighlightType.Color, null, null, null, delegate (string s) { numpad.OnKeyPressed(s); }));
+            rootPage.AddElement(new Button(rootPage, rootPageTransform.FindChild("Enter").gameObject, "Enter", new TextProperties(3, Color.white), Button.ButtonHighlightType.Color, null, null, null, delegate (string s) { numpad.OnKeyPressed(s); }));
+            numpad.AddPage(rootPage);
         }
     }
 }

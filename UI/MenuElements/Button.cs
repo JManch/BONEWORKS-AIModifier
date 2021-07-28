@@ -26,9 +26,9 @@ namespace AIModifier.UI
         private TextDisplay textDisplay; 
         private ButtonHighlightType buttonHighlightType;
 
-        public Button(GameObject gameObject, string buttonText, TextProperties textProperties, ButtonHighlightType buttonHighlightType, Action onButtonDown = null, Action onButton = null, Action onButtonUp = null, Action<string> onButtonDownParameter = null, Action<string> onButtonParameter = null) : base(gameObject)
+        public Button(MenuPage menuPage, GameObject gameObject, string buttonText, TextProperties textProperties, ButtonHighlightType buttonHighlightType, Action onButtonDown = null, Action onButton = null, Action onButtonUp = null, Action<string> onButtonDownParameter = null, Action<string> onButtonParameter = null) : base(menuPage, gameObject)
         {
-            textDisplay = new TextDisplay(gameObject.transform.GetChild(0).gameObject, buttonText, textProperties);
+            textDisplay = new TextDisplay(menuPage, gameObject.transform.GetChild(0).gameObject, buttonText, textProperties);
             buttonController = gameObject.AddComponent<ButtonController>();
             buttonController.button = this;
             image = gameObject.GetComponent<Image>();
@@ -87,6 +87,8 @@ namespace AIModifier.UI
 
         public void OnButtonDown()
         {
+            PlayClickSound();
+
             if (onButtonDown != null)
             {
                 onButtonDown();
@@ -137,6 +139,23 @@ namespace AIModifier.UI
         public void SetColor(Color color)
         {
             image.color = color;
+        }
+
+        private void PlayClickSound()
+        {
+            try
+            {
+                menuPage.menu.audioSource.Play();
+            }
+            catch (Exception e)
+            {
+                MelonLogger.Msg("Play sound failed on object " + gameObject.name);
+                if(menuPage == null)
+                {
+                    MelonLogger.Msg("Menu page is null");
+                }
+            }
+            
         }
     }
 }

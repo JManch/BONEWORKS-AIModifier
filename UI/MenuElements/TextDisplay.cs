@@ -8,7 +8,7 @@ namespace AIModifier.UI
         private string value;
         public TextMeshProUGUI text { get; private set; }
 
-        public TextDisplay(GameObject gameObject, string text, TextProperties textProperties) : base(gameObject)
+        public TextDisplay(MenuPage menuPage, GameObject gameObject, string text, TextProperties textProperties) : base(menuPage, gameObject)
         {
             Vector2 sizeDelta = gameObject.GetComponent<RectTransform>().sizeDelta;
             this.text = gameObject.AddComponent<TextMeshProUGUI>();

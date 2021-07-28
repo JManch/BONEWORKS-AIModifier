@@ -7,13 +7,11 @@ namespace AIModifier.UI
     public class SelectorUI : Menu
     {
         public Selector selector { get; set; }
-        private MenuPage rootPage;
         private Color selectedColor;
 
-        public SelectorUI(GameObject gameObject, MenuPage page) : base(gameObject, page)
+        public SelectorUI(GameObject gameObject) : base(gameObject)
         {
             gameObject.AddComponent<SmoothPlayerFollow>();
-            rootPage = page;
             this.selector = selector;
             selectedColor = Color.green;
         }
@@ -22,11 +20,11 @@ namespace AIModifier.UI
         {
             if (selector.selectorOptions[element])
             {
-                ((Button)(rootPage.GetElement(element))).SetColor(selectedColor);
+                ((Button)(activePage.GetElement(element))).SetColor(selectedColor);
             }
             else
             {
-                ((Button)(rootPage.GetElement(element))).SetColor(((Button)(rootPage.GetElement(element))).defaultColor);
+                ((Button)(activePage.GetElement(element))).SetColor(((Button)(activePage.GetElement(element))).defaultColor);
             }
         }
 
@@ -44,11 +42,11 @@ namespace AIModifier.UI
                 // Highlight the button accordingly 
                 if (selector.selectorOptions[selectorKey])
                 {
-                    ((Button)(rootPage.GetElement(selectorKey))).SetColor(selectedColor);
+                    ((Button)(activePage.GetElement(selectorKey))).SetColor(selectedColor);
                 }
                 else
                 {
-                    ((Button)(rootPage.GetElement(selectorKey))).SetColor(((Button)(rootPage.GetElement(selectorKey))).defaultColor);
+                    ((Button)(activePage.GetElement(selectorKey))).SetColor(((Button)(activePage.GetElement(selectorKey))).defaultColor);
                 }
             }
         }

@@ -7,10 +7,12 @@ namespace AIModifier.UI
     public abstract class MenuElement
     {
         public GameObject gameObject { get; private set;}
+        public MenuPage menuPage { get; private set; }
 
-        public MenuElement(GameObject gameObject) 
+        public MenuElement(MenuPage menuPage, GameObject gameObject) 
         {
             this.gameObject = gameObject;
+            this.menuPage = menuPage;
         }
 
         public abstract object GetValue();

@@ -14,11 +14,11 @@ namespace AIModifier.UI
         private float maxValue;
         private float minValue;
 
-        public InputField(GameObject gameObject, string inputFieldText, string defaultText, TextProperties textProperties, float minValue = default, float maxValue = default, Action<string> onValueChanged = null) : base(gameObject)
+        public InputField(MenuPage menuPage, GameObject gameObject, string inputFieldText, string defaultText, TextProperties textProperties, float minValue = default, float maxValue = default, Action<string> onValueChanged = null) : base(menuPage, gameObject)
         {
-            new TextDisplay(gameObject.transform.GetChild(0).gameObject, inputFieldText, textProperties);
-            textBox = new TextDisplay(gameObject.transform.FindChild("InputBox").gameObject, defaultText, textProperties);
-            new Button(gameObject.transform.FindChild("Select").gameObject, "", textProperties, Button.ButtonHighlightType.Color, OnSelect);
+            new TextDisplay(menuPage, gameObject.transform.GetChild(0).gameObject, inputFieldText, textProperties);
+            textBox = new TextDisplay(menuPage, gameObject.transform.FindChild("InputBox").gameObject, defaultText, textProperties);
+            new Button(menuPage, gameObject.transform.FindChild("Select").gameObject, "", textProperties, Button.ButtonHighlightType.Color, OnSelect);
             this.maxValue = maxValue;
             this.minValue = minValue;
             if(maxValue == default && minValue == default)
