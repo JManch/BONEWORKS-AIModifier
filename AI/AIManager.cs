@@ -17,7 +17,9 @@ namespace AIModifier.AI
     public static class AIManager
     {
         private static Dictionary<string, AIBrain> selectedAI = new Dictionary<string, AIBrain>();
+        private static Dictionary<string, AIBrain> selectedTargetAI = new Dictionary<string, AIBrain>();
 
+        #region Selected AI stuff
         public static void ClearSelectedAI()
         {
             foreach(AIBrain aiBrain in selectedAI.Values.ToList())
@@ -29,12 +31,23 @@ namespace AIModifier.AI
             }
             selectedAI.Clear();
         }
+        public static void ClearSelectedTargetAI()
+        {
+            foreach (AIBrain aiBrain in selectedTargetAI.Values.ToList())
+            {
+                if (aiBrain != null)
+                {
+                    aiBrain.GetComponent<AISelectedPlateController>().DisableSelectedIcon();
+                }
+            }
+            selectedTargetAI.Clear();
+        }
         public static void ToggleSelectedAI(AIBrain aiBrain)
         {
             if(!selectedAI.ContainsKey(aiBrain.name))
             {
                 selectedAI.Add(aiBrain.name, aiBrain);
-                aiBrain.GetComponent<AISelectedPlateController>().EnableSelectedIcon();
+                aiBrain.GetComponent<AISelectedPlateController>().EnableSelectedIcon(AISelectedPlateController.SelectedType.Standard);
             }
             else
             {
@@ -45,6 +58,29 @@ namespace AIModifier.AI
             // Update UI
             AIMenuManager.aiMenu.GetPage("ControlAIPage").GetElement("ControlAIButton").SetValue("Control " + selectedAI.Count + " Selected AI");
         }
+        public static void ToggleSelectedTargetAI(AIBrain aiBrain)
+        {
+            if (!selectedTargetAI.ContainsKey(aiBrain.name))
+            {
+                selectedTargetAI.Add(aiBrain.name, aiBrain);
+                aiBrain.GetComponent<AISelectedPlateController>().EnableSelectedIcon(AISelectedPlateController.SelectedType.Target);
+            }
+            else
+            {
+                selectedTargetAI.Remove(aiBrain.name);
+                aiBrain.GetComponent<AISelectedPlateController>().DisableSelectedIcon();
+            }
+        }
+        public static List<AIBrain> GetSelectedAI()
+        {
+            return selectedAI.Values.ToList();
+        }
+        public static List<AIBrain> GetSelectedTargetAI()
+        {
+            return selectedTargetAI.Values.ToList();
+        }
+
+        #endregion
 
         #region Utility gun AI
         public static void OnFireSpawnGun(SpawnGun __instance)

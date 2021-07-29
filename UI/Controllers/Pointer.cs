@@ -8,21 +8,21 @@ using AIModifier.AI;
 
 namespace AIModifier.UI
 {
-    public class AISelectorController : MonoBehaviour
+    public abstract class Pointer : MonoBehaviour
     {
-        public AISelectorController(IntPtr ptr) : base(ptr) { }
+        public Pointer(IntPtr ptr) : base(ptr) { }
 
         private GameObject laser;
         private GameObject pointerTip;
         private Hand hand;
         private RaycastHit pointerHit;
-        private AIBrain aiBrain;
-        
 
-        void Awake()
+        #region Pointer functionality
+
+        protected virtual void Awake()
         {
             hand = transform.parent.parent.GetComponent<Hand>();
-            laser = new GameObject("SelectorLaser");
+            laser = new GameObject("Laser");
         }
 
         void Start()
@@ -52,14 +52,7 @@ namespace AIModifier.UI
 
             if (hand.controller.GetPrimaryInteractionButtonDown())
             {
-                if(pointerHit.transform != null)
-                {
-                    aiBrain = pointerHit.transform.root.gameObject.GetComponent<AIBrain>();
-                    if (aiBrain != null)
-                    {
-                        AI.AIManager.ToggleSelectedAI(aiBrain);
-                    }
-                }
+                OnPointerClick(pointerHit);
             }
         }
 
@@ -76,5 +69,9 @@ namespace AIModifier.UI
             pointerTip.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
             pointerTip.GetComponent<SphereCollider>().enabled = false;
         }
+
+        protected abstract void OnPointerClick(RaycastHit pointerHit);
+
+        #endregion
     }
 }

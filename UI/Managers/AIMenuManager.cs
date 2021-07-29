@@ -13,6 +13,10 @@ namespace AIModifier.UI
         public static Menu aiMenu;
         public static Color uiHighlightColor = new Color(0.3962264f, 0.3962264f, 0.3962264f, 0.7490196f);
         private static SelectorUI aiSelectorUI;
+        public static AISelectedPlateController.SelectedType aiSelectorType;
+
+        // Pointers
+        public static PointerManager<AISelector> aiSelectorPointer;
 
         public static void OpenAIMenu()
         {
@@ -64,8 +68,15 @@ namespace AIModifier.UI
             }
         }
 
+        private static void BuildAIPointers()
+        {
+            aiSelectorPointer = new PointerManager<AISelector>();
+        }
+
         public static void BuildAIMenu(GameObject menuPrefab)
         {
+            BuildAIPointers();
+
             Camera mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
             mainCamera.cullingMask ^= 1 << 30;
             mainCamera.cullingMask ^= 1 << 31;
@@ -99,6 +110,8 @@ namespace AIModifier.UI
             MenuPage combatSettingsPage = new MenuPage(menuPrefab.transform.FindChild("CombatSettingsPage").gameObject);
             MenuPage omniWheelSettingsPage = new MenuPage(menuPrefab.transform.FindChild("OmniWheelSettingsPage").gameObject);
             MenuPage otherSettingsPage = new MenuPage(menuPrefab.transform.FindChild("OtherSettingsPage").gameObject);
+            MenuPage controlAISettingsPage = new MenuPage(menuPrefab.transform.FindChild("ControlAISettingsPage").gameObject);
+            MenuPage agroTargetsPage = new MenuPage(menuPrefab.transform.FindChild("AgroTargetsPage").gameObject);
 
             #endregion
             #region Configure Root Page
@@ -125,10 +138,10 @@ namespace AIModifier.UI
 
             Transform controlAIPageTransform = menuPrefab.transform.FindChild("ControlAIPage");
             controlAIPage.AddElement(new TextDisplay(controlAIPage, controlAIPageTransform.FindChild("Title").gameObject, "CONTROL AI", titleTextProperties));
-            controlAIPage.AddElement(new GenericSelector<string>(controlAIPage, controlAIPageTransform.FindChild("ToggleSelectorElement").gameObject, "Toggle AI Selector", elementTextProperties, activeStates, delegate (string s){ AIMenuFunctions.ToggleAISelector(s); }));
+            controlAIPage.AddElement(new GenericSelector<string>(controlAIPage, controlAIPageTransform.FindChild("ToggleSelectorElement").gameObject, "Toggle AI Selector", elementTextProperties, activeStates, delegate (string s){ AIMenuFunctions.ToggleControlAISelector(s); }));
             controlAIPage.AddElement(new Button(controlAIPage, controlAIPageTransform.FindChild("ClearSelectedButton").gameObject, "Clear Selected", buttonTextProperties, Button.ButtonHighlightType.Underline, delegate { AI.AIManager.ClearSelectedAI(); }));
-            controlAIPage.AddElement(new Button(controlAIPage, controlAIPageTransform.FindChild("ControlAIButton").gameObject, "Control 0 Selected AI", buttonTextProperties, Button.ButtonHighlightType.Underline, delegate { AISelectorManager.DisableAISelector(); aiMenu.SwitchPage("ControlAIPage"); }));
-            controlAIPage.AddElement(new Button(controlAIPage, controlAIPageTransform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { AISelectorManager.DisableAISelector(); aiMenu.SwitchPage("RootPage"); }));
+            controlAIPage.AddElement(new Button(controlAIPage, controlAIPageTransform.FindChild("ControlAIButton").gameObject, "Control 0 Selected AI", buttonTextProperties, Button.ButtonHighlightType.Underline, delegate { aiSelectorPointer.EnablePointer(); aiMenu.SwitchPage("ControlAISettingsPage"); }));
+            controlAIPage.AddElement(new Button(controlAIPage, controlAIPageTransform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiSelectorPointer.DisablePointer(); aiMenu.SwitchPage("RootPage"); }));
 
 
             #endregion
@@ -265,7 +278,26 @@ namespace AIModifier.UI
             otherSettingsPage.AddElement(new Button(otherSettingsPage, otherSettingsPageTranform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("AdditionalSettingsPage2"); }));
 
             #endregion
-            
+            #region Control AI Settings Page
+            Transform controlAISettingsPageTransform = menuPrefab.transform.FindChild("ControlAISettingsPage");
+            controlAISettingsPage.AddElement(new TextDisplay(controlAISettingsPage, controlAISettingsPageTransform.FindChild("Title").gameObject, "CONTROL AI SETTINGS", new TextProperties(10, Color.white, false, 15)));
+            controlAISettingsPage.AddElement(new Button(controlAISettingsPage, controlAISettingsPageTransform.FindChild("AgroTargetsButton").gameObject, "Set Agro Targets", buttonTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("AgroTargetsPage"); }));
+            controlAISettingsPage.AddElement(new Button(controlAISettingsPage, controlAISettingsPageTransform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("ControlAIPage"); }));
+
+            #endregion
+
+            #region Agro Targets Page
+
+            Transform agroTargetsPageTransform = menuPrefab.transform.FindChild("AgroTargetsPage");
+            agroTargetsPage.AddElement(new TextDisplay(agroTargetsPage, agroTargetsPageTransform.FindChild("Title").gameObject, "AGRO TARGETS", titleTextProperties));
+            agroTargetsPage.AddElement(new GenericSelector<string>(agroTargetsPage, agroTargetsPageTransform.FindChild("ToggleSelectorElement").gameObject, "Toggle Target Selector", new TextProperties(7, Color.white), activeStates, delegate (string s) { AIMenuFunctions.ToggleAgroTargetsSelector(s); }));
+            agroTargetsPage.AddElement(new Button(agroTargetsPage, agroTargetsPageTransform.FindChild("ClearSelectedButton").gameObject, "Clear Selected Targets", buttonTextProperties, Button.ButtonHighlightType.Underline, delegate { AI.AIManager.ClearSelectedTargetAI(); }));
+            agroTargetsPage.AddElement(new Button(agroTargetsPage, agroTargetsPageTransform.FindChild("StartAgroButton").gameObject, "Start Agro", buttonTextProperties, Button.ButtonHighlightType.Underline, delegate { AIMenuFunctions.AgroTargets(); }));
+            agroTargetsPage.AddElement(new Button(agroTargetsPage, agroTargetsPageTransform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiSelectorPointer.DisablePointer(); aiMenu.SwitchPage("ControlAISettingsPage"); }));
+
+
+            #endregion
+
             // Add the pages to the menu
             aiMenu.AddPage(rootPage);
             aiMenu.AddPage(configureAIPage);
@@ -281,6 +313,8 @@ namespace AIModifier.UI
             aiMenu.AddPage(combatSettingsPage);
             aiMenu.AddPage(omniWheelSettingsPage);
             aiMenu.AddPage(otherSettingsPage);
+            aiMenu.AddPage(controlAISettingsPage);
+            aiMenu.AddPage(agroTargetsPage);
         }
     }
 }

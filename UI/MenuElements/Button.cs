@@ -143,19 +143,7 @@ namespace AIModifier.UI
 
         private void PlayClickSound()
         {
-            try
-            {
-                menuPage.menu.audioSource.Play();
-            }
-            catch (Exception e)
-            {
-                MelonLogger.Msg("Play sound failed on object " + gameObject.name);
-                if(menuPage == null)
-                {
-                    MelonLogger.Msg("Menu page is null");
-                }
-            }
-            
+            menuPage.menu.audioSource.Play();
         }
     }
 }

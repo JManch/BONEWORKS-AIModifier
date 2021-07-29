@@ -72,11 +72,6 @@ namespace AIModifier
                 */
             }
 
-            if(Input.GetKeyDown(KeyCode.F))
-            {
-                AISelectorManager.EnableAISelector();
-            }
-
             
         }
     }

@@ -1,17 +1,27 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.UI;
 using AIModifier.Utilities;
 
 namespace AIModifier.UI
 {
-    class AISelectedPlateController : AIPlateController
+    public class AISelectedPlateController : AIPlateController
     {
         public AISelectedPlateController(IntPtr ptr) : base(ptr) { }
 
         private GameObject selectedPlate;
+        private Image plateImage;
+        private Color standardColor;
+        private Color targetColor = Color.red;
 
         private Transform aiHead;
         private float headPlateOffset;
+
+        public enum SelectedType 
+        {
+            Standard,
+            Target
+        }
 
         protected override void Awake()
         {
@@ -19,6 +29,8 @@ namespace AIModifier.UI
 
             selectedPlate = GameObject.Instantiate(AssetManager.selectedPlatePrefab);
             selectedPlate.transform.SetParent(transform);
+            plateImage = selectedPlate.transform.FindChild("Selected").GetComponent<Image>();
+            standardColor = plateImage.color;
 
             aiHead = transform.FindChild(aiData.headPlateTransformChildPath);
             headPlateOffset = aiData.headPlateHeightOffset;
@@ -37,8 +49,17 @@ namespace AIModifier.UI
             }
         }
 
-        public void EnableSelectedIcon()
+        public void EnableSelectedIcon(SelectedType selectedType)
         {
+            if(selectedType == SelectedType.Standard)
+            {
+                plateImage.color = standardColor;
+            }
+            else
+            {
+                plateImage.color = targetColor;
+            }
+
             selectedPlate.SetActive(true);
         }
         public void DisableSelectedIcon()

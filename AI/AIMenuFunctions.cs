@@ -1,8 +1,10 @@
 ﻿using AIModifier.UI;
 using System.Globalization;
+using System;
 using System.Collections.Generic;
 using StressLevelZero.AI;
-using MelonLoader;
+using PuppetMasta;
+using UnityEngine;
 
 namespace AIModifier.AI
 {
@@ -91,16 +93,36 @@ namespace AIModifier.AI
         #endregion
 
         #region Control AI Page
-        
-        public static void ToggleAISelector(string state)
+
+        public static void ToggleControlAISelector(string state)
         {
-            if(state == "Active" && !AISelectorManager.selectorEnabled)
+            AIMenuManager.aiSelectorType = AISelectedPlateController.SelectedType.Standard;
+
+            if(state == "Active" && !AIMenuManager.aiSelectorPointer.pointerEnabled)
             {
-                AISelectorManager.EnableAISelector();
+                AIMenuManager.aiSelectorPointer.EnablePointer();
             }
-            else if(state == "Inactive" && AISelectorManager.selectorEnabled)
+            else if(state == "Inactive" && AIMenuManager.aiSelectorPointer.pointerEnabled)
             {
-                AISelectorManager.DisableAISelector();
+                AIMenuManager.aiSelectorPointer.DisablePointer();
+            }
+        }
+
+        #endregion
+
+        #region Agro Targets Page
+
+        public static void ToggleAgroTargetsSelector(string state)
+        {
+            AIMenuManager.aiSelectorType = AISelectedPlateController.SelectedType.Target;
+
+            if (state == "Active" && !AIMenuManager.aiSelectorPointer.pointerEnabled)
+            {
+                AIMenuManager.aiSelectorPointer.EnablePointer();
+            }
+            else if (state == "Inactive" && AIMenuManager.aiSelectorPointer.pointerEnabled)
+            {
+                AIMenuManager.aiSelectorPointer.DisablePointer();
             }
         }
 
@@ -431,5 +453,66 @@ namespace AIModifier.AI
 
         #endregion
 
+        #region Control AI functions
+
+        public static void SwitchMentalState(string mentalState)
+        {
+            foreach(AIBrain aiBrain in AIManager.GetSelectedAI())
+            {
+                if(aiBrain != null)
+                {
+                    aiBrain.behaviour.SwitchMentalState((BehaviourBaseNav.MentalState)Enum.Parse(typeof(BehaviourBaseNav.MentalState), mentalState));
+                }
+            }
+        }
+
+        public static void AgroTargets()
+        {
+            List<AIBrain> selectedAI = AIManager.GetSelectedAI();
+
+            // Fill this list
+            List<AIBrain> targetAI = AIManager.GetSelectedTargetAI();
+            
+            System.Random rnd = new System.Random();
+
+            for (int i = 0; i < selectedAI.Count; i++)
+            {
+                // If an AI has been assigned to attack every other AI then randomnly assign the rest
+                if(i > targetAI.Count - 1 && targetAI.Count != 0)
+                {
+                    selectedAI[i].behaviour.SetAgro(targetAI[rnd.Next(0, targetAI.Count)].gameObject.GetComponent<Arena_EnemyReference>().triggerRefProxy);
+                }
+                else
+                {
+                    selectedAI[i].behaviour.SetAgro(targetAI[i].gameObject.GetComponent<Arena_EnemyReference>().triggerRefProxy);
+                }
+            }
+
+            for (int i = 0; i < targetAI.Count; i++)
+            {
+                // If an AI has been assigned to attack every other AI then randomnly assign the rest
+                if (i > selectedAI.Count - 1 && selectedAI.Count != 0)
+                {
+                    targetAI[i].behaviour.SetAgro(selectedAI[rnd.Next(0, selectedAI.Count)].gameObject.GetComponent<Arena_EnemyReference>().triggerRefProxy);
+                }
+                else
+                {
+                    targetAI[i].behaviour.SetAgro(selectedAI[i].gameObject.GetComponent<Arena_EnemyReference>().triggerRefProxy);
+                }
+            }
+        }
+
+        public static void WalkToPoint(Vector3 point)
+        {
+            foreach (AIBrain aiBrain in AIManager.GetSelectedAI())
+            {
+                if (aiBrain != null)
+                {
+                    aiBrain.behaviour.SetPath(point);
+                }
+            }
+        }
+
+        #endregion
     }
 }

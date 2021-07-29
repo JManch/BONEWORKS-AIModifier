@@ -7,7 +7,7 @@ using MelonLoader;
 
 namespace AIModifier.UI
 {
-    class AIPlateController : MonoBehaviour
+    public class AIPlateController : MonoBehaviour
     {
         public AIPlateController(IntPtr ptr) : base(ptr) { }
 
