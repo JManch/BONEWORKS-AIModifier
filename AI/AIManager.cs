@@ -30,6 +30,8 @@ namespace AIModifier.AI
                 }
             }
             selectedAI.Clear();
+
+            AIMenuManager.aiMenu.GetPage("ControlAIPage").GetElement("ControlAIButton").SetValue("Control " + 0 + " Selected AI");
         }
         public static void ClearSelectedTargetAI()
         {

@@ -113,11 +113,11 @@ namespace AIModifier.AI
             BehaviourPowerLegs behaviourPowerLegs = aiBrain.transform.GetChild(0).GetChild(0).GetComponent<BehaviourPowerLegs>();
 
             aiData.name = SimpleHelpers.GetCleanObjectName(aiBrain.gameObject.name);
-            aiData.health = behaviourPowerLegs.health.cur_hp;
-            aiData.leftLegHealth = behaviourPowerLegs.health.cur_leg_lf;
-            aiData.rightLegHealth = behaviourPowerLegs.health.cur_leg_rt;
-            aiData.leftArmHealth = behaviourPowerLegs.health.cur_arm_lf;
-            aiData.rightArmHealth = behaviourPowerLegs.health.cur_arm_rt;
+            aiData.health = behaviourPowerLegs.health.cur_hp * 100;
+            aiData.leftLegHealth = behaviourPowerLegs.health.cur_leg_lf * 100;
+            aiData.rightLegHealth = behaviourPowerLegs.health.cur_leg_rt * 100;
+            aiData.leftArmHealth = behaviourPowerLegs.health.cur_arm_lf * 100;
+            aiData.rightArmHealth = behaviourPowerLegs.health.cur_arm_rt * 100;
 
             aiData.accuracy = behaviourPowerLegs.accuracy;
             aiData.gunRange = behaviourPowerLegs.gunRange;
@@ -136,8 +136,8 @@ namespace AIModifier.AI
             aiData.roamRange = behaviourPowerLegs.roamRange.x;
             aiData.roamWanders = behaviourPowerLegs.roamWanders;
 
-            aiData.defaultMentalState = behaviourPowerLegs.mentalState.ToString();
-            aiData.defaultEngagedMode = behaviourPowerLegs.mentalState.ToString();
+            aiData.defaultMentalState = "Default";
+            aiData.defaultEngagedMode = "Default";
 
             aiData.agroOnNPCType = behaviourPowerLegs.agroOnNpcType.ToString();
             aiData.meleeRange = behaviourPowerLegs.meleeRange;
@@ -152,11 +152,11 @@ namespace AIModifier.AI
             BehaviourCrablet behaviourCrablet = aiBrain.transform.GetChild(0).GetChild(0).GetComponent<BehaviourCrablet>();
 
             aiData.name = SimpleHelpers.GetCleanObjectName(aiBrain.gameObject.name);
-            aiData.health = behaviourCrablet.health.cur_hp;
-            aiData.leftLegHealth = behaviourCrablet.health.cur_leg_lf;
-            aiData.rightLegHealth = behaviourCrablet.health.cur_leg_rt;
-            aiData.leftArmHealth = behaviourCrablet.health.cur_arm_lf;
-            aiData.rightArmHealth = behaviourCrablet.health.cur_arm_rt;
+            aiData.health = behaviourCrablet.health.cur_hp * 100;
+            aiData.leftLegHealth = behaviourCrablet.health.cur_leg_lf * 100;
+            aiData.rightLegHealth = behaviourCrablet.health.cur_leg_rt * 100;
+            aiData.leftArmHealth = behaviourCrablet.health.cur_arm_lf * 100;
+            aiData.rightArmHealth = behaviourCrablet.health.cur_arm_rt * 100;
 
             aiData.accuracy = behaviourCrablet.accuracy;
             aiData.gunRange = behaviourCrablet.gunRange;
@@ -175,11 +175,11 @@ namespace AIModifier.AI
             aiData.roamRange = behaviourCrablet.roamRange.x;
             aiData.roamWanders = behaviourCrablet.roamWanders;
 
-            aiData.defaultMentalState = behaviourCrablet.mentalState.ToString();
-            aiData.defaultEngagedMode = behaviourCrablet.mentalState.ToString();
+            aiData.defaultMentalState = "Default";
+            aiData.defaultEngagedMode = "Default";
 
-            aiData.baseColor = behaviourCrablet.baseColor.ToString();
-            aiData.agroColor = behaviourCrablet.agroColor.ToString();
+            aiData.baseColor = "Default";
+            aiData.agroColor = "Default";
             aiData.jumpAttackEnabled = behaviourCrablet.enableJumpAttack;
             aiData.jumpCooldown = behaviourCrablet.jumpCooldown;
 
@@ -195,11 +195,11 @@ namespace AIModifier.AI
             BehaviourOmniwheel behaviourOmniwheel = aiBrain.transform.GetChild(0).GetChild(0).GetComponent<BehaviourOmniwheel>();
 
             aiData.name = SimpleHelpers.GetCleanObjectName(aiBrain.gameObject.name);
-            aiData.health = behaviourOmniwheel.health.cur_hp;
-            aiData.leftLegHealth = behaviourOmniwheel.health.cur_leg_lf;
-            aiData.rightLegHealth = behaviourOmniwheel.health.cur_leg_rt;
-            aiData.leftArmHealth = behaviourOmniwheel.health.cur_arm_lf;
-            aiData.rightArmHealth = behaviourOmniwheel.health.cur_arm_rt;
+            aiData.health = behaviourOmniwheel.health.cur_hp * 100;
+            aiData.leftLegHealth = behaviourOmniwheel.health.cur_leg_lf * 100;
+            aiData.rightLegHealth = behaviourOmniwheel.health.cur_leg_rt * 100;
+            aiData.leftArmHealth = behaviourOmniwheel.health.cur_arm_lf * 100;
+            aiData.rightArmHealth = behaviourOmniwheel.health.cur_arm_rt * 100;
 
             aiData.accuracy = behaviourOmniwheel.accuracy;
             aiData.gunRange = behaviourOmniwheel.gunRange;
@@ -218,8 +218,8 @@ namespace AIModifier.AI
             aiData.roamRange = behaviourOmniwheel.roamRange.x;
             aiData.roamWanders = behaviourOmniwheel.roamWanders;
 
-            aiData.defaultMentalState = behaviourOmniwheel.mentalState.ToString();
-            aiData.defaultEngagedMode = behaviourOmniwheel.mentalState.ToString();
+            aiData.defaultMentalState = "Default";
+            aiData.defaultEngagedMode = "Default";
 
             aiData.agroOnNPCType = behaviourOmniwheel.agroOnNpcType.ToString();
             aiData.meleeRange = behaviourOmniwheel.meleeRange;
@@ -262,7 +262,7 @@ namespace AIModifier.AI
             if (comparisonData == null || aiData.roamRange != comparisonData.roamRange) behaviourPowerLegs.roamRange = new Vector2(aiData.roamRange, aiData.roamRange);
             if (comparisonData == null || aiData.roamWanders != comparisonData.roamWanders) behaviourPowerLegs.roamWanders = aiData.roamWanders;
 
-            if (aiData.defaultMentalState != "Default") behaviourPowerLegs.SwitchMentalState((BehaviourBaseNav.MentalState)Enum.Parse(typeof(BehaviourBaseNav.MentalState), aiData.defaultMentalState));
+            if (aiData.defaultMentalState != "Default") behaviourPowerLegs.SwitchMentalState((BehaviourPowerLegs.MentalState)Enum.Parse(typeof(BehaviourPowerLegs.MentalState), aiData.defaultMentalState));
 
             if (aiData.defaultEngagedMode != "Default") behaviourPowerLegs.SwitchEngagedState((BehaviourPowerLegs.EngagedMode)Enum.Parse(typeof(BehaviourPowerLegs.EngagedMode), aiData.defaultEngagedMode));
 

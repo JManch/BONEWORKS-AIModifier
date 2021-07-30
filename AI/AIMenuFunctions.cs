@@ -482,7 +482,7 @@ namespace AIModifier.AI
                 {
                     selectedAI[i].behaviour.SetAgro(targetAI[rnd.Next(0, targetAI.Count)].gameObject.GetComponent<Arena_EnemyReference>().triggerRefProxy);
                 }
-                else
+                else if(targetAI.Count != 0)
                 {
                     selectedAI[i].behaviour.SetAgro(targetAI[i].gameObject.GetComponent<Arena_EnemyReference>().triggerRefProxy);
                 }
@@ -495,7 +495,7 @@ namespace AIModifier.AI
                 {
                     targetAI[i].behaviour.SetAgro(selectedAI[rnd.Next(0, selectedAI.Count)].gameObject.GetComponent<Arena_EnemyReference>().triggerRefProxy);
                 }
-                else
+                else if (selectedAI.Count != 0)
                 {
                     targetAI[i].behaviour.SetAgro(selectedAI[i].gameObject.GetComponent<Arena_EnemyReference>().triggerRefProxy);
                 }

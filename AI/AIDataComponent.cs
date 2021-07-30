@@ -13,6 +13,11 @@ namespace AIModifier.AI
         void Awake()
         {
             defaultAIData = AIDataManager.GenerateAIData(gameObject.GetComponent<AIBrain>());
+            defaultAIData.defaultMentalState = "Default";
+            defaultAIData.defaultEngagedMode = "Default";
+            defaultAIData.defaultOmniEngagedMode = "Default";
+            defaultAIData.agroColor = "Default";
+            defaultAIData.baseColor = "Default";
         }
     }
 }
