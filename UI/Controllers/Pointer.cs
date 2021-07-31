@@ -19,7 +19,7 @@ namespace AIModifier.UI
 
         #region Pointer functionality
 
-        protected virtual void Awake()
+        void Awake()
         {
             hand = transform.parent.parent.GetComponent<Hand>();
             laser = new GameObject("Laser");

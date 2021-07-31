@@ -10,14 +10,23 @@ namespace AIModifier.AI
 
         public AIData defaultAIData { get; private set; }
 
-        void Awake()
+        private bool generatedDefaultData = false;
+
+        public void GenerateDefaultAIData()
         {
-            defaultAIData = AIDataManager.GenerateAIData(gameObject.GetComponent<AIBrain>());
-            defaultAIData.defaultMentalState = "Default";
-            defaultAIData.defaultEngagedMode = "Default";
-            defaultAIData.defaultOmniEngagedMode = "Default";
-            defaultAIData.agroColor = "Default";
-            defaultAIData.baseColor = "Default";
+            if(!generatedDefaultData)
+            {
+                defaultAIData = AIDataManager.GenerateAIData(gameObject.GetComponent<AIBrain>());
+                defaultAIData.defaultMentalState = "Default";
+                defaultAIData.defaultEngagedMode = "Default";
+                defaultAIData.defaultOmniEngagedMode = "Default";
+                defaultAIData.agroColor = "Default";
+                defaultAIData.baseColor = "Default";
+
+                generatedDefaultData = true;
+            }
+
+            
         }
     }
 }

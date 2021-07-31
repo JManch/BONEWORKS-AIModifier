@@ -5,12 +5,16 @@ using System.Collections.Generic;
 using StressLevelZero.AI;
 using PuppetMasta;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace AIModifier.AI
 {
     public static class AIMenuFunctions
     {
         public static string selectedAI { get; private set; }
+        private static Vector3 selectedPoint { get; set; }
+        private static GameObject selectedPointVisual;
+
 
         public static void LoadAIDataIntoUI()
         {
@@ -123,6 +127,94 @@ namespace AIModifier.AI
             else if (state == "Inactive" && AIMenuManager.aiSelectorPointer.pointerEnabled)
             {
                 AIMenuManager.aiSelectorPointer.DisablePointer();
+            }
+        }
+
+        public static void AgroTargets()
+        {
+            List<AIBrain> selectedAI = AIManager.GetSelectedAI();
+
+            // Fill this list
+            List<AIBrain> targetAI = AIManager.GetSelectedTargetAI();
+
+            System.Random rnd = new System.Random();
+
+            for (int i = 0; i < selectedAI.Count; i++)
+            {
+                // If an AI has been assigned to attack every other AI then randomnly assign the rest
+                if (i > targetAI.Count - 1 && targetAI.Count != 0)
+                {
+                    selectedAI[i].behaviour.SetAgro(targetAI[rnd.Next(0, targetAI.Count)].behaviour.sensors.selfTrp);
+                }
+                else if (targetAI.Count != 0)
+                {
+                    selectedAI[i].behaviour.SetAgro(targetAI[i].behaviour.sensors.selfTrp);
+                }
+            }
+
+            for (int i = 0; i < targetAI.Count; i++)
+            {
+                // If an AI has been assigned to attack every other AI then randomnly assign the rest
+                if (i > selectedAI.Count - 1 && selectedAI.Count != 0)
+                {
+                    targetAI[i].behaviour.SetAgro(selectedAI[rnd.Next(0, selectedAI.Count)].behaviour.sensors.selfTrp);
+                }
+                else if (selectedAI.Count != 0)
+                {
+                    targetAI[i].behaviour.SetAgro(selectedAI[i].behaviour.sensors.selfTrp);
+                }
+            }
+        }
+
+        #endregion
+
+        #region Walk To Point Page
+
+        public static void TogglePointSelector(string state)
+        {
+            if (state == "Active" && !AIMenuManager.pointSelectorPointer.pointerEnabled)
+            {
+                AIMenuManager.pointSelectorPointer.EnablePointer();
+            }
+            else if (state == "Inactive" && AIMenuManager.pointSelectorPointer.pointerEnabled)
+            {
+                AIMenuManager.pointSelectorPointer.DisablePointer();
+            }
+        }
+
+        public static void SetSelectedPoint(Vector3 newPoint)
+        {
+            if (selectedPointVisual == null)
+            {
+                selectedPointVisual = GameObject.Instantiate(Utilities.AssetManager.selectedPlatePrefab);
+                selectedPointVisual.transform.localScale = new Vector3(2f, 2f, 0f);
+                selectedPointVisual.transform.GetChild(0).GetComponent<Image>().color = Color.blue;
+                selectedPointVisual.AddComponent<LookAtPlayer>();
+            }
+
+            selectedPointVisual.SetActive(true);
+            selectedPointVisual.transform.position = newPoint;
+            selectedPoint = newPoint;
+        }
+
+        public static void HideSelectedPointVisual()
+        {
+            if(selectedPointVisual != null)
+            {
+                selectedPointVisual.SetActive(false);
+            }
+        }
+
+        public static void WalkToSelectedPoint()
+        {
+            foreach (AIBrain aiBrain in AIManager.GetSelectedAI())
+            {
+                if (aiBrain != null)
+                {
+                    aiBrain.behaviour.SwitchMentalState(BehaviourBaseNav.MentalState.Investigate);
+
+                    aiBrain.behaviour.SetPath(selectedPoint);
+                }
             }
         }
 
@@ -466,52 +558,9 @@ namespace AIModifier.AI
             }
         }
 
-        public static void AgroTargets()
-        {
-            List<AIBrain> selectedAI = AIManager.GetSelectedAI();
+        
 
-            // Fill this list
-            List<AIBrain> targetAI = AIManager.GetSelectedTargetAI();
-            
-            System.Random rnd = new System.Random();
-
-            for (int i = 0; i < selectedAI.Count; i++)
-            {
-                // If an AI has been assigned to attack every other AI then randomnly assign the rest
-                if(i > targetAI.Count - 1 && targetAI.Count != 0)
-                {
-                    selectedAI[i].behaviour.SetAgro(targetAI[rnd.Next(0, targetAI.Count)].gameObject.GetComponent<Arena_EnemyReference>().triggerRefProxy);
-                }
-                else if(targetAI.Count != 0)
-                {
-                    selectedAI[i].behaviour.SetAgro(targetAI[i].gameObject.GetComponent<Arena_EnemyReference>().triggerRefProxy);
-                }
-            }
-
-            for (int i = 0; i < targetAI.Count; i++)
-            {
-                // If an AI has been assigned to attack every other AI then randomnly assign the rest
-                if (i > selectedAI.Count - 1 && selectedAI.Count != 0)
-                {
-                    targetAI[i].behaviour.SetAgro(selectedAI[rnd.Next(0, selectedAI.Count)].gameObject.GetComponent<Arena_EnemyReference>().triggerRefProxy);
-                }
-                else if (selectedAI.Count != 0)
-                {
-                    targetAI[i].behaviour.SetAgro(selectedAI[i].gameObject.GetComponent<Arena_EnemyReference>().triggerRefProxy);
-                }
-            }
-        }
-
-        public static void WalkToPoint(Vector3 point)
-        {
-            foreach (AIBrain aiBrain in AIManager.GetSelectedAI())
-            {
-                if (aiBrain != null)
-                {
-                    aiBrain.behaviour.SetPath(point);
-                }
-            }
-        }
+        
 
         #endregion
     }

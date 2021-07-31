@@ -130,7 +130,8 @@ namespace AIModifier.AI
 
             if (aiBrain.gameObject.GetComponent<AIDataComponent>() == null)
             {
-                aiBrain.gameObject.AddComponent<AIDataComponent>();
+                AIDataComponent aiDataComponent = aiBrain.gameObject.AddComponent<AIDataComponent>();
+                aiDataComponent.GenerateDefaultAIData();
             }
             else
             {

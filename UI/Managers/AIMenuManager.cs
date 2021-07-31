@@ -17,6 +17,7 @@ namespace AIModifier.UI
 
         // Pointers
         public static PointerManager<AISelector> aiSelectorPointer;
+        public static PointerManager<PointSelector> pointSelectorPointer;
 
         public static void OpenAIMenu()
         {
@@ -71,6 +72,7 @@ namespace AIModifier.UI
         private static void BuildAIPointers()
         {
             aiSelectorPointer = new PointerManager<AISelector>();
+            pointSelectorPointer = new PointerManager<PointSelector>();
         }
 
         public static void BuildAIMenu(GameObject menuPrefab)
@@ -112,6 +114,7 @@ namespace AIModifier.UI
             MenuPage otherSettingsPage = new MenuPage(menuPrefab.transform.FindChild("OtherSettingsPage").gameObject);
             MenuPage controlAISettingsPage = new MenuPage(menuPrefab.transform.FindChild("ControlAISettingsPage").gameObject);
             MenuPage agroTargetsPage = new MenuPage(menuPrefab.transform.FindChild("AgroTargetsPage").gameObject);
+            MenuPage walkToPointPage = new MenuPage(menuPrefab.transform.FindChild("WalkToPointPage").gameObject);
 
             #endregion
             #region Configure Root Page
@@ -140,7 +143,7 @@ namespace AIModifier.UI
             controlAIPage.AddElement(new TextDisplay(controlAIPage, controlAIPageTransform.FindChild("Title").gameObject, "CONTROL AI", titleTextProperties));
             controlAIPage.AddElement(new GenericSelector<string>(controlAIPage, controlAIPageTransform.FindChild("ToggleSelectorElement").gameObject, "Toggle AI Selector", elementTextProperties, activeStates, delegate (string s){ AIMenuFunctions.ToggleControlAISelector(s); }));
             controlAIPage.AddElement(new Button(controlAIPage, controlAIPageTransform.FindChild("ClearSelectedButton").gameObject, "Clear Selected", buttonTextProperties, Button.ButtonHighlightType.Underline, delegate { AI.AIManager.ClearSelectedAI(); }));
-            controlAIPage.AddElement(new Button(controlAIPage, controlAIPageTransform.FindChild("ControlAIButton").gameObject, "Control 0 Selected AI", buttonTextProperties, Button.ButtonHighlightType.Underline, delegate { aiSelectorPointer.EnablePointer(); aiMenu.SwitchPage("ControlAISettingsPage"); }));
+            controlAIPage.AddElement(new Button(controlAIPage, controlAIPageTransform.FindChild("ControlAIButton").gameObject, "Control 0 Selected AI", buttonTextProperties, Button.ButtonHighlightType.Underline, delegate { aiSelectorPointer.DisablePointer(); aiMenu.SwitchPage("ControlAISettingsPage"); }));
             controlAIPage.AddElement(new Button(controlAIPage, controlAIPageTransform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiSelectorPointer.DisablePointer(); aiMenu.SwitchPage("RootPage"); }));
 
 
@@ -282,6 +285,7 @@ namespace AIModifier.UI
             Transform controlAISettingsPageTransform = menuPrefab.transform.FindChild("ControlAISettingsPage");
             controlAISettingsPage.AddElement(new TextDisplay(controlAISettingsPage, controlAISettingsPageTransform.FindChild("Title").gameObject, "CONTROL AI SETTINGS", new TextProperties(10, Color.white, false, 15)));
             controlAISettingsPage.AddElement(new Button(controlAISettingsPage, controlAISettingsPageTransform.FindChild("AgroTargetsButton").gameObject, "Set Agro Targets", buttonTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("AgroTargetsPage"); }));
+            controlAISettingsPage.AddElement(new Button(controlAISettingsPage, controlAISettingsPageTransform.FindChild("WalkToPointButton").gameObject, "Walk To Point", buttonTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("WalkToPointPage"); }));
             controlAISettingsPage.AddElement(new Button(controlAISettingsPage, controlAISettingsPageTransform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("ControlAIPage"); }));
 
             #endregion
@@ -295,6 +299,15 @@ namespace AIModifier.UI
             agroTargetsPage.AddElement(new Button(agroTargetsPage, agroTargetsPageTransform.FindChild("StartAgroButton").gameObject, "Start Agro", buttonTextProperties, Button.ButtonHighlightType.Underline, delegate { AIMenuFunctions.AgroTargets(); }));
             agroTargetsPage.AddElement(new Button(agroTargetsPage, agroTargetsPageTransform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiSelectorPointer.DisablePointer(); aiMenu.SwitchPage("ControlAISettingsPage"); }));
 
+            #endregion
+
+            #region Walk To Point Page
+
+            Transform walkToPointPageTransform = menuPrefab.transform.FindChild("WalkToPointPage");
+            walkToPointPage.AddElement(new TextDisplay(walkToPointPage, walkToPointPageTransform.FindChild("Title").gameObject, "WALK TO POINT", new TextProperties(10, Color.white, false, 15)));
+            walkToPointPage.AddElement(new GenericSelector<string>(walkToPointPage, walkToPointPageTransform.FindChild("ToggleSelectorElement").gameObject, "Toggle Point Selector", new TextProperties(7, Color.white), activeStates, delegate (string s) { AIMenuFunctions.TogglePointSelector(s); }));
+            walkToPointPage.AddElement(new Button(walkToPointPage, walkToPointPageTransform.FindChild("WalkToPointButton").gameObject, "Walk To Point", buttonTextProperties, Button.ButtonHighlightType.Underline, delegate { AIMenuFunctions.WalkToSelectedPoint(); }));
+            walkToPointPage.AddElement(new Button(walkToPointPage, walkToPointPageTransform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { AIMenuFunctions.HideSelectedPointVisual(); pointSelectorPointer.DisablePointer(); aiMenu.SwitchPage("ControlAISettingsPage"); }));
 
             #endregion
 
@@ -315,6 +328,7 @@ namespace AIModifier.UI
             aiMenu.AddPage(otherSettingsPage);
             aiMenu.AddPage(controlAISettingsPage);
             aiMenu.AddPage(agroTargetsPage);
+            aiMenu.AddPage(walkToPointPage);
         }
     }
 }

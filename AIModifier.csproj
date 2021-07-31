@@ -92,7 +92,9 @@
     <Compile Include="UI\Controllers\AIPlateController.cs" />
     <Compile Include="UI\Controllers\AISelectedPlateController.cs" />
     <Compile Include="UI\Controllers\AISelector.cs" />
+    <Compile Include="UI\Controllers\LookAtPlayer.cs" />
     <Compile Include="UI\Controllers\Pointer.cs" />
+    <Compile Include="UI\Controllers\PointSelector.cs" />
     <Compile Include="UI\Managers\PointerManager.cs" />
     <Compile Include="UI\MenuElements\Selector.cs" />
     <Compile Include="UI\MenuStructure\Keyboard.cs" />
