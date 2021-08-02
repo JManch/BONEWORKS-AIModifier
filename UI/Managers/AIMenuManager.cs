@@ -13,6 +13,7 @@ namespace AIModifier.UI
         public static Menu aiMenu;
         public static Color uiHighlightColor = new Color(0.3962264f, 0.3962264f, 0.3962264f, 0.7490196f);
         private static SelectorUI aiSelectorUI;
+
         public static AISelectedPlateController.SelectedType aiSelectorType;
 
         // Pointers
@@ -143,9 +144,9 @@ namespace AIModifier.UI
             controlAIPage.AddElement(new TextDisplay(controlAIPage, controlAIPageTransform.FindChild("Title").gameObject, "CONTROL AI", titleTextProperties));
             controlAIPage.AddElement(new GenericSelector<string>(controlAIPage, controlAIPageTransform.FindChild("ToggleSelectorElement").gameObject, "Toggle AI Selector", elementTextProperties, activeStates, delegate (string s){ AIMenuFunctions.ToggleControlAISelector(s); }));
             controlAIPage.AddElement(new Button(controlAIPage, controlAIPageTransform.FindChild("ClearSelectedButton").gameObject, "Clear Selected", buttonTextProperties, Button.ButtonHighlightType.Underline, delegate { AI.AIManager.ClearSelectedAI(); }));
-            controlAIPage.AddElement(new Button(controlAIPage, controlAIPageTransform.FindChild("ControlAIButton").gameObject, "Control 0 Selected AI", buttonTextProperties, Button.ButtonHighlightType.Underline, delegate { aiSelectorPointer.DisablePointer(); aiMenu.SwitchPage("ControlAISettingsPage"); }));
-            controlAIPage.AddElement(new Button(controlAIPage, controlAIPageTransform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiSelectorPointer.DisablePointer(); aiMenu.SwitchPage("RootPage"); }));
-
+            controlAIPage.AddElement(new Button(controlAIPage, controlAIPageTransform.FindChild("ControlAIButton").gameObject, "Control 0 Selected AI", buttonTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("ControlAISettingsPage"); }));
+            controlAIPage.AddElement(new Button(controlAIPage, controlAIPageTransform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("RootPage"); }));
+            controlAIPage.onPageClose += delegate { aiSelectorPointer.DisablePointer(); };
 
             #endregion
             #region Additional Settings Page 1
@@ -286,10 +287,12 @@ namespace AIModifier.UI
             controlAISettingsPage.AddElement(new TextDisplay(controlAISettingsPage, controlAISettingsPageTransform.FindChild("Title").gameObject, "CONTROL AI SETTINGS", new TextProperties(10, Color.white, false, 15)));
             controlAISettingsPage.AddElement(new Button(controlAISettingsPage, controlAISettingsPageTransform.FindChild("AgroTargetsButton").gameObject, "Set Agro Targets", buttonTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("AgroTargetsPage"); }));
             controlAISettingsPage.AddElement(new Button(controlAISettingsPage, controlAISettingsPageTransform.FindChild("WalkToPointButton").gameObject, "Walk To Point", buttonTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("WalkToPointPage"); }));
+            controlAISettingsPage.AddElement(new Button(controlAISettingsPage, controlAISettingsPageTransform.FindChild("AgroPlayerButton").gameObject, "Start Following Player", buttonTextProperties, Button.ButtonHighlightType.Underline, delegate { AIMenuFunctions.SelectedAgroPlayer(); }));
+            controlAISettingsPage.AddElement(new Button(controlAISettingsPage, controlAISettingsPageTransform.FindChild("ResurrectButton").gameObject, "Resurrect", buttonTextProperties, Button.ButtonHighlightType.Underline, delegate { AIMenuFunctions.ResurrectSelected(); }));
+            controlAISettingsPage.AddElement(new Button(controlAISettingsPage, controlAISettingsPageTransform.FindChild("ResetHitEffectsButton").gameObject, "Reset Hit Effects", buttonTextProperties, Button.ButtonHighlightType.Underline, delegate { AIMenuFunctions.ResetSelectedHitEffects(); }));
             controlAISettingsPage.AddElement(new Button(controlAISettingsPage, controlAISettingsPageTransform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("ControlAIPage"); }));
 
             #endregion
-
             #region Agro Targets Page
 
             Transform agroTargetsPageTransform = menuPrefab.transform.FindChild("AgroTargetsPage");
@@ -297,17 +300,19 @@ namespace AIModifier.UI
             agroTargetsPage.AddElement(new GenericSelector<string>(agroTargetsPage, agroTargetsPageTransform.FindChild("ToggleSelectorElement").gameObject, "Toggle Target Selector", new TextProperties(7, Color.white), activeStates, delegate (string s) { AIMenuFunctions.ToggleAgroTargetsSelector(s); }));
             agroTargetsPage.AddElement(new Button(agroTargetsPage, agroTargetsPageTransform.FindChild("ClearSelectedButton").gameObject, "Clear Selected Targets", buttonTextProperties, Button.ButtonHighlightType.Underline, delegate { AI.AIManager.ClearSelectedTargetAI(); }));
             agroTargetsPage.AddElement(new Button(agroTargetsPage, agroTargetsPageTransform.FindChild("StartAgroButton").gameObject, "Start Agro", buttonTextProperties, Button.ButtonHighlightType.Underline, delegate { AIMenuFunctions.AgroTargets(); }));
-            agroTargetsPage.AddElement(new Button(agroTargetsPage, agroTargetsPageTransform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiSelectorPointer.DisablePointer(); aiMenu.SwitchPage("ControlAISettingsPage"); }));
+            agroTargetsPage.AddElement(new Button(agroTargetsPage, agroTargetsPageTransform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("ControlAISettingsPage"); }));
+            agroTargetsPage.onPageClose += delegate { aiSelectorPointer.DisablePointer(); };
 
             #endregion
-
             #region Walk To Point Page
 
             Transform walkToPointPageTransform = menuPrefab.transform.FindChild("WalkToPointPage");
             walkToPointPage.AddElement(new TextDisplay(walkToPointPage, walkToPointPageTransform.FindChild("Title").gameObject, "WALK TO POINT", new TextProperties(10, Color.white, false, 15)));
-            walkToPointPage.AddElement(new GenericSelector<string>(walkToPointPage, walkToPointPageTransform.FindChild("ToggleSelectorElement").gameObject, "Toggle Point Selector", new TextProperties(7, Color.white), activeStates, delegate (string s) { AIMenuFunctions.TogglePointSelector(s); }));
+            walkToPointPage.AddElement(new Button(walkToPointPage, walkToPointPageTransform.FindChild("SelectPointButton").gameObject, "Select Point", buttonTextProperties, Button.ButtonHighlightType.Underline, delegate { pointSelectorPointer.EnablePointer(); }));
             walkToPointPage.AddElement(new Button(walkToPointPage, walkToPointPageTransform.FindChild("WalkToPointButton").gameObject, "Walk To Point", buttonTextProperties, Button.ButtonHighlightType.Underline, delegate { AIMenuFunctions.WalkToSelectedPoint(); }));
-            walkToPointPage.AddElement(new Button(walkToPointPage, walkToPointPageTransform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { AIMenuFunctions.HideSelectedPointVisual(); pointSelectorPointer.DisablePointer(); aiMenu.SwitchPage("ControlAISettingsPage"); }));
+            walkToPointPage.AddElement(new Button(walkToPointPage, walkToPointPageTransform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("ControlAISettingsPage"); }));
+            walkToPointPage.onPageOpen += delegate { AIMenuFunctions.ShowSelectedPointVisual(); };
+            walkToPointPage.onPageClose += delegate { pointSelectorPointer.DisablePointer(); AIMenuFunctions.HideSelectedPointVisual(); };
 
             #endregion
 

@@ -51,8 +51,10 @@ namespace AIModifier.UI
             {
                 menuElement.OnPageClose();
             }
+            activePage.OnPageClose();
             activePage.gameObject.SetActive(false);
             activePage = pages[page];
+            activePage.OnPageOpen();
             foreach (MenuElement menuElement in activePage.elements.Values.ToList())
             {
                 menuElement.OnPageOpen();
@@ -64,12 +66,14 @@ namespace AIModifier.UI
         {
             isOpen = true;
             gameObject.SetActive(true);
+            activePage.OnPageOpen();
         }
 
         public void CloseMenu()
         {
             isOpen = false;
             gameObject.SetActive(false);
+            activePage.OnPageClose();
         }
     }
 }

@@ -2,10 +2,13 @@
 using System.Globalization;
 using System;
 using System.Collections.Generic;
+using System.Collections;
 using StressLevelZero.AI;
 using PuppetMasta;
 using UnityEngine;
 using UnityEngine.UI;
+using ModThatIsNotMod;
+using MelonLoader;
 
 namespace AIModifier.AI
 {
@@ -114,6 +117,38 @@ namespace AIModifier.AI
 
         #endregion
 
+        #region Control AI Settings Page
+
+        public static void SelectedAgroPlayer()
+        {
+            foreach(AIBrain aiBrain in AIManager.selectedAIList)
+            {
+                BehaviourPowerLegs behaviour = aiBrain.transform.GetChild(0).GetChild(0).GetComponent<BehaviourPowerLegs>();
+                if(behaviour != null) 
+                {
+                    behaviour.SetAgro(Player.GetRigManager().transform.FindChild("[PhysicsRig]/Head/PlayerTrigger").GetComponent<TriggerRefProxy>());
+                }
+            }
+        }
+
+        public static void ResurrectSelected()
+        {
+            foreach (AIBrain aiBrain in AIManager.selectedAIList)
+            {
+                aiBrain.behaviour.Resurrect();
+            }
+        }
+
+        public static void ResetSelectedHitEffects()
+        {
+            foreach (AIBrain aiBrain in AIManager.selectedAIList)
+            {
+                aiBrain.behaviour.visualDamage.ResetHits();
+            }
+        }
+
+        #endregion
+
         #region Agro Targets Page
 
         public static void ToggleAgroTargetsSelector(string state)
@@ -132,10 +167,10 @@ namespace AIModifier.AI
 
         public static void AgroTargets()
         {
-            List<AIBrain> selectedAI = AIManager.GetSelectedAI();
+            List<AIBrain> selectedAI = AIManager.selectedAIList;
 
             // Fill this list
-            List<AIBrain> targetAI = AIManager.GetSelectedTargetAI();
+            List<AIBrain> targetAI = AIManager.selectedTargetAIList;
 
             System.Random rnd = new System.Random();
 
@@ -170,18 +205,6 @@ namespace AIModifier.AI
 
         #region Walk To Point Page
 
-        public static void TogglePointSelector(string state)
-        {
-            if (state == "Active" && !AIMenuManager.pointSelectorPointer.pointerEnabled)
-            {
-                AIMenuManager.pointSelectorPointer.EnablePointer();
-            }
-            else if (state == "Inactive" && AIMenuManager.pointSelectorPointer.pointerEnabled)
-            {
-                AIMenuManager.pointSelectorPointer.DisablePointer();
-            }
-        }
-
         public static void SetSelectedPoint(Vector3 newPoint)
         {
             if (selectedPointVisual == null)
@@ -195,6 +218,16 @@ namespace AIModifier.AI
             selectedPointVisual.SetActive(true);
             selectedPointVisual.transform.position = newPoint;
             selectedPoint = newPoint;
+
+            AIMenuManager.pointSelectorPointer.DisablePointer();
+        }
+
+        public static void ShowSelectedPointVisual()
+        {
+            if (selectedPointVisual != null)
+            {
+                selectedPointVisual.SetActive(true);
+            }
         }
 
         public static void HideSelectedPointVisual()
@@ -207,15 +240,30 @@ namespace AIModifier.AI
 
         public static void WalkToSelectedPoint()
         {
-            foreach (AIBrain aiBrain in AIManager.GetSelectedAI())
+            foreach (AIBrain aiBrain in AIManager.selectedAIList)
             {
                 if (aiBrain != null)
                 {
-                    aiBrain.behaviour.SwitchMentalState(BehaviourBaseNav.MentalState.Investigate);
-
-                    aiBrain.behaviour.SetPath(selectedPoint);
+                    if(aiBrain.behaviour.freezeWhileResting)
+                    {
+                        aiBrain.behaviour.freezeWhileResting = false;
+                        MelonLogger.Msg("Just set freeze while resting to false");
+                        MelonCoroutines.Start(PerformFunctionAfterSeconds(delegate { aiBrain.behaviour.SetPath(selectedPoint); MelonLogger.Msg("Just set the path"); aiBrain.behaviour.freezeWhileResting = true; MelonLogger.Msg("Just say freeze while resting to true. Value is " + aiBrain.behaviour.freezeWhileResting); }, 0.5f));
+                        continue;
+                    }
+                    else
+                    {
+                        aiBrain.behaviour.Unfreeze();
+                        aiBrain.behaviour.SetPath(selectedPoint);
+                    }
                 }
             }
+        }
+
+        private static IEnumerator PerformFunctionAfterSeconds(Action function, float seconds)
+        {
+            yield return new WaitForSeconds(seconds);
+            function();
         }
 
         #endregion
@@ -545,23 +593,5 @@ namespace AIModifier.AI
 
         #endregion
 
-        #region Control AI functions
-
-        public static void SwitchMentalState(string mentalState)
-        {
-            foreach(AIBrain aiBrain in AIManager.GetSelectedAI())
-            {
-                if(aiBrain != null)
-                {
-                    aiBrain.behaviour.SwitchMentalState((BehaviourBaseNav.MentalState)Enum.Parse(typeof(BehaviourBaseNav.MentalState), mentalState));
-                }
-            }
-        }
-
-        
-
-        
-
-        #endregion
     }
 }

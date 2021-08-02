@@ -88,6 +88,8 @@
     <Compile Include="AI\AIMenuFunctions.cs" />
     <Compile Include="Main\Main.cs" />
     <Compile Include="AI\AIManager.cs" />
+    <Compile Include="Saving\LayoutData.cs" />
+    <Compile Include="Saving\AILayoutSaver.cs" />
     <Compile Include="UI\Controllers\AIHealthPlateController.cs" />
     <Compile Include="UI\Controllers\AIPlateController.cs" />
     <Compile Include="UI\Controllers\AISelectedPlateController.cs" />

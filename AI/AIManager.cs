@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using ModThatIsNotMod;
 using StressLevelZero.AI;
@@ -8,7 +7,6 @@ using StressLevelZero.Props.Weapons;
 using StressLevelZero.Pool;
 using UnityEngine;
 using MelonLoader;
-using PuppetMasta;
 using AIModifier.UI;
 using System.Linq;
 
@@ -18,6 +16,9 @@ namespace AIModifier.AI
     {
         private static Dictionary<string, AIBrain> selectedAI = new Dictionary<string, AIBrain>();
         private static Dictionary<string, AIBrain> selectedTargetAI = new Dictionary<string, AIBrain>();
+
+        public static List<AIBrain> selectedAIList { get { return selectedAI.Values.ToList(); } }
+        public static List<AIBrain> selectedTargetAIList { get { return selectedTargetAI.Values.ToList(); } }
 
         #region Selected AI stuff
         public static void ClearSelectedAI()
@@ -73,13 +74,13 @@ namespace AIModifier.AI
                 aiBrain.GetComponent<AISelectedPlateController>().DisableSelectedIcon();
             }
         }
-        public static List<AIBrain> GetSelectedAI()
+        public static bool SelectedAIContains(string aiBrainName)
         {
-            return selectedAI.Values.ToList();
+            return selectedAI.ContainsKey(aiBrainName);
         }
-        public static List<AIBrain> GetSelectedTargetAI()
+        public static bool SelectedTargetAIContrains(string aiBrainName)
         {
-            return selectedTargetAI.Values.ToList();
+            return selectedTargetAI.ContainsKey(aiBrainName);
         }
 
         #endregion
@@ -146,6 +147,34 @@ namespace AIModifier.AI
 
             // Only add a health plate if it doesnt have one as it seems like zone spawners reuse gameobjects?
             if(aiBrain.transform.FindChild("HealthPlate(Clone)") == null)
+            {
+                var headPlate = aiBrain.gameObject.AddComponent<AIHealthPlateController>();
+                headPlate.OnSpawn();
+            }
+
+            if (aiBrain.transform.FindChild("SelectedPlate(Clone)") == null)
+            {
+                aiBrain.gameObject.AddComponent<AISelectedPlateController>();
+            }
+        }
+
+        public static void ConfigureNewAI(AIBrain aiBrain, AIData aiData)
+        {
+            if (aiBrain.gameObject.GetComponent<AIDataComponent>() == null)
+            {
+                AIDataComponent aiDataComponent = aiBrain.gameObject.AddComponent<AIDataComponent>();
+                aiDataComponent.GenerateDefaultAIData();
+            }
+            else
+            {
+                AIDataManager.ApplyAIData(aiBrain, aiBrain.gameObject.GetComponent<AIDataComponent>().defaultAIData);
+            }
+
+            // Apply all the AI data regardless of default config
+            AIDataManager.ApplyAIData(aiBrain, aiData);
+
+            // Only add a health plate if it doesnt have one as it seems like zone spawners reuse gameobjects?
+            if (aiBrain.transform.FindChild("HealthPlate(Clone)") == null)
             {
                 var headPlate = aiBrain.gameObject.AddComponent<AIHealthPlateController>();
                 headPlate.OnSpawn();

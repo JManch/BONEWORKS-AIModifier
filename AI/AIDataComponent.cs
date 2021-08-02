@@ -9,6 +9,7 @@ namespace AIModifier.AI
         public AIDataComponent(IntPtr ptr) : base(ptr) { }
 
         public AIData defaultAIData { get; private set; }
+        public AIData aiData { get; set; }
 
         private bool generatedDefaultData = false;
 
@@ -25,8 +26,6 @@ namespace AIModifier.AI
 
                 generatedDefaultData = true;
             }
-
-            
         }
     }
 }

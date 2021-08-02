@@ -5,6 +5,7 @@ using UnityEngine;
 using AIModifier.Utilities;
 using AIModifier.AI;
 using AIModifier.UI;
+using AIModifier.Saving;
 
 namespace AIModifier
 {
@@ -36,7 +37,11 @@ namespace AIModifier
 
             if(Input.GetKeyDown(KeyCode.C))
             {
-                Debugging.DebugAIData();
+                AILayoutSaver.SaveAILayout();
+            }
+            if (Input.GetKeyDown(KeyCode.L))
+            {
+                AILayoutSaver.LoadAILayout(XMLDataManager.LoadXMLData<LayoutData>(@"\Mods\Layout.xml"));
             }
 
             if (Input.GetKeyDown(KeyCode.M))

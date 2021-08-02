@@ -9,6 +9,8 @@ namespace AIModifier.UI
     {
         public GameObject gameObject { get; private set; }
         public Menu menu { get; set; }
+        public Action onPageOpen { get; set; }
+        public Action onPageClose { get; set; }
 
         public Dictionary<string, MenuElement> elements { get; private set; }
 
@@ -31,6 +33,24 @@ namespace AIModifier.UI
                 MelonLogger.Error("Menu element " + elementName + " could not be found");
             }
             return menuElement;
+        }
+
+        public void OnPageOpen()
+        {
+            if(onPageOpen != null)
+            {
+                onPageOpen();
+            }
+            
+        }
+
+        public void OnPageClose()
+        {
+            if (onPageClose != null)
+            {
+                onPageClose();
+            }
+          
         }
     }
 }

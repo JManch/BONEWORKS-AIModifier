@@ -106,6 +106,8 @@ namespace AIModifier.AI
                     ApplyOmniWheelData(aiBrain, aiData, comparisonData);
                     break;
             }
+
+            aiBrain.gameObject.GetComponent<AIDataComponent>().aiData = aiData;
         }
 
         private static void GeneratePowerLegData(AIBrain aiBrain, AIData aiData)
