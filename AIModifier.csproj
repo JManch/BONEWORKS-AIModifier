@@ -98,6 +98,7 @@
     <Compile Include="UI\Controllers\Pointer.cs" />
     <Compile Include="UI\Controllers\PointSelector.cs" />
     <Compile Include="UI\Managers\PointerManager.cs" />
+    <Compile Include="UI\MenuElements\ButtonList.cs" />
     <Compile Include="UI\MenuElements\Selector.cs" />
     <Compile Include="UI\MenuStructure\Keyboard.cs" />
     <Compile Include="UI\Controllers\SmoothPlayerFollow.cs" />

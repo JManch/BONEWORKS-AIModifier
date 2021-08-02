@@ -48,7 +48,7 @@ namespace AIModifier.UI
             }
         }
 
-        // Pass an array of strings to set the value. Passes 0 when there are no agro enemies.
+        // Pass an array of strings to set the value
         public override void SetValue(object value)
         {
             // Reset dictionary

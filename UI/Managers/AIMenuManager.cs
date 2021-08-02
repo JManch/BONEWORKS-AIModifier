@@ -124,6 +124,7 @@ namespace AIModifier.UI
             rootPage.AddElement(new TextDisplay(rootPage, rootPageTransform.FindChild("Title").gameObject, "AI MODIFIER", titleTextProperties));
             rootPage.AddElement(new Button(rootPage, rootPageTransform.FindChild("ConfigureAIButton").gameObject, "Configure AI", buttonTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("ConfigureAIPage"); }));
             rootPage.AddElement(new Button(rootPage, rootPageTransform.FindChild("ControlAIButton").gameObject, "Control AI", buttonTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("ControlAIPage"); }));
+            rootPage.AddElement(new Button(rootPage, rootPageTransform.FindChild("AILayoutButton").gameObject, "AI Layouts", buttonTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("AILayoutPage"); }));
             rootPage.AddElement(new Button(rootPage, rootPageTransform.FindChild("SettingsButton").gameObject, "Settings", buttonTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("Settings"); }));
 
             #endregion

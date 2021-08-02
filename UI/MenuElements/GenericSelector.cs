@@ -12,16 +12,13 @@ namespace AIModifier.UI
         private int pointer = 0;
         private Action<T> action;
 
-        private Button nextButton;
-        private Button prevButton;
-
         public GenericSelector(MenuPage menuPage, GameObject gameObject, string elementSelectorText, TextProperties textProperties, T[] elements, Action<T> onSelectorAction = null) : base(menuPage, gameObject)
         {
             // Configure text components
             new TextDisplay(menuPage, gameObject.transform.GetChild(0).gameObject, elementSelectorText, textProperties);
             itemDisplay = new TextDisplay(menuPage, gameObject.transform.FindChild("ElementDisplay").gameObject, "", textProperties);
-            nextButton = new Button(menuPage, gameObject.transform.FindChild("Next").gameObject, ">", textProperties, Button.ButtonHighlightType.Color, NextItem);
-            prevButton = new Button(menuPage, gameObject.transform.FindChild("Previous").gameObject, "<", textProperties, Button.ButtonHighlightType.Color, PrevItem);
+            new Button(menuPage, gameObject.transform.FindChild("Next").gameObject, ">", textProperties, Button.ButtonHighlightType.Color, NextItem);
+            new Button(menuPage, gameObject.transform.FindChild("Previous").gameObject, "<", textProperties, Button.ButtonHighlightType.Color, PrevItem);
             this.elements = elements;
             if (this.elements.Length > 0)
             {
