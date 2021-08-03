@@ -83,5 +83,51 @@
         public float pitchMultiplier { get; set; }
 
         #endregion
+
+        public AIData createClone()
+        {
+            AIData aiData = new AIData();
+            aiData.name = name;
+            aiData.headPlateTransformChildPath = headPlateTransformChildPath;
+            aiData.headPlateHeightOffset = headPlateHeightOffset;
+            aiData.health = health;
+            aiData.leftLegHealth = leftLegHealth;
+            aiData.rightLegHealth = rightLegHealth;
+            aiData.leftArmHealth = leftArmHealth;
+            aiData.rightArmHealth = rightArmHealth;
+            aiData.accuracy = accuracy;
+            aiData.gunRange = gunRange;
+            aiData.reloadTime = reloadTime;
+            aiData.burstSize = burstSize;
+            aiData.clipSize = clipSize;
+            aiData.enableThrowAttack = enableThrowAttack;
+            aiData.throwCooldown = throwCooldown;
+            aiData.throwMaxRange = throwMaxRange;
+            aiData.throwMinRange = throwMinRange;
+            aiData.agroedSpeed = agroedSpeed;
+            aiData.roamSpeed = roamSpeed;
+            aiData.engagedSpeed = engagedSpeed;
+            aiData.roamRange = roamRange;
+            aiData.roamWanders = roamWanders;
+            aiData.defaultMentalState = defaultMentalState;
+            aiData.defaultEngagedMode = defaultEngagedMode;
+            aiData.baseColor = baseColor;
+            aiData.agroColor = agroColor;
+            aiData.jumpAttackEnabled = jumpAttackEnabled;
+            aiData.jumpCooldown = jumpCooldown;
+            aiData.agroOnNPCType = agroOnNPCType;
+            aiData.meleeRange = meleeRange;
+            aiData.baseColor = baseColor;
+            aiData.chargeAttackSpeed = chargeAttackSpeed;
+            aiData.chargeCooldown = chargeCooldown;
+            aiData.chargePrepSpeed = chargePrepSpeed;
+            aiData.chargeWindupDistance = chargeWindupDistance;
+            aiData.defaultOmniEngagedMode = defaultOmniEngagedMode;
+            aiData.hearingSensitivity = hearingSensitivity;
+            aiData.visionRadius = visionRadius;
+            aiData.pitchMultiplier = pitchMultiplier;
+
+            return aiData;
+        }
     }
 }

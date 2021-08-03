@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using AIModifier.AI;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 namespace AIModifier.UI
 {
@@ -91,6 +92,7 @@ namespace AIModifier.UI
             string[] omniEngagedModes = { "Default", "Stay", "Follow", "Hide" };
             string[] NPCTypes = { "FordHair", "FordShortHair", "EarlyExit", "NullBody", "Fordlet", "Crablet", "OmniProjector", "OmniWrecker", "OmniTurret", "Turret", "NullRat" };
             string[] activeStates = { "Inactive", "Active" };
+            string[] scenes = { "scene_mainMenu", "scene_breakroom", "scene_museum", "scene_streets", "scene_runoff", "scene_sewerStation", "scene_warehouse", "scene_subwayStation", "scene_tower", "scene_towerBoss", "scene_dungeon", "scene_arena", "scene_throneRoom", "sandbox_museumBasement", "sandbox_blankBox", "scene_Tuscany", "scene_redactedChamber", "sandbox_handgunBox", "scene_hoverJunkers" };
 
             TextProperties titleTextProperties = new TextProperties(12, Color.white, false, 15);
             TextProperties buttonTextProperties = new TextProperties(10, Color.white);
@@ -116,6 +118,9 @@ namespace AIModifier.UI
             MenuPage controlAISettingsPage = new MenuPage(menuPrefab.transform.FindChild("ControlAISettingsPage").gameObject);
             MenuPage agroTargetsPage = new MenuPage(menuPrefab.transform.FindChild("AgroTargetsPage").gameObject);
             MenuPage walkToPointPage = new MenuPage(menuPrefab.transform.FindChild("WalkToPointPage").gameObject);
+            MenuPage aiLayoutPage = new MenuPage(menuPrefab.transform.FindChild("AILayoutPage").gameObject);
+            MenuPage loadLayoutPage = new MenuPage(menuPrefab.transform.FindChild("LoadLayoutPage").gameObject);
+            MenuPage saveLayoutPage = new MenuPage(menuPrefab.transform.FindChild("SaveLayoutPage").gameObject);
 
             #endregion
             #region Configure Root Page
@@ -316,6 +321,25 @@ namespace AIModifier.UI
             walkToPointPage.onPageClose += delegate { pointSelectorPointer.DisablePointer(); AIMenuFunctions.HideSelectedPointVisual(); };
 
             #endregion
+            #region AI Layout Page
+
+            Transform aiLayoutPageTransform = menuPrefab.transform.FindChild("AILayoutPage");
+            aiLayoutPage.AddElement(new TextDisplay(aiLayoutPage, aiLayoutPageTransform.FindChild("Title").gameObject, "AI LAYOUTS", titleTextProperties));
+            aiLayoutPage.AddElement(new Button(aiLayoutPage, aiLayoutPageTransform.FindChild("LoadButton").gameObject, "Load Layout", buttonTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("LoadLayoutPage"); }));
+            aiLayoutPage.AddElement(new Button(aiLayoutPage, aiLayoutPageTransform.FindChild("SaveButton").gameObject, "Save Layout", buttonTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("SaveLayoutPage"); }));
+            aiLayoutPage.AddElement(new Button(aiLayoutPage, aiLayoutPageTransform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("RootPage"); }));
+
+            #endregion
+            #region Load Layout Page
+
+            Transform loadLayoutPageTransform = menuPrefab.transform.FindChild("LoadLayoutPage");
+            loadLayoutPage.AddElement(new TextDisplay(loadLayoutPage, loadLayoutPageTransform.FindChild("Title").gameObject, "LOAD LAYOUTS", titleTextProperties));
+            loadLayoutPage.AddElement(new GenericSelector<string>(loadLayoutPage, loadLayoutPageTransform.FindChild("SceneSelectorElement").gameObject, "Scene:", new TextProperties(7, Color.white, true), scenes, delegate (string s) { AIMenuFunctions.LoadSceneAILayouts(s); }));
+            loadLayoutPage.AddElement(new ButtonList(loadLayoutPage, loadLayoutPageTransform.FindChild("LayoutsListElement").gameObject, new TextProperties(7, Color.white, true), delegate (string s) { Saving.AILayoutSaver.LoadAILayout(s); }));
+            loadLayoutPage.AddElement(new Button(loadLayoutPage, loadLayoutPageTransform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("RootPage"); }));
+            loadLayoutPage.onPageOpen += delegate { Saving.AILayoutSaver.CacheAILayouts(); loadLayoutPage.GetElement("SceneSelectorElement").SetValue(SceneManager.GetActiveScene().name); };
+
+            #endregion
 
             // Add the pages to the menu
             aiMenu.AddPage(rootPage);
@@ -335,6 +359,9 @@ namespace AIModifier.UI
             aiMenu.AddPage(controlAISettingsPage);
             aiMenu.AddPage(agroTargetsPage);
             aiMenu.AddPage(walkToPointPage);
+            aiMenu.AddPage(aiLayoutPage);
+            aiMenu.AddPage(loadLayoutPage);
+            aiMenu.AddPage(saveLayoutPage);
         }
     }
 }

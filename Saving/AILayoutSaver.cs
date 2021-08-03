@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using AIModifier.AI;
 using UnityEngine.SceneManagement;
+using System.IO;
 using ModThatIsNotMod;
 using MelonLoader;
 using StressLevelZero.Pool;
@@ -12,7 +13,9 @@ namespace AIModifier.Saving
 {
     public static class AILayoutSaver
     {
-        public static void SaveAILayout()
+        private static Dictionary<string, LayoutData> layoutCache = new Dictionary<string, LayoutData>();
+
+        public static void SaveAILayout(string layoutName)
         {
             AIBrain[] aiBrains = GameObject.FindObjectsOfType<AIBrain>();
             List<AILayoutData> aiLayoutDatas = new List<AILayoutData>();
@@ -44,14 +47,17 @@ namespace AIModifier.Saving
 
             // Now parse into a XML and save
 
-            Utilities.XMLDataManager.SaveXMLData(layoutData, @"\Mods\Layout.xml");
+            Utilities.XMLDataManager.SaveXMLData(layoutData, @"\Layouts\" + layoutName + @".xml");
         }
 
-        public static void LoadAILayout(LayoutData layoutData)
+        public static void LoadAILayout(string layout)
         {
+            if(layout == "")
+            {
+                return;
+            }
 
-
-            if (SceneManager.GetActiveScene().name == layoutData.sceneName)
+            if(layoutCache.TryGetValue(layout, out LayoutData layoutData))
             {
                 foreach (AILayoutData aiLayoutData in layoutData.ai)
                 {
@@ -59,6 +65,42 @@ namespace AIModifier.Saving
                     AI.AIManager.ConfigureNewAI(spawnedAI.GetComponent<AIBrain>(), aiLayoutData.aiData);
                 }
             }
+            else
+            {
+                MelonLogger.Error("Could not find file for AI layout: " + layout);
+            }
+        }
+
+        public static string[] GetAILayouts(string scene)
+        {
+            List<string> sceneLayouts = new List<string>();
+
+            foreach (KeyValuePair<string, LayoutData> keyValuePair in layoutCache)
+            {
+                if (keyValuePair.Value.sceneName == scene)
+                {
+                    sceneLayouts.Add(keyValuePair.Key);
+                }
+            }            
+
+            return sceneLayouts.ToArray();
+        }
+
+        public static void CacheAILayouts()
+        {
+            layoutCache.Clear();
+
+            string[] layouts = Directory.GetFiles(Utilities.Utilities.aiModifierDirectory + @"\Layouts\");
+
+            foreach (string layout in layouts)
+            {
+                LayoutData layoutData = Utilities.XMLDataManager.LoadXMLData<LayoutData>(@"\Layouts\" + Path.GetFileName(layout));
+                if(layoutData != null)
+                {
+                    layoutCache.Add(Path.GetFileNameWithoutExtension(layout), layoutData);
+                }
+            }
+
         }
     }
 }

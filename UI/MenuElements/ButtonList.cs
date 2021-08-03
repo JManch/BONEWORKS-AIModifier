@@ -19,13 +19,14 @@ namespace AIModifier.UI
 
         public ButtonList(MenuPage menuPage, GameObject gameObject, TextProperties textProperties, Action<string> buttonAction) : base(menuPage, gameObject)
         {
-            new TextDisplay(menuPage, gameObject.transform.FindChild("StatusText").gameObject, "", new TextProperties(6, Color.white, true));
+            statusText = new TextDisplay(menuPage, gameObject.transform.FindChild("StatusText").gameObject, "", new TextProperties(6, Color.white, true));
             pageText = new TextDisplay(menuPage, gameObject.transform.FindChild("PageText").gameObject, "", new TextProperties(6, Color.white, true));
 
             new Button(menuPage, gameObject.transform.FindChild("Next").gameObject, ">", textProperties, Button.ButtonHighlightType.Color, LoadNextPage);
             new Button(menuPage, gameObject.transform.FindChild("Previous").gameObject, "<", textProperties, Button.ButtonHighlightType.Color, LoadPreviousPage);
 
             buttons = new List<Button>();
+            elements = new List<string>();
 
             for (int i = 0; i < gameObject.transform.childCount; i++)
             {
@@ -47,6 +48,10 @@ namespace AIModifier.UI
         public override void SetValue(object value)
         {
             elements.Clear();
+            foreach(Button button in buttons)
+            {
+                button.SetValue("");
+            }
 
             string[] arr = value as string[];
             if (arr != null)
@@ -57,7 +62,12 @@ namespace AIModifier.UI
                 }
             }
 
-            totalPages = (int)Math.Ceiling((double)(elements.Count / buttons.Count));
+            totalPages = (int)Math.Ceiling((double)elements.Count / buttons.Count);
+            if(totalPages == 0)
+            {
+                totalPages = 1;
+            }
+
             RefreshButtons();
         }
 
@@ -66,7 +76,7 @@ namespace AIModifier.UI
             for(int i = 0; i < elements.Count; i++)
             {
                 // If the element is on the current page
-                if((buttons.Count * openPage) - 1 <= i && i <= buttons.Count * (openPage - 1))
+                if(buttons.Count * (openPage - 1) <= i && i <= (buttons.Count * openPage) - 1)
                 {
                     buttons[i - (openPage - 1) * buttons.Count].SetValue(elements[i]);
                 }

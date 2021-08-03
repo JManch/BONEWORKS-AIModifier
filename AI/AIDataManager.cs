@@ -7,6 +7,7 @@ using PuppetMasta;
 using UnityEngine;
 using System.Linq;
 using System.IO;
+using MelonLoader;
 
 namespace AIModifier.AI
 {
@@ -28,25 +29,26 @@ namespace AIModifier.AI
         public static void LoadAIData()
         {
             aiData.Clear();
-            List<AIData> aiDatas = XMLDataManager.LoadXMLData<List<AIData>>(@"\Mods\AIModifier.xml");
+            List<AIData> aiDatas = XMLDataManager.LoadXMLData<List<AIData>>(@"AISettings.xml");
             foreach (AIData aiData in aiDatas)
             {
                 AIDataManager.aiData.Add(aiData.name, aiData);
             }
         }
 
+        // Pass an empty string to write all AI data to disk
         public static void WriteAIDataToDisk(string aiName = "")
         {
             if(aiName == "")
             {
                 // Just save. Not sure if this overwrites, test it.
-                XMLDataManager.SaveXMLData(aiData.Values.ToList(), @"\Mods\AIModifier.xml");
+                XMLDataManager.SaveXMLData(aiData.Values.ToList(), @"AISettings.xml");
                 
             }
             else
             {
-                List<AIData> aiDatas = XMLDataManager.LoadXMLData<List<AIData>>(@"\Mods\AIModifier.xml");
-                File.Delete(Utilities.Utilities.boneworksDirectory + @"\Mods\AIModifier.xml");
+                List<AIData> aiDatas = XMLDataManager.LoadXMLData<List<AIData>>(@"AISettings.xml");
+                File.Delete(Utilities.Utilities.aiModifierDirectory + @"AISettings.xml");
                 for (int i = 0; i < aiDatas.Count; i++)
                 {
                     if (aiDatas[i].name == aiName)
@@ -55,7 +57,7 @@ namespace AIModifier.AI
                         break;
                     }
                 }
-                XMLDataManager.SaveXMLData(aiDatas, @"\Mods\AIModifier.xml");
+                XMLDataManager.SaveXMLData(aiDatas, @"AISettings.xml");
             }
         }
 
@@ -107,7 +109,7 @@ namespace AIModifier.AI
                     break;
             }
 
-            aiBrain.gameObject.GetComponent<AIDataComponent>().aiData = aiData;
+            aiBrain.gameObject.GetComponent<AIDataComponent>().UpdateAIData(aiData.createClone());
         }
 
         private static void GeneratePowerLegData(AIBrain aiBrain, AIData aiData)

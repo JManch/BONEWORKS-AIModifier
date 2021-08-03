@@ -37,11 +37,7 @@ namespace AIModifier
 
             if(Input.GetKeyDown(KeyCode.C))
             {
-                AILayoutSaver.SaveAILayout();
-            }
-            if (Input.GetKeyDown(KeyCode.L))
-            {
-                AILayoutSaver.LoadAILayout(XMLDataManager.LoadXMLData<LayoutData>(@"\Mods\Layout.xml"));
+                AILayoutSaver.SaveAILayout("Test");
             }
 
             if (Input.GetKeyDown(KeyCode.M))

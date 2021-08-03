@@ -1,6 +1,7 @@
 ﻿using System;
 using StressLevelZero.AI;
 using UnityEngine;
+using MelonLoader;
 
 namespace AIModifier.AI
 {
@@ -9,7 +10,7 @@ namespace AIModifier.AI
         public AIDataComponent(IntPtr ptr) : base(ptr) { }
 
         public AIData defaultAIData { get; private set; }
-        public AIData aiData { get; set; }
+        public AIData aiData { get; private set; }
 
         private bool generatedDefaultData = false;
 
@@ -26,6 +27,11 @@ namespace AIModifier.AI
 
                 generatedDefaultData = true;
             }
+        }
+
+        public void UpdateAIData(AIData newAIData)
+        {
+            aiData = newAIData;
         }
     }
 }

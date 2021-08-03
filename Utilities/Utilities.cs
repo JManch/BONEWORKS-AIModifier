@@ -9,7 +9,7 @@ namespace AIModifier.Utilities
 {
     public static class Utilities
     {     
-        public static string boneworksDirectory;
+        public static string aiModifierDirectory;
 
         public static void RegisterClasses()
         {
@@ -28,7 +28,7 @@ namespace AIModifier.Utilities
 
         public static void LoadBoneworksDirectory()
         {
-            boneworksDirectory = Directory.GetCurrentDirectory().ToString();
+            aiModifierDirectory = Directory.GetCurrentDirectory().ToString() + @"\UserData\AIModifier\";
         }
 
         public static void SetupCollisionLayers()

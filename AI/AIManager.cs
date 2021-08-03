@@ -126,6 +126,8 @@ namespace AIModifier.AI
         // Called once on each AIBrain when it is first spawned in
         private static void ConfigureNewAI(AIBrain aiBrain)
         {
+            MelonLogger.Msg("Configure new AI was called for ai " + aiBrain.gameObject.name);
+
             // Add an AIDataComponent if the AI does not have one. This will store the AI's default settings which it will fall back on.
             // If the AI already has an AIDataComponent, restore the AI's settings to default. Default settings are stored in the AIDataComponent component.
 

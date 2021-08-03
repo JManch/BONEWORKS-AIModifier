@@ -15,7 +15,7 @@ namespace AIModifier.Utilities
             Assembly assembly = Assembly.GetExecutingAssembly();
             using (Stream stream = assembly.GetManifestResourceStream("AIModifier.Resources.DefaultAIData.xml"))
             {
-                using (FileStream fileStream = new FileStream(Utilities.boneworksDirectory + @"\Mods\AIModifier.xml", FileMode.Create))
+                using (FileStream fileStream = new FileStream(Utilities.aiModifierDirectory + @"AISettings.xml", FileMode.Create))
                 {
                     if (stream == null)
                     {
@@ -28,7 +28,7 @@ namespace AIModifier.Utilities
 
         public static void InitialiseAIDataXML()
         {
-            if (!File.Exists(Utilities.boneworksDirectory + @"\Mods\AIModifier.xml"))
+            if (!File.Exists(Utilities.aiModifierDirectory + @"AISettings.xml"))
             {
                 ReplaceAIXMLWithDefault();
             }
@@ -50,7 +50,7 @@ namespace AIModifier.Utilities
         public static T LoadXMLData<T>(string path)
         {
             var deserializer = new XmlSerializer(typeof(T));
-            using (FileStream xmlFile = File.OpenRead(Utilities.boneworksDirectory + path))
+            using (FileStream xmlFile = File.OpenRead(Utilities.aiModifierDirectory + path))
             {
                 return (T)deserializer.Deserialize(xmlFile);
             }
@@ -59,7 +59,7 @@ namespace AIModifier.Utilities
         public static void SaveXMLData<T>(T data, string path)
         {
             var serializer = new XmlSerializer(typeof(T));
-            using (FileStream xmlFile = File.OpenWrite(Utilities.boneworksDirectory + path))
+            using (FileStream xmlFile = File.OpenWrite(Utilities.aiModifierDirectory + path))
             {
                 serializer.Serialize(xmlFile, data);
             }

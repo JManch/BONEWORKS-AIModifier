@@ -40,7 +40,7 @@ namespace AIModifier.UI
         {
             for(int i = 0; i < elements.Length; ++i)
             {
-                if(elements[i].Equals((T)value))
+                if(elements[i].Equals(value))
                 {
                     this.pointer = i;
                 }

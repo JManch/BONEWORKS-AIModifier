@@ -1,4 +1,5 @@
 ﻿using AIModifier.UI;
+using AIModifier.Saving;
 using System.Globalization;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using ModThatIsNotMod;
 using MelonLoader;
+using UnityEngine.SceneManagement;
 
 namespace AIModifier.AI
 {
@@ -589,6 +591,37 @@ namespace AIModifier.AI
             AIDataManager.aiData[selectedAI].visionRadius = AIDataManager.defaultAIConfigurations[selectedAI].visionRadius;
             AIDataManager.aiData[selectedAI].pitchMultiplier = AIDataManager.defaultAIConfigurations[selectedAI].pitchMultiplier;
             LoadAIDataIntoUI();
+        }
+
+        #endregion
+
+        #region Load Layout Page
+
+        public static void LoadSceneAILayouts(string scene)
+        {
+            ButtonList buttonList = (ButtonList)AIMenuManager.aiMenu.GetPage("LoadLayoutPage").GetElement("LayoutsListElement");
+            string[] layouts = AILayoutSaver.GetAILayouts(scene);
+
+            buttonList.SetValue(layouts);
+
+            if (SceneManager.GetActiveScene().name == scene)
+            {
+                if(layouts.Length == 1)
+                {
+                    buttonList.statusText.SetValue("Successfully loaded " + layouts.Length + " layout");
+                }
+                else
+                {
+                    buttonList.statusText.SetValue("Successfully loaded " + layouts.Length + " layouts");
+                }
+                
+                buttonList.statusText.SetColor(Color.green);
+            }
+            else
+            {
+                buttonList.statusText.SetValue("Warning, these layouts were saved in a different scene");
+                buttonList.statusText.SetColor(Color.red);
+            }
         }
 
         #endregion
