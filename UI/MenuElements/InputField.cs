@@ -13,8 +13,15 @@ namespace AIModifier.UI
         private bool useMinMax;
         private float maxValue;
         private float minValue;
+        private InputType inputType;
 
-        public InputField(MenuPage menuPage, GameObject gameObject, string inputFieldText, string defaultText, TextProperties textProperties, float minValue = default, float maxValue = default, Action<string> onValueChanged = null) : base(menuPage, gameObject)
+        public enum InputType
+        {
+            Keyboard,
+            Numpad
+        }
+
+        public InputField(MenuPage menuPage, GameObject gameObject, string inputFieldText, string defaultText, InputType inputType, TextProperties textProperties, float minValue = default, float maxValue = default, Action<string> onValueChanged = null) : base(menuPage, gameObject)
         {
             new TextDisplay(menuPage, gameObject.transform.GetChild(0).gameObject, inputFieldText, textProperties);
             textBox = new TextDisplay(menuPage, gameObject.transform.FindChild("InputBox").gameObject, defaultText, textProperties);
@@ -30,6 +37,7 @@ namespace AIModifier.UI
                 useMinMax = true;
             }
             this.onValueChanged = onValueChanged;
+            this.inputType = inputType;
             value = defaultText;
         }
 
@@ -102,8 +110,16 @@ namespace AIModifier.UI
         private void OnSelect()
         {
             // Active the keyboard
-            Keyboard.OpenNumpad();
-            Keyboard.numpad.SetActiveInputField(this);
+            if(inputType == InputType.Keyboard)
+            {
+                Keyboard.OpenKeyboard();
+                Keyboard.keyboard.SetActiveInputField(this);
+            }
+            else
+            {
+                Keyboard.OpenNumpad();
+                Keyboard.numpad.SetActiveInputField(this);
+            }
             SetDisplayValue("");
         }
     }

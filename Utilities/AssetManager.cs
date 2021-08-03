@@ -15,6 +15,7 @@ namespace AIModifier.Utilities
         public static GameObject aiMenuPrefab { get; private set; }
         public static GameObject numpadPrefab { get; private set; }
         public static GameObject aiSelectorPrefab { get; private set; }
+        public static GameObject keyboardPrefab { get; private set; }
 
         // Game references
         public static Hand leftHand { get; private set; }
@@ -39,6 +40,8 @@ namespace AIModifier.Utilities
                     aiMenuPrefab.hideFlags = HideFlags.DontUnloadUnusedAsset;
                     numpadPrefab = Array.Find(data, element => element.name == "Numpad").Cast<GameObject>();
                     numpadPrefab.hideFlags = HideFlags.DontUnloadUnusedAsset;
+                    keyboardPrefab = Array.Find(data, element => element.name == "Keyboard").Cast<GameObject>();
+                    keyboardPrefab.hideFlags = HideFlags.DontUnloadUnusedAsset;
                     aiSelectorPrefab = Array.Find(data, element => element.name == "AISelector").Cast<GameObject>();
                     aiSelectorPrefab.hideFlags = HideFlags.DontUnloadUnusedAsset;
                 }
