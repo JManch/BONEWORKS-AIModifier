@@ -615,12 +615,12 @@ namespace AIModifier.AI
                     buttonList.statusText.SetValue("Successfully loaded " + layouts.Length + " layouts");
                 }
                 
-                buttonList.statusText.SetColor(Color.green);
+                buttonList.statusText.text.color = Color.green;
             }
             else
             {
                 buttonList.statusText.SetValue("Warning, these layouts were saved in a different scene");
-                buttonList.statusText.SetColor(Color.red);
+                buttonList.statusText.text.color = Color.red;
             }
         }
 

@@ -48,10 +48,6 @@ namespace AIModifier.UI
         public override void SetValue(object value)
         {
             elements.Clear();
-            foreach(Button button in buttons)
-            {
-                button.SetValue("");
-            }
 
             string[] arr = value as string[];
             if (arr != null)
@@ -73,7 +69,12 @@ namespace AIModifier.UI
 
         private void RefreshButtons()
         {
-            for(int i = 0; i < elements.Count; i++)
+            foreach (Button button in buttons)
+            {
+                button.SetValue("");
+            }
+
+            for (int i = 0; i < elements.Count; i++)
             {
                 // If the element is on the current page
                 if(buttons.Count * (openPage - 1) <= i && i <= (buttons.Count * openPage) - 1)

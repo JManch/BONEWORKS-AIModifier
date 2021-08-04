@@ -77,7 +77,7 @@ namespace AIModifier.UI
 
         public override void OnPageClose()
         {
-            textBox.SetValue(value);
+            SetDisplayValue(value);
             if(Keyboard.numpad != null && Keyboard.numpad.isOpen)
             {
                 Keyboard.numpad.CloseMenu();

@@ -13,7 +13,7 @@ namespace AIModifier
     {
         public override void OnApplicationStart()
         {
-            Utilities.Utilities.LoadBoneworksDirectory();
+            Utilities.Utilities.InitialiseDirectories();
             Hooks.CreateHooks();
             Utilities.Utilities.RegisterClasses();
             AssetManager.LoadAssetBundles();

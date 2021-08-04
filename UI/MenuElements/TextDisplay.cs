@@ -37,10 +37,5 @@ namespace AIModifier.UI
             this.value = value.ToString();
             text.text = value.ToString();
         }
-
-        public void SetColor(Color color)
-        {
-            text.color = color;
-        }
     }
 }

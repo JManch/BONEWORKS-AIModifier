@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using AIModifier.AI;
+using AIModifier.UI;
 using UnityEngine.SceneManagement;
 using System.IO;
 using ModThatIsNotMod;
@@ -14,11 +15,36 @@ namespace AIModifier.Saving
     public static class AILayoutSaver
     {
         private static Dictionary<string, LayoutData> layoutCache = new Dictionary<string, LayoutData>();
+        public static string saveName { get; private set; }
+
+        private static bool allowOverwrite;
 
         public static void SaveAILayout(string layoutName)
         {
+            if (File.Exists(Utilities.Utilities.aiModifierDirectory + layoutName + @".xml"))
+            {
+                if (!allowOverwrite)
+                {
+                    AIMenuManager.aiMenu.GetPage("SaveLayoutPage").GetElement("StatusText").SetValue("Error - A layout with that name already exists. Press save again to overwrite the existing layout.");
+                    ((TextDisplay)AIMenuManager.aiMenu.GetPage("SaveLayoutPage").GetElement("StatusText")).text.color = Color.red;
+                    allowOverwrite = true;
+                    return;
+                }
+                else
+                {
+                    allowOverwrite = false;
+                }
+            }
+            
             AIBrain[] aiBrains = GameObject.FindObjectsOfType<AIBrain>();
             List<AILayoutData> aiLayoutDatas = new List<AILayoutData>();
+
+            if(aiBrains.Length == 0)
+            {
+                AIMenuManager.aiMenu.GetPage("SaveLayoutPage").GetElement("StatusText").SetValue("Error - There are no AI in the scene to save.");
+                ((TextDisplay)AIMenuManager.aiMenu.GetPage("SaveLayoutPage").GetElement("StatusText")).text.color = Color.red;
+                return;
+            }
 
             foreach (AIBrain aiBrain in aiBrains)
             {
@@ -45,9 +71,13 @@ namespace AIModifier.Saving
                 ai = aiLayoutDatas.ToArray()
             };
 
-            // Now parse into a XML and save
+            
 
+            // Now parse into an XML and save
             Utilities.XMLDataManager.SaveXMLData(layoutData, @"\Layouts\" + layoutName + @".xml");
+
+            AIMenuManager.aiMenu.GetPage("SaveLayoutPage").GetElement("StatusText").SetValue("Saved successfully");
+            ((TextDisplay)AIMenuManager.aiMenu.GetPage("SaveLayoutPage").GetElement("StatusText")).text.color = Color.green;
         }
 
         public static void LoadAILayout(string layout)
@@ -101,6 +131,11 @@ namespace AIModifier.Saving
                 }
             }
 
+        }
+
+        public static void UpdateSaveName(string s)
+        {
+            saveName = s;
         }
     }
 }

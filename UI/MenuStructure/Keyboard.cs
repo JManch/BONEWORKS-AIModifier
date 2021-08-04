@@ -168,11 +168,21 @@ namespace AIModifier.UI
                     {
                         capsLock = true;
                         ((Button)keyboard.GetPage("RootPage").GetElement("Caps")).SetColor(new Color(0.3f, 0.3f, 0.3f, 0.75f));
+
+                        for (char c = 'a'; c <= 'z'; c++)
+                        {
+                            keyboard.GetPage("RootPage").GetElement(c.ToString()).SetValue(c.ToString().ToUpper());
+                        }
                     }
                     else
                     {
                         capsLock = false;
                         ((Button)keyboard.GetPage("RootPage").GetElement("Caps")).SetColor(((Button)keyboard.GetPage("RootPage").GetElement("Caps")).defaultColor);
+
+                        for (char c = 'a'; c <= 'z'; c++)
+                        {
+                            keyboard.GetPage("RootPage").GetElement(c.ToString()).SetValue(c.ToString());
+                        }
                     }
                     break;
                 default:

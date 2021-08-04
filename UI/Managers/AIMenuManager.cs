@@ -336,8 +336,19 @@ namespace AIModifier.UI
             loadLayoutPage.AddElement(new TextDisplay(loadLayoutPage, loadLayoutPageTransform.FindChild("Title").gameObject, "LOAD LAYOUTS", titleTextProperties));
             loadLayoutPage.AddElement(new GenericSelector<string>(loadLayoutPage, loadLayoutPageTransform.FindChild("SceneSelectorElement").gameObject, "Scene:", new TextProperties(7, Color.white, true), scenes, delegate (string s) { AIMenuFunctions.LoadSceneAILayouts(s); }));
             loadLayoutPage.AddElement(new ButtonList(loadLayoutPage, loadLayoutPageTransform.FindChild("LayoutsListElement").gameObject, new TextProperties(7, Color.white, true), delegate (string s) { Saving.AILayoutSaver.LoadAILayout(s); }));
-            loadLayoutPage.AddElement(new Button(loadLayoutPage, loadLayoutPageTransform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("RootPage"); }));
+            loadLayoutPage.AddElement(new Button(loadLayoutPage, loadLayoutPageTransform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("AILayoutPage"); }));
             loadLayoutPage.onPageOpen += delegate { Saving.AILayoutSaver.CacheAILayouts(); loadLayoutPage.GetElement("SceneSelectorElement").SetValue(SceneManager.GetActiveScene().name); };
+
+            #endregion
+
+            #region Save Layout Page
+
+            Transform saveLayoutPageTransform = menuPrefab.transform.FindChild("SaveLayoutPage");
+            saveLayoutPage.AddElement(new TextDisplay(saveLayoutPage, saveLayoutPageTransform.FindChild("Title").gameObject, "SAVE LAYOUT", titleTextProperties));
+            saveLayoutPage.AddElement(new InputField(saveLayoutPage, saveLayoutPageTransform.FindChild("SaveNameElement").gameObject, "Set Name Below", "", InputField.InputType.Keyboard, elementTextProperties, 0, 0, delegate (string s) { Saving.AILayoutSaver.UpdateSaveName(s); }));
+            saveLayoutPage.AddElement(new TextDisplay(saveLayoutPage, saveLayoutPageTransform.FindChild("StatusText").gameObject, "", elementTextProperties));
+            saveLayoutPage.AddElement(new Button(saveLayoutPage, saveLayoutPageTransform.FindChild("SaveButton").gameObject, "Save", buttonTextProperties, Button.ButtonHighlightType.Underline, delegate { Saving.AILayoutSaver.SaveAILayout(Saving.AILayoutSaver.saveName); }));
+            saveLayoutPage.AddElement(new Button(saveLayoutPage, saveLayoutPageTransform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("AILayoutPage"); }));
 
             #endregion
 

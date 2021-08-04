@@ -26,8 +26,9 @@ namespace AIModifier.Utilities
             ClassInjector.RegisterTypeInIl2Cpp<AIDataComponent>();
         }
 
-        public static void LoadBoneworksDirectory()
+        public static void InitialiseDirectories()
         {
+            Directory.CreateDirectory(Directory.GetCurrentDirectory().ToString() + @"\UserData\AIModifier\Layouts");
             aiModifierDirectory = Directory.GetCurrentDirectory().ToString() + @"\UserData\AIModifier\";
         }
 
