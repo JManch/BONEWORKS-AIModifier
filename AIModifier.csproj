@@ -119,6 +119,7 @@
     <Compile Include="Utilities\AssetManager.cs" />
     <Compile Include="Utilities\Debugging.cs" />
     <Compile Include="Utilities\Hooks.cs" />
+    <Compile Include="Utilities\UserPreferences.cs" />
     <Compile Include="Utilities\Utilities.cs" />
     <Compile Include="Utilities\XMLDataManager.cs" />
   </ItemGroup>

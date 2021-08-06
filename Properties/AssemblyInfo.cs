@@ -12,7 +12,7 @@ using MelonLoader;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("AIModifier")]
-[assembly: AssemblyCopyright("Copyright ©  2021")]
+[assembly: AssemblyCopyright("Created by Manch")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

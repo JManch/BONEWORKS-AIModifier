@@ -87,7 +87,7 @@ namespace AIModifier.UI
 
         public void OnButtonDown()
         {
-            PlayClickSound();
+            ClickEffects();
 
             if (onButtonDown != null)
             {
@@ -141,9 +141,11 @@ namespace AIModifier.UI
             image.color = color;
         }
 
-        private void PlayClickSound()
+        private void ClickEffects()
         {
             menuPage.menu.audioSource.Play();
+            MenuPointerManager.activePointer.hand.controller.HapticAction(0, 0.008f, 150, 1f);
+            //MenuPointerManager.activePointer.hand.controller.HapticAction(0, 0.125f, 50f, 0.2f);
         }
     }
 }

@@ -19,17 +19,19 @@ namespace AIModifier
             AssetManager.LoadAssetBundles();
             XMLDataManager.InitialiseAIDataXML();
             Utilities.Utilities.SetupCollisionLayers();
+            Utilities.Utilities.InitialiseBoneMenu();
         }
 
         public override void OnUpdate()
         {
-
             // Getting variables
             if(AssetManager.leftHand == null || AssetManager.rightHand == null)
             {
                 AssetManager.GetHands();
             }
 
+
+            /*
             if(Input.GetKeyDown(KeyCode.Space))
             {
                 AIMenuManager.OpenAIMenu();
@@ -39,6 +41,7 @@ namespace AIModifier
             {
                 AILayoutSaver.SaveAILayout("Test");
             }
+            */
 
             if (Input.GetKeyDown(KeyCode.M))
             {
@@ -75,5 +78,6 @@ namespace AIModifier
 
             
         }
+
     }
 }

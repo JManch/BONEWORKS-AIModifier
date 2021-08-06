@@ -12,6 +12,9 @@ namespace AIModifier.UI
         public SelectorUI(GameObject gameObject) : base(gameObject)
         {
             gameObject.AddComponent<SmoothPlayerFollow>();
+            LookAtPlayer lookAtPlayer = gameObject.AddComponent<LookAtPlayer>();
+            lookAtPlayer.fixedXAxis = false;
+
             this.selector = selector;
             selectedColor = Color.green;
         }

@@ -111,6 +111,49 @@ namespace AIModifier.AI
 
             aiBrain.gameObject.GetComponent<AIDataComponent>().UpdateAIData(aiData.createClone());
         }
+        public static void ApplyNonBaseConfigDefaultAIData(AIBrain aiBrain)
+        {
+            AIData aiData = aiBrain.GetComponent<AIDataComponent>().defaultAIData;
+
+            aiBrain.behaviour.health.cur_hp = aiData.health / 100;
+            aiBrain.behaviour.health.cur_leg_lf = aiData.leftLegHealth / 100;
+            aiBrain.behaviour.health.cur_leg_rt = aiData.rightLegHealth / 100;
+            aiBrain.behaviour.health.cur_arm_lf = aiData.leftArmHealth / 100;
+            aiBrain.behaviour.health.cur_arm_rt = aiData.rightArmHealth / 100;
+
+            if(aiBrain.behaviour is BehaviourPowerLegs)
+            {
+                ((BehaviourPowerLegs)aiBrain.behaviour).engagedSpeed = aiData.engagedSpeed;
+                ((BehaviourPowerLegs)aiBrain.behaviour).meleeRange = aiData.meleeRange;
+            }
+
+            if(aiBrain.behaviour is BehaviourCrablet)
+            {
+                ((BehaviourCrablet)aiBrain.behaviour).enableJumpAttack = aiData.jumpAttackEnabled;
+                ((BehaviourCrablet)aiBrain.behaviour).jumpCooldown = aiData.jumpCooldown;
+            }
+
+            if(aiBrain.behaviour is BehaviourOmniwheel)
+            {
+                ((BehaviourOmniwheel)aiBrain.behaviour).meleeRange = aiData.meleeRange;
+                ((BehaviourOmniwheel)aiBrain.behaviour).chargeCooldown = aiData.chargeCooldown;
+                ((BehaviourOmniwheel)aiBrain.behaviour).chargePrepSpeed = aiData.chargePrepSpeed;
+                ((BehaviourOmniwheel)aiBrain.behaviour).chargeWindupDistance = aiData.chargeWindupDistance;
+            }
+
+            if (Enum.TryParse(aiData.agroOnNPCType, out TriggerRefProxy.NpcType npcType))
+            {
+                aiBrain.behaviour.agroOnNpcType = npcType;
+            }
+            else
+            {
+                aiBrain.behaviour.agroOnNpcType = 0;
+            }
+
+            aiBrain.behaviour.sensors.hearingSensitivity = aiData.hearingSensitivity;
+            aiBrain.behaviour.sensors._visionSphere.radius = aiData.visionRadius;
+            aiBrain.behaviour.sfx.pitchMultiplier = aiData.pitchMultiplier;
+        }
 
         private static void GeneratePowerLegData(AIBrain aiBrain, AIData aiData)
         {
@@ -204,27 +247,27 @@ namespace AIModifier.AI
             aiData.rightLegHealth = behaviourOmniwheel.health.cur_leg_rt * 100;
             aiData.leftArmHealth = behaviourOmniwheel.health.cur_arm_lf * 100;
             aiData.rightArmHealth = behaviourOmniwheel.health.cur_arm_rt * 100;
-
+ 
             aiData.accuracy = behaviourOmniwheel.accuracy;
             aiData.gunRange = behaviourOmniwheel.gunRange;
             aiData.reloadTime = behaviourOmniwheel.reloadTime;
             aiData.burstSize = behaviourOmniwheel.burstSize;
             aiData.clipSize = behaviourOmniwheel.clipSize;
-
+            
             aiData.enableThrowAttack = behaviourOmniwheel.enableThrowAttack;
             aiData.throwCooldown = behaviourOmniwheel.throwCooldown;
             aiData.throwMaxRange = behaviourOmniwheel.throwMaxRange;
             aiData.throwMinRange = behaviourOmniwheel.throwMinRange;
-
+            
             aiData.agroedSpeed = behaviourOmniwheel.agroedSpeed;
             aiData.roamSpeed = behaviourOmniwheel.roamSpeed;
-
+            
             aiData.roamRange = behaviourOmniwheel.roamRange.x;
             aiData.roamWanders = behaviourOmniwheel.roamWanders;
-
+            
             aiData.defaultMentalState = "Default";
             aiData.defaultEngagedMode = "Default";
-
+            
             aiData.agroOnNPCType = behaviourOmniwheel.agroOnNpcType.ToString();
             aiData.meleeRange = behaviourOmniwheel.meleeRange;
             
@@ -233,7 +276,7 @@ namespace AIModifier.AI
             aiData.chargePrepSpeed = behaviourOmniwheel.chargePrepSpeed;
             aiData.chargeWindupDistance = behaviourOmniwheel.chargeWindupDistance;
             aiData.defaultOmniEngagedMode = behaviourOmniwheel.engagedMode.ToString();
-
+            
             aiData.hearingSensitivity = behaviourOmniwheel.sensors.hearingSensitivity;
             aiData.visionRadius = behaviourOmniwheel.sensors._visionSphere.radius;
             aiData.pitchMultiplier = behaviourOmniwheel.sfx.pitchMultiplier;

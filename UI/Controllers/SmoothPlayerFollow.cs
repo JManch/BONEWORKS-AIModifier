@@ -9,20 +9,18 @@ namespace AIModifier.UI
         public SmoothPlayerFollow(IntPtr ptr) : base(ptr) { }
 
         public float distance = 0.8f;
+        public float speed = 6f;
 
         private Transform playerHead;
-        private Transform playerPelvis;
         
         void Awake()
         {
-            playerPelvis = Player.GetRigManager().transform.FindChild("[SkeletonRig (Realtime SkeleBones)]").FindChild("Pelvis");
-            playerHead = Player.GetPlayerHead().transform;
+            playerHead = Player.GetRigManager().transform.FindChild("[SkeletonRig (Realtime SkeleBones)]/Head");
         }
 
         void Update()
         {
-            transform.position = Vector3.Lerp(transform.position, playerPelvis.position + distance * playerPelvis.forward, Time.deltaTime * 6);
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(transform.position - playerHead.position), 5 * Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, playerHead.position + distance * Vector3.ProjectOnPlane(playerHead.forward, Vector3.up), Time.deltaTime * speed);
         }
     }
 }

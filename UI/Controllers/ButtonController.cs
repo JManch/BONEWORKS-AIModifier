@@ -36,7 +36,7 @@ namespace AIModifier.UI
                     button.OnButtonHighlighted();
                 }
 
-                if (MenuPointerManager.activePointer.hand.controller.GetPrimaryInteractionButtonDown())
+                if (Utilities.Utilities.GetTriggerDown(MenuPointerManager.activePointer.hand))
                 {
                     button.OnButtonDown();
                 }

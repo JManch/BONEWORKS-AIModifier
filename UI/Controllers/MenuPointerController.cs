@@ -67,7 +67,7 @@ namespace AIModifier.UI
                 DeactivatePointer();
                 
                 // If trigger down then set this pointer as active
-                if(hand.controller.GetPrimaryInteractionButtonDown())
+                if(Utilities.Utilities.GetTriggerDown(hand))
                 {
                     MenuPointerManager.SwitchActivePointer(pointerHand);
                 }

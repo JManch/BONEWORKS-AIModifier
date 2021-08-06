@@ -22,9 +22,6 @@ namespace AIModifier.UI
             playerHead = Player.GetPlayerHead().transform;
         }
 
-        protected virtual void Update()
-        {
-
-        }
+        protected virtual void Update() {}
     }
 }

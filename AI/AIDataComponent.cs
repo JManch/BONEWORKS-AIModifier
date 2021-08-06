@@ -19,6 +19,14 @@ namespace AIModifier.AI
             if(!generatedDefaultData)
             {
                 defaultAIData = AIDataManager.GenerateAIData(gameObject.GetComponent<AIBrain>());
+
+                // Because the AI's BaseConfigs do not modify health, force health to reset to 100
+                defaultAIData.health = 100;
+                defaultAIData.leftLegHealth = 100;
+                defaultAIData.rightLegHealth = 100;
+                defaultAIData.leftArmHealth = 100;
+                defaultAIData.rightArmHealth = 100;
+
                 defaultAIData.defaultMentalState = "Default";
                 defaultAIData.defaultEngagedMode = "Default";
                 defaultAIData.defaultOmniEngagedMode = "Default";

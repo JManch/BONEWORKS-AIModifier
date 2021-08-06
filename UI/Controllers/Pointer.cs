@@ -50,7 +50,7 @@ namespace AIModifier.UI
             PerformHandRaycast();
             pointerTip.transform.position = pointerHit.point;
 
-            if (hand.controller.GetPrimaryInteractionButtonDown())
+            if (Utilities.Utilities.GetTriggerDown(hand))
             {
                 OnPointerClick(pointerHit);
             }

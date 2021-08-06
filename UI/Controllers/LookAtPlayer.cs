@@ -8,7 +8,9 @@ namespace AIModifier.UI
     {
         public LookAtPlayer(IntPtr ptr) : base(ptr) { }
 
-        Transform playerHead;
+        public bool fixedXAxis = true;
+        private Transform playerHead;
+
 
         private void Awake()
         {
@@ -17,7 +19,17 @@ namespace AIModifier.UI
         
         private void Update()
         {
-            transform.rotation = Quaternion.LookRotation(transform.position - new Vector3(playerHead.transform.position.x, transform.position.y, playerHead.transform.position.z));
+            if(fixedXAxis)
+            {
+                transform.rotation = Quaternion.LookRotation(transform.position - new Vector3(playerHead.transform.position.x, transform.position.y, playerHead.transform.position.z));
+            }
+            else
+            {
+                transform.rotation = Quaternion.LookRotation(transform.position - playerHead.transform.position);
+            }
+
+            // Code for smooth rotation
+            //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(transform.position - playerHead.position), 5 * Time.deltaTime);
         }
     }
 }

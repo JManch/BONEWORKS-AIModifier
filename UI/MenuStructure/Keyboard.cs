@@ -14,6 +14,8 @@ namespace AIModifier.UI
         public Keyboard(GameObject gameObject) : base(gameObject)
         {
             gameObject.AddComponent<SmoothPlayerFollow>();
+            LookAtPlayer lookAtPlayer = gameObject.AddComponent<LookAtPlayer>();
+            lookAtPlayer.fixedXAxis = false;
         }
 
         #region Numpad

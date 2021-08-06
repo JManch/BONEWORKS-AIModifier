@@ -118,7 +118,15 @@ namespace AIModifier.AI
             if(__instance.spawns.Count != 0)
             {
                 AIBrain spawnedAIBrain = __instance.spawns[__instance.spawns.Count - 1].GetComponent<AIBrain>();
-                ConfigureNewAI(spawnedAIBrain);
+                if(spawnedAIBrain == null)
+                {
+                    MelonLogger.Msg("The spawned object is null");
+                }
+                /ConfigureNewAI(spawnedAIBrain);
+            }
+            else
+            {
+                MelonLogger.Msg("Spawns count is 0");
             }
         }
         #endregion
@@ -126,19 +134,25 @@ namespace AIModifier.AI
         // Called once on each AIBrain when it is first spawned in
         private static void ConfigureNewAI(AIBrain aiBrain)
         {
-            MelonLogger.Msg("Configure new AI was called for ai " + aiBrain.gameObject.name);
-
+            if (aiBrain == null || SimpleHelpers.GetCleanObjectName(aiBrain.gameObject.name) == "enemy_genericTurret_V4")
+            {
+                return;
+            }
+            MelonLogger.Msg("Configuring AI " + aiBrain.name);
             // Add an AIDataComponent if the AI does not have one. This will store the AI's default settings which it will fall back on.
             // If the AI already has an AIDataComponent, restore the AI's settings to default. Default settings are stored in the AIDataComponent component.
-
             if (aiBrain.gameObject.GetComponent<AIDataComponent>() == null)
             {
                 AIDataComponent aiDataComponent = aiBrain.gameObject.AddComponent<AIDataComponent>();
+
+                // Generating default data only once is an issue due to the pool system reusing enemies with different configs
                 aiDataComponent.GenerateDefaultAIData();
             }
             else
             {
-                AIDataManager.ApplyAIData(aiBrain, aiBrain.gameObject.GetComponent<AIDataComponent>().defaultAIData);
+                // Only applies default values for variables that are not reset by the AI's base config system
+                AIDataManager.ApplyNonBaseConfigDefaultAIData(aiBrain);
+                //AIDataManager.ApplyAIData(aiBrain, aiBrain.gameObject.GetComponent<AIDataComponent>().defaultAIData);
             }
 
             // Retrieve stored ai data for the ai
@@ -150,8 +164,13 @@ namespace AIModifier.AI
             // Only add a health plate if it doesnt have one as it seems like zone spawners reuse gameobjects?
             if(aiBrain.transform.FindChild("HealthPlate(Clone)") == null)
             {
-                var headPlate = aiBrain.gameObject.AddComponent<AIHealthPlateController>();
-                headPlate.OnSpawn();
+                var healthPlate = aiBrain.gameObject.AddComponent<AIHealthPlateController>();
+                healthPlate.OnSpawn();
+            }
+            else
+            {
+                var healthPlate = aiBrain.gameObject.GetComponent<AIHealthPlateController>();
+                healthPlate.OnSpawn();
             }
 
             if (aiBrain.transform.FindChild("SelectedPlate(Clone)") == null)
@@ -162,6 +181,11 @@ namespace AIModifier.AI
 
         public static void ConfigureNewAI(AIBrain aiBrain, AIData aiData)
         {
+            if (aiBrain == null)
+            {
+                return;
+            }
+
             if (aiBrain.gameObject.GetComponent<AIDataComponent>() == null)
             {
                 AIDataComponent aiDataComponent = aiBrain.gameObject.AddComponent<AIDataComponent>();
@@ -169,7 +193,7 @@ namespace AIModifier.AI
             }
             else
             {
-                AIDataManager.ApplyAIData(aiBrain, aiBrain.gameObject.GetComponent<AIDataComponent>().defaultAIData);
+                AIDataManager.ApplyNonBaseConfigDefaultAIData(aiBrain);
             }
 
             // Apply all the AI data regardless of default config
@@ -178,7 +202,12 @@ namespace AIModifier.AI
             // Only add a health plate if it doesnt have one as it seems like zone spawners reuse gameobjects?
             if (aiBrain.transform.FindChild("HealthPlate(Clone)") == null)
             {
-                var headPlate = aiBrain.gameObject.AddComponent<AIHealthPlateController>();
+                var healthPlate = aiBrain.gameObject.AddComponent<AIHealthPlateController>();
+                healthPlate.OnSpawn();
+            }
+            else
+            {
+                var headPlate = aiBrain.gameObject.GetComponent<AIHealthPlateController>();
                 headPlate.OnSpawn();
             }
 
