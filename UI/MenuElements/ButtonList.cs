@@ -32,7 +32,7 @@ namespace AIModifier.UI
             {
                 if (gameObject.transform.GetChild(i).name == "Button")
                 {
-                    buttons.Add(new Button(menuPage, gameObject.transform.GetChild(i).gameObject, "", new TextProperties(7f, Color.white, true), Button.ButtonHighlightType.Color, null, null, null, buttonAction));
+                    buttons.Add(new Button(menuPage, gameObject.transform.GetChild(i).gameObject, "", new TextProperties(7f, Color.white, true), Button.ButtonHighlightType.Color, null, buttonAction));
                 }
             }
 

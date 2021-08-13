@@ -122,11 +122,7 @@ namespace AIModifier.AI
                 {
                     MelonLogger.Msg("The spawned object is null");
                 }
-                /ConfigureNewAI(spawnedAIBrain);
-            }
-            else
-            {
-                MelonLogger.Msg("Spawns count is 0");
+                ConfigureNewAI(spawnedAIBrain);
             }
         }
         #endregion

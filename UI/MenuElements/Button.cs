@@ -17,16 +17,13 @@ namespace AIModifier.UI
 
         public Action onButtonDown { get; set; }
         public Action<string> onButtonDownParameter { get; set; }
-        public Action<string> onButtonParameter { get; set; }
-        public Action onButtonUp { get; set; }
-        public Action onButton { get; set; }
         public Color defaultColor { get; private set; }
 
         private Image image;
         private TextDisplay textDisplay; 
         private ButtonHighlightType buttonHighlightType;
 
-        public Button(MenuPage menuPage, GameObject gameObject, string buttonText, TextProperties textProperties, ButtonHighlightType buttonHighlightType, Action onButtonDown = null, Action onButton = null, Action onButtonUp = null, Action<string> onButtonDownParameter = null, Action<string> onButtonParameter = null) : base(menuPage, gameObject)
+        public Button(MenuPage menuPage, GameObject gameObject, string buttonText, TextProperties textProperties, ButtonHighlightType buttonHighlightType, Action onButtonDown = null, Action<string> onButtonDownParameter = null) : base(menuPage, gameObject)
         {
             textDisplay = new TextDisplay(menuPage, gameObject.transform.GetChild(0).gameObject, buttonText, textProperties);
             buttonController = gameObject.AddComponent<ButtonController>();
@@ -34,10 +31,7 @@ namespace AIModifier.UI
             image = gameObject.GetComponent<Image>();
             defaultColor = image.color;
             this.onButtonDown = onButtonDown;
-            this.onButton = onButton;
-            this.onButtonUp = onButtonUp;
             this.onButtonDownParameter = onButtonDownParameter;
-            this.onButtonParameter = onButtonParameter;
             this.buttonHighlightType = buttonHighlightType;
         }
 
@@ -49,11 +43,6 @@ namespace AIModifier.UI
         public override void SetValue(object value)
         {
             textDisplay.SetValue(value);
-        }
-
-        public override void OnPageOpen()
-        {
-            buttonController.disableOnButton = true;
         }
 
         public override void OnPageClose()
@@ -100,42 +89,6 @@ namespace AIModifier.UI
             }
         }
 
-        public void OnButtonUp()
-        {
-            if (onButtonUp != null)
-            {
-                onButtonUp();
-            }
-        }
-
-        private readonly float activateFrequency = 0.5f;
-        private float nextActivateTime;
-
-        public void OnButton()
-        {
-            if (onButton != null)
-            {
-                if(Time.fixedTime > nextActivateTime)
-                {
-                    nextActivateTime = Time.fixedTime + activateFrequency;
-                    onButton();
-                }
-            }
-
-            if(onButtonParameter != null)
-            {
-                if(nextActivateTime == 0)
-                {
-                    nextActivateTime = Time.fixedTime;
-                }
-
-                if (Time.fixedTime > nextActivateTime)
-                {
-                    nextActivateTime = Time.fixedTime + activateFrequency;
-                    onButtonParameter(GetValue().ToString());
-                }
-            }
-        }
         public void SetColor(Color color)
         {
             image.color = color;
