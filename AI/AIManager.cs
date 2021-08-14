@@ -158,15 +158,22 @@ namespace AIModifier.AI
             AIDataManager.ApplyAIData(aiBrain, aiData, AIDataManager.defaultAIConfigurations[SimpleHelpers.GetCleanObjectName(aiBrain.gameObject.name)]);
 
             // Only add a health plate if it doesnt have one as it seems like zone spawners reuse gameobjects?
-            if(aiBrain.transform.FindChild("HealthPlate(Clone)") == null)
+            if(Utilities.UserPreferences.healthBars.Value)
             {
-                var healthPlate = aiBrain.gameObject.AddComponent<AIHealthPlateController>();
-                healthPlate.OnSpawn();
+                if (aiBrain.transform.FindChild("HealthPlate(Clone)") == null)
+                {
+                    var healthPlate = aiBrain.gameObject.AddComponent<AIHealthPlateController>();
+                    healthPlate.OnSpawn();
+                }
+                else
+                {
+                    var healthPlate = aiBrain.gameObject.GetComponent<AIHealthPlateController>();
+                    healthPlate.OnSpawn();
+                }
             }
-            else
+            else if (aiBrain.gameObject.GetComponent<AIHealthPlateController>() != null)
             {
-                var healthPlate = aiBrain.gameObject.GetComponent<AIHealthPlateController>();
-                healthPlate.OnSpawn();
+                GameObject.Destroy(aiBrain.gameObject.GetComponent<AIHealthPlateController>());
             }
 
             if (aiBrain.transform.FindChild("SelectedPlate(Clone)") == null)
@@ -196,15 +203,22 @@ namespace AIModifier.AI
             AIDataManager.ApplyAIData(aiBrain, aiData);
 
             // Only add a health plate if it doesnt have one as it seems like zone spawners reuse gameobjects?
-            if (aiBrain.transform.FindChild("HealthPlate(Clone)") == null)
+            if (Utilities.UserPreferences.healthBars.Value)
             {
-                var healthPlate = aiBrain.gameObject.AddComponent<AIHealthPlateController>();
-                healthPlate.OnSpawn();
+                if (aiBrain.transform.FindChild("HealthPlate(Clone)") == null)
+                {
+                    var healthPlate = aiBrain.gameObject.AddComponent<AIHealthPlateController>();
+                    healthPlate.OnSpawn();
+                }
+                else
+                {
+                    var healthPlate = aiBrain.gameObject.GetComponent<AIHealthPlateController>();
+                    healthPlate.OnSpawn();
+                }
             }
-            else
+            else if (aiBrain.gameObject.GetComponent<AIHealthPlateController>() != null)
             {
-                var headPlate = aiBrain.gameObject.GetComponent<AIHealthPlateController>();
-                headPlate.OnSpawn();
+                GameObject.Destroy(aiBrain.gameObject.GetComponent<AIHealthPlateController>());
             }
 
             if (aiBrain.transform.FindChild("SelectedPlate(Clone)") == null)

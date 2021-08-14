@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using ModThatIsNotMod;
+using MelonLoader;
 
 namespace AIModifier.UI
 {
@@ -17,6 +18,10 @@ namespace AIModifier.UI
         void Awake()
         {
             playerHead = Player.GetRigManager().transform.FindChild("[SkeletonRig (Realtime SkeleBones)]/Head");
+        }
+
+        void OnEnable()
+        {
             transform.position = playerHead.position + distance * Vector3.ProjectOnPlane(playerHead.forward, Vector3.up) + offSet;
         }
 

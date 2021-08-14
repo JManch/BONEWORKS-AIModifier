@@ -22,6 +22,12 @@ namespace AIModifier.UI
             playerHead = Player.GetPlayerHead().transform;
         }
 
+        public virtual void OnSpawn()
+        {
+            aiBrain = transform.GetComponent<AIBrain>();
+            aiData = AIDataManager.aiData[SimpleHelpers.GetCleanObjectName(aiBrain.gameObject.name)];
+        }
+
         protected virtual void Update() {}
     }
 }

@@ -1,5 +1,6 @@
 ﻿using AIModifier.UI;
 using AIModifier.Saving;
+using AIModifier.Utilities;
 using System.Globalization;
 using System;
 using System.Collections.Generic;
@@ -626,5 +627,20 @@ namespace AIModifier.AI
 
         #endregion
 
+        #region Settings Page
+
+        public static void LoadPreferencesIntoUI()
+        {
+            MenuPage settingsPage = AIMenuManager.aiMenu.GetPage("SettingsPage");
+            settingsPage.GetElement("HealthBarsEnabledElement").SetValue(UserPreferences.healthBars.Value);
+        }
+
+        public static void ToggleHealthBarSetting(bool b)
+        {
+            UserPreferences.healthBars.Value = b;
+            UserPreferences.healthBars.Save();
+        }
+
+        #endregion
     }
 }

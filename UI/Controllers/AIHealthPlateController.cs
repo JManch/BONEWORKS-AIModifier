@@ -42,8 +42,10 @@ namespace AIModifier.UI
             hpBarDelayed = healthPlate.transform.FindChild("HPBarDelayed").GetComponent<RectTransform>();
         }
 
-        public void OnSpawn()
+        public override void OnSpawn()
         {
+            base.OnSpawn();
+
             startHP = aiBrain.behaviour.health.cur_hp;
             currentHP = aiBrain.behaviour.health.cur_hp;
             UpdateHealthBar(currentHP);

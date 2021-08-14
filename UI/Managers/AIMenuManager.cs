@@ -128,6 +128,7 @@ namespace AIModifier.UI
             MenuPage aiLayoutPage = new MenuPage(menuPrefab.transform.FindChild("AILayoutPage").gameObject);
             MenuPage loadLayoutPage = new MenuPage(menuPrefab.transform.FindChild("LoadLayoutPage").gameObject);
             MenuPage saveLayoutPage = new MenuPage(menuPrefab.transform.FindChild("SaveLayoutPage").gameObject);
+            MenuPage settingsPage = new MenuPage(menuPrefab.transform.FindChild("SettingsPage").gameObject);
 
             #endregion
             MelonLogger.Msg("1");
@@ -139,7 +140,7 @@ namespace AIModifier.UI
             rootPage.AddElement(new Button(rootPage, rootPageTransform.FindChild("ConfigureAIButton").gameObject, "Configure AI", buttonTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("ConfigureAIPage"); }));
             rootPage.AddElement(new Button(rootPage, rootPageTransform.FindChild("ControlAIButton").gameObject, "Control AI", buttonTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("ControlAIPage"); }));
             rootPage.AddElement(new Button(rootPage, rootPageTransform.FindChild("AILayoutButton").gameObject, "AI Layouts", buttonTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("AILayoutPage"); }));
-            rootPage.AddElement(new Button(rootPage, rootPageTransform.FindChild("SettingsButton").gameObject, "Settings", buttonTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("Settings"); }));
+            rootPage.AddElement(new Button(rootPage, rootPageTransform.FindChild("SettingsButton").gameObject, "Settings", buttonTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("SettingsPage"); }));
 
             #endregion
             MelonLogger.Msg("1");
@@ -398,6 +399,16 @@ namespace AIModifier.UI
 
             #endregion
             MelonLogger.Msg("1");
+            #region Settings Page
+
+            Transform settingsPageTransform = menuPrefab.transform.FindChild("SettingsPage");
+            settingsPage.AddElement(new Button(settingsPage, settingsPageTransform.FindChild("CloseMenuButton").gameObject, "CLOSE", closeButtonTextProperties, Button.ButtonHighlightType.Underline, delegate { CloseAIMenu(); }));
+            settingsPage.AddElement(new TextDisplay(settingsPage, settingsPageTransform.FindChild("Title").gameObject, "SETTINGS", titleTextProperties));
+            settingsPage.AddElement(new GenericSelector<bool>(settingsPage, settingsPageTransform.FindChild("HealthBarsEnabledElement").gameObject, "Health Bars:", elementTextProperties, boolArr, delegate (bool b) { AIMenuFunctions.ToggleHealthBarSetting(b); }));
+            settingsPage.AddElement(new Button(settingsPage, settingsPageTransform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("RootPage"); }));
+            settingsPage.onPageOpen += delegate { AIMenuFunctions.LoadPreferencesIntoUI(); };
+
+            #endregion
 
             // Add the pages to the menu
             aiMenu.AddPage(rootPage);
@@ -420,6 +431,7 @@ namespace AIModifier.UI
             aiMenu.AddPage(aiLayoutPage);
             aiMenu.AddPage(loadLayoutPage);
             aiMenu.AddPage(saveLayoutPage);
+            aiMenu.AddPage(settingsPage);
         }
     }
 }

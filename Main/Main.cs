@@ -20,6 +20,7 @@ namespace AIModifier
             XMLDataManager.InitialiseAIDataXML();
             Utilities.Utilities.SetupCollisionLayers();
             Utilities.Utilities.InitialiseBoneMenu();
+            UserPreferences.Initialise();
         }
 
         public override void OnUpdate()
