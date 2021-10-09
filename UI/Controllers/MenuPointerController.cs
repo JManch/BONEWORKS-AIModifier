@@ -54,7 +54,14 @@ namespace AIModifier.UI
         void FixedUpdate()
         {
             // Need some kind of limitation here to prevent the raycast always running. Only run when within x units of the UI?
-            pointingAtUI = PerformHandRaycast();
+            if (AIMenuManager.aiMenu != null && AIMenuManager.aiMenu.isOpen && Vector3.Distance(AIMenuManager.aiMenu.gameObject.transform.position, hand.transform.position) < 10f)
+            {
+                pointingAtUI = PerformHandRaycast();
+            }
+            else
+            {
+                pointingAtUI = false;
+            }
 
             if (MenuPointerManager.activePointerHand == pointerHand && pointingAtUI)
             {
