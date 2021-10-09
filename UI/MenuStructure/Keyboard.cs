@@ -15,7 +15,8 @@ namespace AIModifier.UI
         {
             var smoothFollow = gameObject.AddComponent<SmoothPlayerFollow>();
             smoothFollow.offSet = new Vector3(0, -0.5f, 0);
-            smoothFollow.speed = 0.2f;
+            smoothFollow.speed = 0.8f;
+            smoothFollow.OnSpawn();
             LookAtPlayer lookAtPlayer = gameObject.AddComponent<LookAtPlayer>();
             lookAtPlayer.fixedXAxis = false;
         }
