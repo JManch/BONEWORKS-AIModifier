@@ -15,6 +15,11 @@ namespace AIModifier.UI
 
         private Transform playerHead;
         
+        public void OnSpawn()
+        {
+            transform.position = playerHead.position + distance * Vector3.ProjectOnPlane(playerHead.forward, Vector3.up) + offSet;
+        }
+
         void Awake()
         {
             playerHead = Player.GetRigManager().transform.FindChild("[SkeletonRig (Realtime SkeleBones)]/Head");
@@ -22,7 +27,7 @@ namespace AIModifier.UI
 
         void OnEnable()
         {
-            transform.position = playerHead.position + distance * Vector3.ProjectOnPlane(playerHead.forward, Vector3.up) + offSet;
+            OnSpawn();
         }
 
         void Update()
