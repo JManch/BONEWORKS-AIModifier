@@ -1,6 +1,6 @@
 # AIModifier for BONEWORKS
 
-Allows you to customise AI settings using a custom in-game UI. Source code: https://github.com/JManch/BONEWORKS-AIModifier
+Allows you to customise AI settings using a custom in-game UI.
 
 ## Features
 - Custom UI 
