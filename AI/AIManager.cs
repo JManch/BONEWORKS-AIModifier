@@ -4,6 +4,7 @@ using ModThatIsNotMod;
 using StressLevelZero.AI;
 using StressLevelZero.Zones;
 using StressLevelZero.Props.Weapons;
+using StressLevelZero.Arena;
 using StressLevelZero.Pool;
 using UnityEngine;
 using MelonLoader;
@@ -111,7 +112,7 @@ namespace AIModifier.AI
         #endregion
 
         #region Zone AI
-        public static void OnZoneSpawnerSpawnPostfix(ZoneSpawner __instance)
+        public static void OnZoneSpawnerSpawn(ZoneSpawner __instance)
         {
             MelonLogger.Msg("Zonespawner " + __instance.gameObject.name + " spawned an object");
 

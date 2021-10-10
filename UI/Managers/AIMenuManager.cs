@@ -332,7 +332,6 @@ namespace AIModifier.UI
             controlAISettingsPage.AddElement(new Button(controlAISettingsPage, controlAISettingsPageTransform.FindChild("AgroTargetsButton").gameObject, "Set Agro Targets", buttonTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("AgroTargetsPage"); }));
             controlAISettingsPage.AddElement(new Button(controlAISettingsPage, controlAISettingsPageTransform.FindChild("WalkToPointButton").gameObject, "Walk To Point", buttonTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("WalkToPointPage"); }));
             controlAISettingsPage.AddElement(new Button(controlAISettingsPage, controlAISettingsPageTransform.FindChild("AgroPlayerButton").gameObject, "Start Following Player", buttonTextProperties, Button.ButtonHighlightType.Underline, delegate { AIMenuFunctions.SelectedAgroPlayer(); }));
-            controlAISettingsPage.AddElement(new Button(controlAISettingsPage, controlAISettingsPageTransform.FindChild("ResurrectButton").gameObject, "Resurrect", buttonTextProperties, Button.ButtonHighlightType.Underline, delegate { AIMenuFunctions.ResurrectSelected(); }));
             controlAISettingsPage.AddElement(new Button(controlAISettingsPage, controlAISettingsPageTransform.FindChild("ResetHitEffectsButton").gameObject, "Reset Hit Effects", buttonTextProperties, Button.ButtonHighlightType.Underline, delegate { AIMenuFunctions.ResetSelectedHitEffects(); }));
             controlAISettingsPage.AddElement(new Button(controlAISettingsPage, controlAISettingsPageTransform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("ControlAIPage"); }));
 
@@ -398,7 +397,7 @@ namespace AIModifier.UI
             saveLayoutPage.AddElement(new Button(saveLayoutPage, saveLayoutPageTransform.FindChild("BackButton").gameObject, "BACK", titleTextProperties, Button.ButtonHighlightType.Underline, delegate { aiMenu.SwitchPage("AILayoutPage"); }));
 
             #endregion
-            MelonLogger.Msg("1");
+
             #region Settings Page
 
             Transform settingsPageTransform = menuPrefab.transform.FindChild("SettingsPage");

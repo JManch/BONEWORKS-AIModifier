@@ -17,10 +17,6 @@ namespace AIModifier.Utilities
             {
                 using (FileStream fileStream = new FileStream(Utilities.aiModifierDirectory + @"AISettings.xml", FileMode.Create))
                 {
-                    if (stream == null)
-                    {
-                        MelonLogger.Msg("Stream is null");
-                    }
                     stream.CopyTo(fileStream);
                 }
             }

@@ -134,14 +134,6 @@ namespace AIModifier.AI
             }
         }
 
-        public static void ResurrectSelected()
-        {
-            foreach (AIBrain aiBrain in AIManager.selectedAIList)
-            {
-                aiBrain.behaviour.Resurrect();
-            }
-        }
-
         public static void ResetSelectedHitEffects()
         {
             foreach (AIBrain aiBrain in AIManager.selectedAIList)
@@ -172,7 +164,6 @@ namespace AIModifier.AI
         {
             List<AIBrain> selectedAI = AIManager.selectedAIList;
 
-            // Fill this list
             List<AIBrain> targetAI = AIManager.selectedTargetAIList;
 
             System.Random rnd = new System.Random();
@@ -182,11 +173,19 @@ namespace AIModifier.AI
                 // If an AI has been assigned to attack every other AI then randomnly assign the rest
                 if (i > targetAI.Count - 1 && targetAI.Count != 0)
                 {
-                    selectedAI[i].behaviour.SetAgro(targetAI[rnd.Next(0, targetAI.Count)].behaviour.sensors.selfTrp);
+                    try
+                    {
+                        selectedAI[i].behaviour.SetAgro(targetAI[rnd.Next(0, targetAI.Count)].behaviour.sensors.selfTrp);
+                    }
+                    catch { }
                 }
                 else if (targetAI.Count != 0)
                 {
-                    selectedAI[i].behaviour.SetAgro(targetAI[i].behaviour.sensors.selfTrp);
+                    try
+                    {
+                        selectedAI[i].behaviour.SetAgro(targetAI[i].behaviour.sensors.selfTrp);
+                    }
+                    catch { }
                 }
             }
 
@@ -195,11 +194,19 @@ namespace AIModifier.AI
                 // If an AI has been assigned to attack every other AI then randomnly assign the rest
                 if (i > selectedAI.Count - 1 && selectedAI.Count != 0)
                 {
-                    targetAI[i].behaviour.SetAgro(selectedAI[rnd.Next(0, selectedAI.Count)].behaviour.sensors.selfTrp);
+                    try
+                    {
+                        targetAI[i].behaviour.SetAgro(selectedAI[rnd.Next(0, selectedAI.Count)].behaviour.sensors.selfTrp);
+                    }
+                    catch { }
                 }
                 else if (selectedAI.Count != 0)
                 {
-                    targetAI[i].behaviour.SetAgro(selectedAI[i].behaviour.sensors.selfTrp);
+                    try
+                    {
+                        targetAI[i].behaviour.SetAgro(selectedAI[i].behaviour.sensors.selfTrp);
+                    }
+                    catch { }
                 }
             }
         }
@@ -250,8 +257,11 @@ namespace AIModifier.AI
                     if(aiBrain.behaviour.freezeWhileResting)
                     {
                         aiBrain.behaviour.freezeWhileResting = false;
-                        MelonLogger.Msg("Just set freeze while resting to false");
-                        MelonCoroutines.Start(PerformFunctionAfterSeconds(delegate { aiBrain.behaviour.SetPath(selectedPoint); MelonLogger.Msg("Just set the path"); aiBrain.behaviour.freezeWhileResting = true; MelonLogger.Msg("Just say freeze while resting to true. Value is " + aiBrain.behaviour.freezeWhileResting); }, 0.5f));
+                        MelonCoroutines.Start(PerformFunctionAfterSeconds(delegate 
+                        { 
+                            aiBrain.behaviour.SetPath(selectedPoint); 
+                            aiBrain.behaviour.freezeWhileResting = true;
+                        }, 0.5f));
                         continue;
                     }
                     else

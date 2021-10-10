@@ -25,59 +25,10 @@ namespace AIModifier
 
         public override void OnUpdate()
         {
-            // Getting variables
             if(AssetManager.leftHand == null || AssetManager.rightHand == null)
             {
                 AssetManager.GetHands();
             }
-
-
-            /*
-            if(Input.GetKeyDown(KeyCode.Space))
-            {
-                AIMenuManager.OpenAIMenu();
-            }
-
-            if(Input.GetKeyDown(KeyCode.C))
-            {
-                AILayoutSaver.SaveAILayout("Test");
-            }
-            */
-
-            if (Input.GetKeyDown(KeyCode.M))
-            {
-                //AISelectorManager.EnableAISelector();
-
-
-                Camera mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-                mainCamera.cullingMask ^= 1 << 30;
-                mainCamera.cullingMask ^= 1 << 31;
-
-                /*
-                if (Utilities.Utilities.aiMenuPrefab == null)
-                {
-                    MelonLogger.Msg("aiMenuPrefab is null");
-                }
-                else
-                {
-                    MelonLogger.Msg("aiMenuPrefab is not null");
-                }
-
-                if (Utilities.Utilities.
-                
-                
-                PlatePrefab == null)
-                {
-                    MelonLogger.Msg("healthPlatePrefab is null");
-                }
-                else
-                {
-                    MelonLogger.Msg("healthPlatePrefab is not null");
-                }
-                */
-            }
-
-            
         }
 
     }
