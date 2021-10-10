@@ -1,7 +1,6 @@
 ﻿using System;
 using StressLevelZero.AI;
 using UnityEngine;
-using MelonLoader;
 
 namespace AIModifier.AI
 {

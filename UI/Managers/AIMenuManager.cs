@@ -1,8 +1,5 @@
 ﻿using UnityEngine;
 using ModThatIsNotMod;
-using MelonLoader;
-using UnityEngine.UI;
-using System.Collections.Generic;
 using AIModifier.AI;
 using System.Linq;
 using UnityEngine.SceneManagement;

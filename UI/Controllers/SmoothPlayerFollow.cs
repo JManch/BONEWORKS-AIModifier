@@ -1,7 +1,6 @@
 ﻿using System;
 using UnityEngine;
 using ModThatIsNotMod;
-using MelonLoader;
 
 namespace AIModifier.UI
 {

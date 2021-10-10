@@ -5,10 +5,7 @@ using AIModifier.AI;
 using AIModifier.UI;
 using UnityEngine.SceneManagement;
 using System.IO;
-using ModThatIsNotMod;
 using MelonLoader;
-using StressLevelZero.Pool;
-using System.Linq;
 
 namespace AIModifier.Saving
 {

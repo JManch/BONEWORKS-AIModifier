@@ -3,7 +3,6 @@ using UnityEngine;
 using StressLevelZero.AI;
 using AIModifier.AI;
 using ModThatIsNotMod;
-using MelonLoader;
 
 namespace AIModifier.UI
 {

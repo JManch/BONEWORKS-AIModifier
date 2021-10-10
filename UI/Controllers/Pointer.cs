@@ -1,10 +1,6 @@
 ﻿using UnityEngine;
 using System;
-using Boneworks;
 using StressLevelZero.Interaction;
-using ModThatIsNotMod;
-using StressLevelZero.AI;
-using AIModifier.AI;
 
 namespace AIModifier.UI
 {

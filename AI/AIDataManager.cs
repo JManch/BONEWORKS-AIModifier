@@ -7,7 +7,6 @@ using PuppetMasta;
 using UnityEngine;
 using System.Linq;
 using System.IO;
-using MelonLoader;
 
 namespace AIModifier.AI
 {
@@ -286,7 +285,7 @@ namespace AIModifier.AI
         {
             BehaviourPowerLegs behaviourPowerLegs = aiBrain.transform.GetChild(0).GetChild(0).GetComponent<BehaviourPowerLegs>();
 
-            if (comparisonData == null || aiData.health != comparisonData.health) behaviourPowerLegs.health.cur_hp = (aiData.health / 100);
+            if (comparisonData == null || (aiData.health != comparisonData.health && behaviourPowerLegs.health.cur_hp != 0)) behaviourPowerLegs.health.cur_hp = (aiData.health / 100);
             if (comparisonData == null || aiData.leftLegHealth != comparisonData.leftLegHealth) behaviourPowerLegs.health.cur_leg_lf = aiData.leftLegHealth / 100;
             if (comparisonData == null || aiData.rightLegHealth != comparisonData.rightLegHealth) behaviourPowerLegs.health.cur_leg_rt = aiData.rightLegHealth / 100;
             if (comparisonData == null || aiData.leftArmHealth != comparisonData.leftArmHealth) behaviourPowerLegs.health.cur_arm_lf = aiData.leftArmHealth / 100;

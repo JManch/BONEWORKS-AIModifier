@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System;
-using StressLevelZero.Interaction;
 using StressLevelZero.AI;
 
 namespace AIModifier.UI

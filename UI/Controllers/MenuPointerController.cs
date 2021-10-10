@@ -1,10 +1,6 @@
-﻿ using UnityEngine;
+﻿using UnityEngine;
 using System;
 using StressLevelZero.Interaction;
-using StressLevelZero.Rig;
-using ModThatIsNotMod;
-using MelonLoader;
-using Boneworks;
 
 namespace AIModifier.UI
 {

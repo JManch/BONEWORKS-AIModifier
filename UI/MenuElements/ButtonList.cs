@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using MelonLoader;
 using System;
 
 namespace AIModifier.UI

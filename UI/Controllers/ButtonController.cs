@@ -1,8 +1,5 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.UI;
-using MelonLoader;
-using StressLevelZero.Interaction;
 
 namespace AIModifier.UI
 {

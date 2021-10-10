@@ -4,7 +4,6 @@ using ModThatIsNotMod;
 using StressLevelZero.AI;
 using StressLevelZero.Zones;
 using StressLevelZero.Props.Weapons;
-using StressLevelZero.Arena;
 using StressLevelZero.Pool;
 using UnityEngine;
 using MelonLoader;
@@ -104,7 +103,9 @@ namespace AIModifier.AI
                 if(poolee != null)
                 {
                     AIBrain spawnedAIBrain = poolee.GetComponent<AIBrain>();
+#if DEBUG
                     MelonLogger.Msg("Detected last spawned AI brain as " + spawnedAIBrain.gameObject.name);
+#endif
                     ConfigureNewAI(spawnedAIBrain);
                 }
             }
@@ -114,15 +115,12 @@ namespace AIModifier.AI
         #region Zone AI
         public static void OnZoneSpawnerSpawn(ZoneSpawner __instance)
         {
+#if DEBUG
             MelonLogger.Msg("Zonespawner " + __instance.gameObject.name + " spawned an object");
-
+#endif
             if(__instance.spawns.Count != 0)
             {
                 AIBrain spawnedAIBrain = __instance.spawns[__instance.spawns.Count - 1].GetComponent<AIBrain>();
-                if(spawnedAIBrain == null)
-                {
-                    MelonLogger.Msg("The spawned object is null");
-                }
                 ConfigureNewAI(spawnedAIBrain);
             }
         }
@@ -135,21 +133,27 @@ namespace AIModifier.AI
             {
                 return;
             }
-            MelonLogger.Msg("Configuring AI " + aiBrain.name);
+
+#if DEBUG
+            
+            
+            
+            
+            
+            ("Configuring AI " + aiBrain.name);
+#endif
             // Add an AIDataComponent if the AI does not have one. This will store the AI's default settings which it will fall back on.
             // If the AI already has an AIDataComponent, restore the AI's settings to default. Default settings are stored in the AIDataComponent component.
             if (aiBrain.gameObject.GetComponent<AIDataComponent>() == null)
             {
                 AIDataComponent aiDataComponent = aiBrain.gameObject.AddComponent<AIDataComponent>();
 
-                // Generating default data only once is an issue due to the pool system reusing enemies with different configs
                 aiDataComponent.GenerateDefaultAIData();
             }
             else
             {
                 // Only applies default values for variables that are not reset by the AI's base config system
                 AIDataManager.ApplyNonBaseConfigDefaultAIData(aiBrain);
-                //AIDataManager.ApplyAIData(aiBrain, aiBrain.gameObject.GetComponent<AIDataComponent>().defaultAIData);
             }
 
             // Retrieve stored ai data for the ai
@@ -185,7 +189,7 @@ namespace AIModifier.AI
 
         public static void ConfigureNewAI(AIBrain aiBrain, AIData aiData)
         {
-            if (aiBrain == null)
+            if (aiBrain == null || SimpleHelpers.GetCleanObjectName(aiBrain.gameObject.name) == "enemy_genericTurret_V4")
             {
                 return;
             }

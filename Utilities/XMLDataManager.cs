@@ -1,5 +1,4 @@
-﻿using MelonLoader;
-using System.Reflection;
+﻿using System.Reflection;
 using System.IO;
 using System.Collections.Generic;
 using AIModifier.AI;

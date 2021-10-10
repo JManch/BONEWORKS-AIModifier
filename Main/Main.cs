@@ -1,11 +1,5 @@
 ﻿using MelonLoader;
-using StressLevelZero.Zones;
-using ModThatIsNotMod;
-using UnityEngine;
 using AIModifier.Utilities;
-using AIModifier.AI;
-using AIModifier.UI;
-using AIModifier.Saving;
 
 namespace AIModifier
 {
