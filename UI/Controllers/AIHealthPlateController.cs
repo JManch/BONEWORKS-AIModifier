@@ -48,6 +48,7 @@ namespace AIModifier.UI
 
             startHP = aiBrain.behaviour.health.cur_hp;
             currentHP = aiBrain.behaviour.health.cur_hp;
+            barTarget = -((startHP - currentHP) / startHP * 0.6f);
             UpdateHealthBar(currentHP);
         }
 
